@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import CommentsPostagens from './CommentsPostagens.vue'
 import CriarPost from './CriarPost.vue'
 import { postagens } from '@/data/postagens.js'
@@ -7,6 +7,7 @@ import { salasUsuario } from '@/data/salasUsuario.js'
 import { shallowRef } from 'vue'
 import { salas } from '@/data/salas.js'
 import { users } from '@/views/user/Users.js'
+import { pegarIDUsuario } from '@/views/account/login/UserReal.js'
 
 const props = defineProps({
   posts: {
@@ -57,7 +58,7 @@ function pegarNomeAutor(autorID) {
   }
 }
 
-let usuario = ref('cofeeBarney')
+const usuario = computed(() => pegarIDUsuario())
 const mostrarComent = ref(null)
 const dialog = shallowRef(false)
 
@@ -148,7 +149,7 @@ function salaDoPost(salaId) {
               <button class="editarDeletar" v-on:click="mostrarItens(post)">•••</button>
 
               <div class="vshow" v-show="post.aberto">
-                <div v-if="post.autor === usuario" class="btnsEditarDeletar">
+                <div v-if="post.autorID === usuario" class="btnsEditarDeletar">
                   <button @click="editar(post)" class="editar">Editar</button>
                   <button @click="excluir(post.id)" class="deletar">Excluir</button>
                 </div>

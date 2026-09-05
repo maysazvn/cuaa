@@ -1,23 +1,15 @@
 <script setup>
-import { ref, onMounted, computed} from 'vue'
+import { ref, computed} from 'vue'
 const emit = defineEmits(['fechar', 'adicionar'])
 import { postagens } from '@/data/postagens.js';
- import { shallowRef } from 'vue'
  import { salas } from '@/data/salas.js'
- import { userReal } from '@/views/account/login/UserReal';
  import { salasUsuario } from '@/data/salasUsuario';
+ import { pegarIDUsuario } from '@/views/account/login/UserReal';
 
-const props = defineProps(['post'])
- const dialog = shallowRef(false)
 const postagensTituloNovo = ref('');
 const postagensConteudoNovo = ref('');
-
-
 const salaSelecionada = ref(null)
 const salaFinal = computed(() => salaSelecionada.value)
-
-
-const usuLogado = ref(localStorage.getItem('nomeUsuario') || 'cofeeBarney');
 const storage = 'postagens'
 
 function usuarioEstaNaSala(salaIdDoPost) {
@@ -45,7 +37,7 @@ function adicionar() {
     const novoPost = {
         titulo: postagensTituloNovo.value,
      conteudo: postagensConteudoNovo.value,
-        autor: 1,
+        autorID: pegarIDUsuario(),
         data:  new Date().toLocaleDateString('pt-BR'),
         id: maiorId + 1,
         salaId: Number(salaFinal.value),
@@ -60,7 +52,7 @@ console.log("Post atualizado:", JSON.parse(JSON.stringify(postagens.value)));
 
   localStorage.setItem(storage, JSON.stringify(postagens.value))
   emit('fechar') }
-   
+
 }
 
 
@@ -69,14 +61,14 @@ console.log("Post atualizado:", JSON.parse(JSON.stringify(postagens.value)));
     <section class="sessaoPostar">
     <v-card theme="dark" class="caixa">
       <h2 class="titulo-postar">Postar</h2>
-      
+
       <v-card-text class="conteudo-postar">
         <v-row density="comfortable">
           <v-col cols="12" md="12">
-            <v-text-field 
-              label="Título *" 
-              required 
-              v-model="postagensTituloNovo" 
+            <v-text-field
+              label="Título *"
+              required
+              v-model="postagensTituloNovo"
               class="formulario"
               variant="outlined"
               base-color="#3e3e3e"
@@ -227,7 +219,7 @@ console.log("Post atualizado:", JSON.parse(JSON.stringify(postagens.value)));
 
 <style>
 .menu-salas-custom .v-list-item-title {
-  margin-left: 14px !important; 
+  margin-left: 14px !important;
 }
 
 .menu-salas-custom .v-list-item {
