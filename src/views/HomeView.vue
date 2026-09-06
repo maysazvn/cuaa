@@ -113,10 +113,12 @@ function criarPostRapido() {
 
 <style scoped>
 .container {
-  margin: 3vw 5vw auto;
+  margin: 3vw auto 0;
   padding: 0 15px;
   box-sizing: border-box;
   color: #d9d9d9;
+  max-width: 1000px;
+  width: 100%;
 }
 
 .postar {
@@ -238,8 +240,8 @@ function criarPostRapido() {
 ///////////////////////////////////////////// BUGS/COISAS PRA ARRUMAR /////////////////////////////////////////////
 TIMELINE:
 1. curtidas!!! e salvos
-2. comentarios tbm tem q identificar o usuário
-3. qnd vc clica pra entrar no proprio usuario na tml ele abre um ngc nadave como se fosse profileViewOther
+2. qnd vc clica pra entrar no proprio usuario na tml ele abre um ngc nadave como se fosse profileViewOther
+3. editar post nao ta funcionando
 
 SALAS:
 1. quando vc cria uma sala vc nao está nela automaticamente
@@ -252,7 +254,6 @@ PESQUISA:
 2. ter como pesquisar postagens
 3. mostrar um numero especifico de resultados (tipo sla, 15) e colocar ver mais pra abrir mais é uma funcionalidade legal
 4. aparecer seu proprio usuario na pesquisa
-
 
 LOGIN:
 1. precisar ter conta pra comentar

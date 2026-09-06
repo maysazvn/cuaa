@@ -173,13 +173,6 @@ function salaDoPost(salaId) {
               <font-awesome-icon icon="comment" />
             </button>
 
-            <div v-if="mostrarComent === post.id">
-              <CommentsPostagens :post="post" :usuario="usuario"></CommentsPostagens>
-              <button @click="mostrarComent = null" class="mostrarComent">
-                <font-awesome-icon icon="comment" />
-              </button>
-            </div>
-
             <div class="curtidas">
               <button class="mostrarComent"><font-awesome-icon icon="heart" /></button>
             </div>
@@ -188,6 +181,13 @@ function salaDoPost(salaId) {
               <button class="mostrarComent"><font-awesome-icon icon="bookmark" /></button>
             </div>
           </div>
+
+                      <div v-if="mostrarComent === post.id">
+              <CommentsPostagens :post="post" :usuario="usuario"></CommentsPostagens>
+              <button @click="mostrarComent = null" class="mostrarComent">
+                <font-awesome-icon icon="comment" />
+              </button>
+            </div>
         </div>
       </div>
     </div>
@@ -217,7 +217,7 @@ div.listaPosts {
   color: #d9d9d9;
   border-radius: 20px;
   padding: 30px;
-  max-width: 60%;
+  max-width: 70%;
   margin: 0 auto;
   margin-bottom: 35px;
   border: 1px solid #333333;
@@ -317,6 +317,7 @@ span.salas img {
 .interacao {
   display: flex;
   gap: 10px;
+  margin: 2px 2px 7px 2px;
 }
 
 /*//////*/
