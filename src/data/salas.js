@@ -60,5 +60,22 @@ export const salas = ref([
     usuarioCriador: 'Samusaax',
     status: 1,
     banner: 'https://i.pinimg.com/736x/7f/01/fe/7f01fe7cac4f06697b8b61066da99a4b.jpg'
+},{
+    idSala: 8,
+    nome: 'Programação',
+    participantes: 99,
+    desc: 'Duvidas de JS, Vue, Python, etc...',
+    usuarioCriador: 'sackboy',
+    status: 1,
+    banner: 'https://i.pinimg.com/1200x/80/22/68/8022682b6bbe4ddf22132d07d55f4635.jpg'
+},{
+    idSala: 9,
+    nome: 'CSS',
+    participantes: 0,
+    desc: 'Ajudando a entender css',
+    usuarioCriador: 'o inimigo',
+    status: 0,
+    banner: 'https://i.pinimg.com/736x/a6/b5/cd/a6b5cdc8d9b2bf6003950a997230e3ba.jpg'
 },
+
 ])

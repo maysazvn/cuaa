@@ -18,6 +18,7 @@ function alternarMembro() {
 console.log('ID da rota:', route.params.id)
 console.log('Salas:', salas.value)
 
+const criador = computed(() => users.find(usuario => usuario.nome === sala.value?.usuarioCriador))
 const sala = computed(() => salas.value.find((s) => s.idSala == route.params.id))
 function confirmarEx() {
   const index = salas.value.findIndex((s) => s.idSala == route.params.id)
@@ -62,7 +63,7 @@ console.log('Sala encontrada:', sala.value)
         <div class="info-sala">
           <h2 class="nome-sala">{{ sala.nome }}</h2>
           <div class="metadados">
-            <RouterLink :to="`/otherProfile/${users.id}`"> <span>CRIADOR</span> {{ sala.usuarioCriador }} </RouterLink>
+            <RouterLink :to="`/otherProfile/${criador.id}`"> <span>CRIADOR</span> {{ sala.usuarioCriador }} </RouterLink>
             <p><span>STATUS</span> {{ statusTexto }}</p>
           </div>
         </div>
