@@ -12,6 +12,12 @@ const menuAberto = ref(false)
 const entrouOuNao = ref(false)
 
 function alternarMembro() {
+  if (entrouOuNao.value) {
+    sala.value.participantes--
+  } else {
+    sala.value.participantes++
+  }
+
   entrouOuNao.value = !entrouOuNao.value
 }
 
