@@ -9,6 +9,7 @@ import { urlFoto } from './urlFoto';
 import { salas } from '@/data/salas';
 import { pegarIDUsuario } from '../account/login/UserReal';
 import { postagens } from '@/data/postagens';
+import Postagens from '@/components/Postagens/Postagens.vue';
 
 const suarios = JSON.parse(localStorage.getItem('salasEntradas')) || []
 const nomeUsuario = ref(localStorage.getItem('nomeUsuario') || userReal)

@@ -16,6 +16,14 @@ const props = defineProps({
   },
 })
 
+function linkPerfil(autorID){
+  if(autorID === pegarIDUsuario()){
+    return `/profile`
+  } else{
+    return `/otherProfile/${autorID}`
+  }
+}
+
 //hallana essa function procura se o usuario está na sala ou nao
 function usuarioEstaNaSala(salaIdDoPost) {
   for (let sala of salasUsuario.value) {
@@ -131,10 +139,10 @@ function salaDoPost(salaId) {
             <div class="esq">
               <p class="autor">
                 <strong>
-                  <RouterLink :to="`/otherProfile/${post.autorID}`">
+                  <RouterLink :to="linkPerfil(post.autorID)">
                     <img :src="pegarFotoUsuario(post.autorID)" class="fotoAutor" />
                   </RouterLink>
-                  <RouterLink :to="`/otherProfile/${post.autorID}`">
+                  <RouterLink :to="linkPerfil(post.autorID)">
                     {{ pegarNomeAutor(post.autorID) }}
                   </RouterLink>
                 </strong>

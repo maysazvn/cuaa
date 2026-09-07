@@ -240,8 +240,6 @@ function criarPostRapido() {
 ///////////////////////////////////////////// BUGS/COISAS PRA ARRUMAR /////////////////////////////////////////////
 TIMELINE:
 1. curtidas!!! e salvos
-2. qnd vc clica pra entrar no proprio usuario na tml ele abre um ngc nadave como se fosse profileViewOther
-3. editar post nao ta funcionando
 
 SALAS:
 1. quando vc cria uma sala vc nao está nela automaticamente
