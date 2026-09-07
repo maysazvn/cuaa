@@ -1,16 +1,11 @@
 <script setup>
-import { computed, ref, watch } from 'vue'
+import { computed, ref } from 'vue'
 import { postagens } from '@/data/postagens'
 import Postagens from '@/components/Postagens/Postagens.vue'
 import { salasUsuario } from '@/data/salasUsuario'
 import { loginOut } from './account/login/Loginout'
-import { userReal } from '@/views/account/login/UserReal'
-
-const nomeUsuario = ref(localStorage.getItem('nomeUsuario') || userReal );
-
-watch(nomeUsuario, (novoNome) => {
-  localStorage.setItem('nomeUsuario', novoNome)
-});
+import { pegarIDUsuario } from '@/views/account/login/UserReal'
+import { users } from './user/Users'
 
 function usuarioEstaNaSala(salaIdDoPost) {
   for (let sala of salasUsuario.value) {
@@ -23,12 +18,22 @@ function usuarioEstaNaSala(salaIdDoPost) {
   return false
 }
 
+function pegarFotoUsuario(autorID) {
+  const usuarioEncontrado = users.find((usu) => usu.id === autorID)
+  if (usuarioEncontrado) {
+    return usuarioEncontrado.pfp
+  } else {
+    return '/pfpPlaceholder.png'
+  }
+}
+
 const postsTimeline = computed(() => {
   return postagens.value.filter((post) => {
-    const inscrito = usuarioEstaNaSala(post.salaId)
-    const viral = post.curtidas >= 150
+    const inscrito = usuarioEstaNaSala(post.salaId);
+    const viral = post.curtidas >= 150;
+    const meuPost = post.autorID === pegarIDUsuario()
 
-    return inscrito || viral
+    return inscrito || viral || meuPost
   })
 })
 
@@ -49,7 +54,7 @@ function criarPostRapido() {
   const novoPost = {
     titulo: '',
     conteudo: conteudoRapido.value,
-    autor: userReal,
+    autorID: pegarIDUsuario(),
     data: new Date().toLocaleDateString('pt-BR'),
     id: maiorId + 1,
     salaId: Number(salaSelecionada.value),
@@ -67,7 +72,7 @@ function criarPostRapido() {
   <div class="container">
     <div class="postar" v-if="loginOut === 'ativo'">
       <div class="imginput">
-        <img src="../../public/kuaa.png" alt="icone de perfil do usuario" />
+        <img :src="pegarFotoUsuario(pegarIDUsuario())" alt="icone de perfil do usuario" />
         <input type="text" placeholder="Qual é seu tema de estudo agora?" v-model="conteudoRapido"/>
       </div>
 
@@ -108,10 +113,12 @@ function criarPostRapido() {
 
 <style scoped>
 .container {
-  margin: 3vw 5vw auto;
+  margin: 3vw auto 0;
   padding: 0 15px;
   box-sizing: border-box;
   color: #d9d9d9;
+  max-width: 1000px;
+  width: 100%;
 }
 
 .postar {
@@ -232,25 +239,19 @@ function criarPostRapido() {
 /*
 ///////////////////////////////////////////// BUGS/COISAS PRA ARRUMAR /////////////////////////////////////////////
 TIMELINE:
-1. quando clicar na foto/nome da sala/usuario ter como entrar no perfil da sala/usuario
-2. criar post do + bugado na timeline, além de n ter como escolher salas
-3. quando o post é seu n ta mais aparecendo editar/excluir e n ta reconhecendo seu usuario (QUANDO SE CRIA UM USUÁRIO ELE NAO TEM UM ID)
-4. posts em alta sem foto
-5. curtidas!!! e salvos
+1. curtidas!!! e salvos
 
 SALAS:
 1. quando vc cria uma sala vc nao está nela automaticamente
 2. tem como editar/excluir salas aleatorias q nem sao suas
 3. botao entra/sair da sala precisa funcionar e adc membros
-4. Ta dando pŕa criar a sala sem logar
-5. quando loga em uma conta e depois sai da conta, cria uma sala e sai com o nome do criador do login mesmo nao estando logado
+4. quando loga em uma conta e depois sai da conta, cria uma sala e sai com o nome do criador do login mesmo nao estando logado
 
 PESQUISA:
 1. poder separar se vc quer pesquisar espeficamente uma sala, um usuario ou uma postagem
 2. ter como pesquisar postagens
 3. mostrar um numero especifico de resultados (tipo sla, 15) e colocar ver mais pra abrir mais é uma funcionalidade legal
 4. aparecer seu proprio usuario na pesquisa
-
 
 LOGIN:
 1. precisar ter conta pra comentar
@@ -264,13 +265,7 @@ USUARIOS:
 1. aparecer msg de excluir usuario assim como aparece em salas
 
 CSS:
-1. css de pesquisa
-2. css explorar salas
-3. css read sala
-4. responsividade
-
-
-
+1. responsividade
 
 */
 </style>
