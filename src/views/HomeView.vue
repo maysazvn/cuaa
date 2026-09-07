@@ -239,9 +239,7 @@ TIMELINE:
 5. curtidas!!! e salvos
 
 SALAS:
-1. quando vc cria uma sala vc nao está nela automaticamente
 2. tem como editar/excluir salas aleatorias q nem sao suas
-3. botao entra/sair da sala precisa funcionar e adc membros
 4. Ta dando pŕa criar a sala sem logar
 5. quando loga em uma conta e depois sai da conta, cria uma sala e sai com o nome do criador do login mesmo nao estando logado
 
