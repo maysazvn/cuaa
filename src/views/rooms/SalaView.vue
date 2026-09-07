@@ -3,6 +3,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { computed, ref } from 'vue'
 import { salas } from '@/data/salas'
 import { users } from '../user/Users'
+import { userReal } from '../account/login/UserReal'
 defineProps(['idSala', 'nome', 'participantes', 'desc', 'usuarioCriador', 'status', 'banner'])
 
 const route = useRoute()
@@ -80,7 +81,7 @@ console.log('Sala encontrada:', sala.value)
             <span v-else>Entrar</span>
           </button>
 
-          <div class="menu">
+          <div class="menu" v-if="sala.usuarioCriador === userReal">
             <button class="menubotao" @click="menuAberto = !menuAberto">...</button>
             <div class="menuaberto" v-if="menuAberto">
               <button @click="editarSala">Editar sala</button>

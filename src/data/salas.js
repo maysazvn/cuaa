@@ -57,7 +57,7 @@ export const salas = ref([
     nome: 'Five Nights At Freddy',
     participantes: 21,
     desc: '',
-    usuarioCriador: 'Samusaax',
+    usuarioCriador: 'erererer',
     status: 1,
     banner: 'https://i.pinimg.com/736x/7f/01/fe/7f01fe7cac4f06697b8b61066da99a4b.jpg'
 },{
@@ -73,9 +73,25 @@ export const salas = ref([
     nome: 'CSS',
     participantes: 0,
     desc: 'Ajudando a entender css',
-    usuarioCriador: 'o inimigo',
+    usuarioCriador: 'homotron3000',
     status: 0,
     banner: 'https://i.pinimg.com/736x/a6/b5/cd/a6b5cdc8d9b2bf6003950a997230e3ba.jpg'
+},{
+    idSala: 10,
+    nome: 'MATEMÁTICA',
+    participantes: 0,
+    desc: 'Matemática pode ser legal :D',
+    usuarioCriador: 'Gabriel',
+    status: 0,
+    banner: 'https://i.pinimg.com/736x/f0/fc/3f/f0fc3fbf591538641cdc8bee744be8e2.jpg'
+},{
+    idSala: 11,
+    nome: 'Filosofia',
+    participantes: 13,
+    desc: 'Filosofando com Dexter',
+    usuarioCriador: 'Bay-harbor Butcher',
+    status: 1,
+    banner: 'https://i.pinimg.com/1200x/51/76/34/517634feafe0323c9687ff7ef2e0a220.jpg'
 },
 
 ])
