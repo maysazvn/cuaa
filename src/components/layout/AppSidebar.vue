@@ -1,13 +1,10 @@
 <script setup>
-
 // imports //////////////////
 
 import { loginOut } from '@/views/account/login/Loginout'
 
 import { RouterLink } from 'vue-router'
 import { salasUsuario } from '@/data/salasUsuario'
-
-import { salas } from '@/data/salas'
 import { userReal } from '@/views/account/login/UserReal'
 import { emailReal } from '@/views/account/login/EmailReal'
 import { urlFoto } from '@/views/user/urlFoto'
@@ -86,16 +83,34 @@ function validarLoginout() {
     </div>
 
     <div class="sairUsuario" v-if="loginOut == 'ativo'">
-      <span @click="validarLoginout()" class="sair"><font-awesome-icon icon="arrow-right-from-bracket" class="sair" /> Sair</span
+      <span @click="validarLoginout()" class="sair"
+        ><font-awesome-icon icon="arrow-right-from-bracket" class="sair" /> Sair</span
       >
     </div>
 
     <div class="entrarUsuario" v-else>
       <span>
-        <router-link to="/login" class="entrar"><font-awesome-icon icon="arrow-right-from-bracket" class="sair" />Entrar</router-link>
+        <router-link to="/login" class="entrar"
+          ><font-awesome-icon icon="arrow-right-from-bracket" class="sair" />Entrar</router-link
+        >
       </span>
     </div>
   </aside>
+
+  <nav class="bottom">
+    <router-link to="/" class="item">
+      <font-awesome-icon icon="house" />
+      <span>Início</span>
+    </router-link>
+    <router-link to="/explore" class="item">
+      <font-awesome-icon icon="compass" />
+      <span>Explorar</span>
+    </router-link>
+    <router-link to="/profile" class="item">
+      <font-awesome-icon icon="user" />
+      <span>Perfil</span>
+    </router-link>
+  </nav>
 </template>
 
 <style scoped>
@@ -111,6 +126,10 @@ aside.sidebar {
   width: 250px;
   padding: 10px 5px;
   box-sizing: border-box;
+}
+
+.bottom {
+  display: none;
 }
 
 h1 {
@@ -181,21 +200,23 @@ hr {
   align-items: center;
 }
 
-.usuarioSidebar, .emailSidebar{
+.usuarioSidebar,
+.emailSidebar {
   margin: 1px 10px;
 }
 
-.usuarioSidebar{
+.usuarioSidebar {
   font-weight: bold;
 }
 
-.imgSidebar{
+.imgSidebar {
   width: 60px;
   height: 60px;
   border-radius: 100px;
 }
 
-.sair, .entrar{
+.sair,
+.entrar {
   color: #d9d9d9;
   font-size: 1.2rem;
   font-weight: 500;
@@ -205,16 +226,39 @@ hr {
   gap: 10px;
 }
 
-.sair:hover, .entrar:hover{
+.sair:hover,
+.entrar:hover {
   opacity: 0.8;
-  transition: .2s;
+  transition: 0.2s;
 }
 
-.entrarUsuario, .dadosUser{
+.entrarUsuario,
+.dadosUser {
   margin-top: auto;
 }
 
-.entrarUsuario, .sairUsuario, .dadosUser{
+.entrarUsuario,
+.sairUsuario,
+.dadosUser {
   padding: 2px 10px;
+}
+
+@media (max-width: 768px) {
+  aside.sidebar {
+    display: none;
+  }
+
+  .bottom {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #313131;
+    padding: 10px 0;
+    z-index: 999;
+  }
 }
 </style>
