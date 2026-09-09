@@ -239,9 +239,9 @@ TIMELINE:
 5. curtidas!!! e salvos
 
 SALAS:
-2. tem como editar/excluir salas aleatorias q nem sao suas (como faz isso vou me matar)
-4. Ta dando pŕa criar a sala sem logar
+nao rta mais dando pra entarr na sala que o ususario cria
 5. quando loga em uma conta e depois sai da conta, cria uma sala e sai com o nome do criador do login mesmo nao estando logado
+Samuel ta resolvendo a parte de linkar os botoes de entrar na sdala
 
 PESQUISA:
 1. poder separar se vc quer pesquisar espeficamente uma sala, um usuario ou uma postagem
