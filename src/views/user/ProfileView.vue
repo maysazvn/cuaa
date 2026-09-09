@@ -90,10 +90,10 @@ function excluirUser() {
       <div>
         <ul>
           <li class="seguidores">
-            <span>{{ seguidores.length }}</span> Seguidores
+            <span>{{ seguidores }}</span> Seguidores
           </li>
           <li class="seguindo">
-            <span>{{ seguindo.length }}</span> Seguindo
+            <span>{{ seguindo }}</span> Seguindo
           </li>
         </ul>
       </div>

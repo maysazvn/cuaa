@@ -1,26 +1,8 @@
-export const seguindo = [
-        {
-            id: 1,
-            nome: 'gato de bosta'
+import { ref, watch } from "vue";
 
-        },
-        {
-            id: 2,
-            nome: 'fififififi'
+const valorSalvo = localStorage.getItem('total_seguindo');
+export const seguindo = ref(valorSalvo !== null ? Number(valorSalvo) : 0);
 
-        },
-        {
-            id: 3,
-            nome: 'chiquinha'
-
-        },
-        {
-            id: 4,
-            nome: 'bruh'
-
-        },
-        {
-            id: 5,
-            nome: 'sevensix'
-        },
-    ]
+watch(seguindo, (novoValor) => {
+  localStorage.setItem('total_seguindo', String(novoValor));
+});
