@@ -80,7 +80,7 @@ console.log('Sala encontrada:', sala.value)
         </div>
 
         <div class="acoes-sala">
-          <button class="btn-entrar" :class="{ 'btn-sair': entrouOuNao }" @click="alternarMembro">
+          <button class="btn-entrar" :class="{ 'btn-sair': entrouOuNao }" @click="alternarMembro" v-if="sala.usuarioCriador != userReal" >
             <span v-if="entrouOuNao">Sair da sala</span>
             <span v-else>Entrar</span>
           </button>
