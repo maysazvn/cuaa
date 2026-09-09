@@ -239,7 +239,6 @@ TIMELINE:
 5. curtidas!!! e salvos
 
 SALAS:
-nao rta mais dando pra entarr na sala que o ususario cria
 5. quando loga em uma conta e depois sai da conta, cria uma sala e sai com o nome do criador do login mesmo nao estando logado
 Samuel ta resolvendo a parte de linkar os botoes de entrar na sdala
 

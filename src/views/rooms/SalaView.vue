@@ -70,7 +70,11 @@ console.log('Sala encontrada:', sala.value)
         <div class="info-sala">
           <h2 class="nome-sala">{{ sala.nome }}</h2>
           <div class="metadados">
-            <RouterLink :to="`/otherProfile/${criador.id}`"> <span>CRIADOR</span> {{ sala.usuarioCriador }} </RouterLink>
+            <div>
+              <RouterLink v-if="sala.usuarioCriador === userReal" :to="`/profile`"> <span>CRIADOR</span> {{ sala.usuarioCriador }} </RouterLink>
+              <RouterLink v-else :to="`/otherProfile/${criador.id}`"> <span>CRIADOR</span> {{ sala.usuarioCriador }} </RouterLink>
+            </div>
+
             <p><span>STATUS</span> {{ statusTexto }}</p>
           </div>
         </div>
