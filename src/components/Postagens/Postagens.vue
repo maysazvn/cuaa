@@ -121,11 +121,24 @@ function denunciar() {
  alert('Comentário denunciado com sucesso.')
 }
 
+const alternarCurtida  = (postagens) => {
+  const post = postagens.value.findIndex((p) => p.id === post.id)
+
+  if (post) {
+    if (post.curtido) {
+      post.curtido = false;
+      post.curtidas -= 1
+    } else {
+      post.curtido = true;
+      post.curtidas += 1
+    }
+  }
+ }
 
 function salaDoPost(salaId) {
  if (!salas.value) return 'Geral'
  const salaEncontrada = salas.value.find((s) => Number(s.idSala) === Number(salaId))
- return salaEncontrada ? salaEncontrada.nome : 'Geral'
+ return salaEncontrada ? salaEncontrada.nome : 'Geral' 
 }
 </script>
 
@@ -210,7 +223,7 @@ function salaDoPost(salaId) {
 
 
            <div class="curtidas">
-             <button class="mostrarComent"><font-awesome-icon icon="heart" /></button>
+             <button class="mostrarComent"><font-awesome-icon :icon="post.curtido ? 'heart' : 'heart'" :style="{color: post.curtido ? red : grey}"/></button>
            </div>
 
 

@@ -10,6 +10,7 @@ export const postagens = ref([
    autorID: 22,
    data: '24/06/2009',
    salaId: 1,
+   curtido: true,
    curtidas: 18 ,
    imagem: "",
  },
@@ -20,6 +21,7 @@ export const postagens = ref([
    autorID: 28,
    data: '08/04/2009',
    salaId: 5,
+    curtido: true,
    curtidas: 5,
    imagem: ""
 
@@ -32,6 +34,7 @@ export const postagens = ref([
    autorID: 19,
    data: '24/06/2009',
    salaId: 4,
+    curtido: false,
    curtidas: 14,
    imagem: ""
  },
@@ -42,6 +45,7 @@ export const postagens = ref([
    autorID: 23,
    data: '06/07/2009',
    salaId: 1,
+    curtido: true,
    curtidas: 160,
    imagem: ""
  },
@@ -52,6 +56,7 @@ export const postagens = ref([
    autorID: 24,
    data: '11/07/2009',
    salaId: 3,
+    curtido: false,
    curtidas: 64,
    imagem: ""
  },
@@ -62,6 +67,7 @@ export const postagens = ref([
    autorID: 29,
    data: '11/07/2009',
    salaId: 6,
+    curtido: false,
    curtidas: 200,
    imagem: ""
 
@@ -74,6 +80,7 @@ export const postagens = ref([
    autorID: 30,
    data: '11/07/2009',
    salaId: 4,
+    curtido: true,
    curtidas: 300,
    imagem: ""
  },
@@ -84,6 +91,7 @@ export const postagens = ref([
    autorID: 19,
    data: '11/09/2001',
    salaId: 2,
+    curtido: false,
    curtidas: 500,
    imagem: ""
  },
