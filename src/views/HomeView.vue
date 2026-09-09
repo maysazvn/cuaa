@@ -251,6 +251,7 @@ PESQUISA:
 3. mostrar um numero especifico de resultados (tipo sla, 15) e colocar ver mais pra abrir mais é uma funcionalidade legal
 4. aparecer seu proprio usuario na pesquisa
 5. Quando logado, nehuma pesquisa funciona
+(Uncaught (in promise) TypeError: user.nome.toLowerCase is not a function)
 
 
 ~~LOGIN:~~
