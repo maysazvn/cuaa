@@ -250,15 +250,16 @@ PESQUISA:
 2. ter como pesquisar postagens
 3. mostrar um numero especifico de resultados (tipo sla, 15) e colocar ver mais pra abrir mais é uma funcionalidade legal
 4. aparecer seu proprio usuario na pesquisa
+5. Quando logado, nehuma pesquisa funciona
 
 
-LOGIN:
-1. precisar ter conta pra comentar
-2. tem como ver posts sem ter conta logada (q esta relacionada a capacidade de entrar em salas sem ter conta)
+~~LOGIN:~~
+~~1. precisar ter conta pra comentar~~
+~~2. tem como ver posts sem ter conta logada (q esta relacionada a capacidade de entrar em salas sem ter conta)~~
 ~~3. tem como criar sala sem ter conta~~ 
-4. tem como 'seguir' sem ter conta
-5. tem como entrar em salas sem conta
-6. tem como ver o proprio perfil sem ter conta
+~~4. tem como 'seguir' sem ter conta~~
+~~5. tem como entrar em salas sem conta~~
+~~6. tem como ver o proprio perfil sem ter conta~~
 
 USUARIOS:
 1. aparecer msg de excluir usuario assim como aparece em salas
