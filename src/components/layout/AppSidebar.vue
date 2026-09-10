@@ -2,12 +2,13 @@
 // imports //////////////////
 
 import { loginOut } from '@/views/account/login/Loginout'
-
+import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { salasUsuario } from '@/data/salasUsuario'
 import { userReal } from '@/views/account/login/UserReal'
 import { emailReal } from '@/views/account/login/EmailReal'
 import { urlFoto } from '@/views/user/urlFoto'
+const menuSalasAberto = ref(false);
 
 // functions /////////////////
 function validarLoginout() {
@@ -110,6 +111,18 @@ function validarLoginout() {
       <font-awesome-icon icon="user" />
       <span>Perfil</span>
     </router-link>
+    <div class="item" @click="menuSalasAberto = !menuSalasAberto">
+      <font-awesome-icon icon="comments" />
+      <span>Salas</span>
+
+      <div class="salasAberto" v-if="menuSalasAberto" @click.stop>
+        <div v-for="sala in salasUsuario" :key="sala.nome">
+          <RouterLink :to="`/salas/${sala.idSala}`" class="sala-link">
+            <span>{{ sala.nome }}</span>
+          </RouterLink>
+        </div>
+      </div>
+    </div>
   </nav>
 </template>
 
@@ -260,6 +273,56 @@ hr {
     padding: 10px 0;
     z-index: 999;
     color: #d9d9d9;
+  }
+
+  .bottom .item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: #d9d9d9;
+    text-decoration: none;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+
+  .item-salas {
+    position: relative;
+  }
+
+  .salasAberto {
+    position: absolute;
+    bottom: 45px;
+    right: 0;
+    background-color: #1a1a1a;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    padding: 5px;
+    min-width: 120px;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.308);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    z-index: 1000;
+  }
+
+  .sala-link {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 10px;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    border-bottom: 1px solid #2a2a2a;
+    white-space: nowrap;
+  }
+
+  .salasAberto div:last-child .sala-link {
+    border-bottom: none;
   }
 }
 </style>

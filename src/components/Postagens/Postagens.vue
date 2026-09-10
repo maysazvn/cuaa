@@ -527,10 +527,11 @@ button.editarDeletar:hover {
 
   .btn-fixo {
   position: fixed !important;
-  bottom: 10px !important;
-  left: 235px !important;
-  z-index: 999 !important;
-  padding: 0 !important;
+  bottom: 50px !important;
+  left: 250px !important;
+  width: fit-content !important;
+  height: fit-content !important;
+  z-index: 10 !important;
 }
 }
 
@@ -539,6 +540,5 @@ checklist:
 -- função adicionar imagem e fotos do usuario e das salas nos posts
 
 //////////////////////////// evita usar vuetify nao sei fazer css disso //////////////////////////////////////
-
 */
 </style>
