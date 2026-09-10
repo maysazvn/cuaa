@@ -1,30 +1,14 @@
 <script setup>
-import { ref, onMounted } from 'vue'
-import { loginOut } from '@/views/account/login/Loginout'
+import { ref, onMounted, computed } from 'vue'
+import { pegarIDUsuario } from '@/views/account/login/UserReal'
+import { users } from '@/views/user/Users'
+import { comentariosReais } from '@/data/comentarios'
+
 const props = defineProps(['post', 'usuario'])
 
-let comentarios = ref([
-  {
-    id: 0,
-    texto: 'Não entendi, alguem me explica?',
-    usu: 'NeymarJr',
-    aberto: false,
-  },
-  {
-    id: 1,
-    texto: 'Não sei isso, mas  o @kklmao sabe!',
-    usu: 'Krasue',
-    aberto: false,
-  },
-  {
-    id: 2,
-    texto: 'O artigo 11 do cód.Penal pode te ajudar amigo!',
-    usu: 'fbigatito',
-    aberto: false,
-  },
-])
+let comentarios = ref([])
 
-const usuarioLogado = ref('H')
+const usuarioLogado = computed(() => pegarIDUsuario())
 const novoComent = ref('')
 const chaveStorage = `comentarios_${props.post.id}`
 
@@ -33,8 +17,28 @@ onMounted(() => {
 
   if (salvos) {
     comentarios.value = JSON.parse(salvos)
+  } else {
+    comentarios.value = comentariosReais.value[props.post.id] || []
   }
 })
+
+function pegarNomeAutor(autorID) {
+  const usuarioEncontrado = users.find((usu) => usu.id === autorID)
+  if (usuarioEncontrado) {
+    return usuarioEncontrado.nome
+  } else {
+    return 'Usuário desconhecido'
+  }
+}
+
+function pegarFotoUsuario(autorID) {
+  const usuarioEncontrado = users.find((usu) => usu.id === autorID)
+  if (usuarioEncontrado) {
+    return usuarioEncontrado.pfp
+  } else {
+    return '/pfpPlaceholder.png'
+  }
+}
 
 function comentar() {
   if (!novoComent.value.trim()) {
@@ -47,6 +51,7 @@ function comentar() {
       usu: usuarioLogado.value,
       data: Date(Date.now()).toLocaleString('pt-BR'),
       id: maiorId + 1,
+      autorID: pegarIDUsuario()
     }
 
     comentarios.value.unshift(novoNoComentario)
@@ -99,11 +104,20 @@ function denunciar() {
       </span>
       <div class="todos" v-for="comentario in comentarios" :key="comentario.id">
         <div class="cima">
-          <h2 class="usuario">@{{ comentario.usu }}</h2>
+          <p class="autor">
+            <strong>
+          <RouterLink :to="`/otherProfile/${comentario.autorID}`">
+                    <img :src="pegarFotoUsuario(comentario.autorID)" class="fotoAutor" />
+                  </RouterLink>
+                  <RouterLink :to="`/otherProfile/${comentario.autorID}`">
+                    {{ pegarNomeAutor(comentario.autorID) }}
+                  </RouterLink>
+                  </strong>
+                  </p>
           <button class="editarDeletar" v-on:click="mostrarItens(comentario)">•••</button>
 
           <div class="vshow" v-show="comentario.aberto">
-            <div v-if="comentario.usu === usuarioLogado" class="btnsEditarDeletar">
+            <div v-if="comentario.autorID === usuarioLogado" class="btnsEditarDeletar">
               <button @click="editar(comentario)" class="editar">Editar</button>
               <button @click="excluir(comentario.id)" class="deletar">Excluir</button>
             </div>
@@ -117,6 +131,16 @@ function denunciar() {
           </div>
         </div>
         <p class="texto">{{ comentario.texto }}</p>
+
+        <div class="interacao">
+            <div class="curtidas">
+              <button class="mostrarComent"><font-awesome-icon icon="heart" /></button>
+            </div>
+
+            <div class="salvos">
+              <button class="mostrarComent"><font-awesome-icon icon="bookmark" /></button>
+            </div>
+          </div>
       </div>
     </div>
   </section>
@@ -165,7 +189,7 @@ h2.usuario {
 
 p.texto {
   overflow-wrap: break-word;
-  max-width: 20vw;
+  max-width: 30vw;
   margin: 2px;
 }
 
@@ -219,5 +243,55 @@ button.editarDeletar {
   color: #f8d668;
   transform: scale(0.97);
   transition: 0.3s;
+}
+
+p.autor {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+p.autor a {
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.fotoAutor {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  vertical-align: middle;
+  margin-right: 6px;
+}
+
+a:hover {
+  opacity: 0.6;
+  transition: 0.4s;
+}
+
+.interacao {
+  display: flex;
+  gap: 10px;
+  margin: 2px 2px 7px 2px;
+}
+
+button.mostrarComent {
+  background-color: #3e3e3e;
+  border-radius: 25px;
+  padding: 6px 15px;
+  margin-top: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: bold;
+}
+
+button:hover {
+  opacity: 0.9;
+  transform: scale(0.95);
+  transition: 0.2s;
 }
 </style>

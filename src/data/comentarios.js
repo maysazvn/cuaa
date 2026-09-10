@@ -1,35 +1,47 @@
-import { ref } from "vue";
+import { ref } from 'vue'
 
-export let comentarios1 = ref([{
-    id: 0, texto: "Não entendi, alguem me explica?", usu: "NeymarJr"
-}, {
-    id: 1, texto: "Não sei isso, mas  o @kklmao sabe!", usu: "estupidossori"
-}, {
-    id: 3, texto: "O artigo 11 do cód.Penal pode te ajudar amigo!", usu: "fbigatito"
-}
-]
-);
-
-
-export let comentarios2 = ref([{
-    id: 0, texto: "texto texto texto", usu: "NeymarJr2"
-}, {
-    id: 1, texto: "texto texto text", usu: "estupidossori"
-}, {
-    id: 3, texto: "texto texto text!", usu: "fbigatito"
-}
-]
-);
-
-
-export let comentarios3 = ref([{
-    id: 0, texto: "n sei n sei n sei", usu: "NeymarJr"
-}, {
-    id: 1, texto: "n sei n sei n sei!", usu: "estupidossori"
-}, {
-    id: 3, texto: "n sei n sei n sei!", usu: "fbigatito"
-}
-]
-);
-
-
+export const comentariosReais = ref({
+  1: [
+    {
+      id: 1,
+      texto: 'Bobby, quantas faculdades você teve que fazer para pensar nisso?',
+      autorID: 25
+    },
+  ],
+  4: [
+    {
+      id: 1,
+      texto: 'cara, eu tava precisando também.',
+      autorID: 11
+    },
+    {
+      id: 2,
+      texto: 'Você precisa dormir para ter bons estudos!',
+      autorID: 3
+    },
+  ],
+  6: [
+    {
+      id: 1,
+      texto: 'pq vc digita assim',
+      autorID: 11
+    },
+    {
+      id: 2,
+      texto: 'Posso te ajudar na parte matemática... O que você prefere? estudar comigo por 92 horas seguidas ou comer gelatina de abacaxi?',
+      autorID: 14
+    },
+  ],
+  8: [
+    {
+      id: 1,
+      texto: 'ciência todo dia é o caminho',
+      autorID: 12
+    },
+    {
+      id: 2,
+      texto: 'PedroLooser sempre trazendo conteudo bom',
+      autorID: 1
+    },
+  ],
+})

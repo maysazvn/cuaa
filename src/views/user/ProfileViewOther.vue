@@ -6,6 +6,8 @@ import { ref } from 'vue';
 import { watchEffect } from 'vue';
 import { salas } from '@/data/salas';
 import { loginOut } from '../account/login/Loginout';
+import Postagens from '@/components/Postagens/Postagens.vue';
+import { postagens } from '@/data/postagens';
 
 
 const route = useRoute();
@@ -22,6 +24,10 @@ const usuario = computed(() => {
   return users.find(
     (usuario) => usuario.id === Number(route.params.id),
   )
+})
+
+const postsUsuario = computed(() => {
+  return postagens.value.filter((post) => post.autorID === usuario.value.id)
 })
 
 // const suarios = JSON.parse(localStorage.getItem('salasEntradas')) || [];
@@ -44,7 +50,7 @@ function seguir() {
   const segui = users.find(usu => usu.id === usuario.value.id)
 
   if (!estaseguindo.value) {
-    
+
     estaseguindo.value = true;
     localStorage.setItem(`seguindo_${usuario.value.id}`, 'true');
     segui.seguidores += 1
@@ -102,6 +108,12 @@ function seguir() {
           </li>
         </ul>
       </div>
+
+      <div class="postagens">
+        <h2>Posts</h2>
+        <hr>
+        <Postagens :posts="postsUsuario"></Postagens>
+      </div>
     </div>
 
 
@@ -115,7 +127,7 @@ function seguir() {
 
 <style scoped>
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -272,5 +284,26 @@ ul {
   color: #e0e0e0;
   font-size: 0.9rem;
   font-weight: 500;
+}
+
+.postagens{
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center ;
+  flex-direction: column;
+}
+
+.postagens h2{
+  font-size: 1.4rem;
+  color: #d9d9d9;
+  font-family: 'Prompt', sans-serif;
+  font-weight: bold;
+  margin: 15px;
+}
+
+hr{
+  color: #444444;
+  margin: 1px 1px 25px 1px;
 }
 </style>

@@ -164,9 +164,9 @@ function enviar(email, senha, user) {
 
       const novoUsuario = {
         id: maiorId + 1,
-        nome: userReal.value, 
-        pfp: ref(localStorage.getItem('urlFoto') || '/pfpPlaceholder.png'),
-        banner: ref(localStorage.getItem('urlBanner') || '/bannerPlaceholder.png'),
+        nome: userReal.value,
+        pfp: localStorage.getItem('urlFoto') || '/pfpPlaceholder.png',
+        banner: localStorage.getItem('urlBanner') || '/bannerPlaceholder.png',
         desc: watch(desc, (novaDesc) => {localStorage.setItem('desc', novaDesc)}),
         mostrarSala: watch(mostrarSala, (novoValor) => {localStorage.setItem('mostrarSala?', novoValor)}),
         salas: []

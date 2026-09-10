@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import CommentsPostagens from './CommentsPostagens.vue'
 import CriarPost from './CriarPost.vue'
 import { postagens } from '@/data/postagens.js'
@@ -8,6 +8,7 @@ import { shallowRef } from 'vue'
 import { salas } from '@/data/salas.js'
 import { users } from '@/views/user/Users.js'
 import { loginOut } from '@/views/account/login/Loginout.js'
+import { pegarIDUsuario } from '@/views/account/login/UserReal.js'
 
 const props = defineProps({
   posts: {
@@ -15,6 +16,14 @@ const props = defineProps({
     required: true,
   },
 })
+
+function linkPerfil(autorID){
+  if(autorID === pegarIDUsuario()){
+    return `/profile`
+  } else{
+    return `/otherProfile/${autorID}`
+  }
+}
 
 //hallana essa function procura se o usuario está na sala ou nao
 function usuarioEstaNaSala(salaIdDoPost) {
@@ -40,7 +49,7 @@ function pegarBanner(salaId) {
 
 //essa procura la no users.js o banner da sala
 function pegarFotoUsuario(autorID) {
-  const usuarioEncontrado = users.find(usu => usu.id === autorID)
+  const usuarioEncontrado = users.find((usu) => usu.id === autorID)
   if (usuarioEncontrado) {
     return usuarioEncontrado.pfp
   } else {
@@ -50,7 +59,7 @@ function pegarFotoUsuario(autorID) {
 
 //e essa o nome do autorkkkkkkkkkkkkkkk
 function pegarNomeAutor(autorID) {
-  const usuarioEncontrado = users.find(usu => usu.id === autorID)
+  const usuarioEncontrado = users.find((usu) => usu.id === autorID)
   if (usuarioEncontrado) {
     return usuarioEncontrado.nome
   } else {
@@ -58,8 +67,7 @@ function pegarNomeAutor(autorID) {
   }
 }
 
-
-let usuario = ref('cofeeBarney')
+const usuario = computed(() => pegarIDUsuario())
 const mostrarComent = ref(null)
 const dialog = shallowRef(false)
 
@@ -112,17 +120,32 @@ function salaDoPost(salaId) {
         <div class="listaPosts">
           <div class="identificacao">
             <span class="salas" v-if="usuarioEstaNaSala(post.salaId)">
-              <img :src="pegarBanner(post.salaId)" :alt="nome" class="iconSala"/>
-              Em {{ salaDoPost(post.salaId) }}</span
+              <RouterLink :to="`/salas/${post.salaId}`">
+                <img :src="pegarBanner(post.salaId)" :alt="nome" class="iconSala" />
+              </RouterLink>
+              <RouterLink :to="`/salas/${post.salaId}`">
+                Em {{ salaDoPost(post.salaId) }}
+              </RouterLink>
+            </span>
+            <span class="salas" v-else>
+              <RouterLink :to="`/salas/${post.salaId}`">
+                <img :src="pegarBanner(post.salaId)" :alt="nome" class="iconSala" />
+              </RouterLink>
+              <RouterLink :to="`/salas/${post.salaId}`">
+                Em alta em {{ salaDoPost(post.salaId) }}
+              </RouterLink></span
             >
-            <span class="salas" v-else>Em alta em {{ salaDoPost(post.salaId) }}</span>
           </div>
           <div class="cima">
             <div class="esq">
               <p class="autor">
                 <strong>
-                  <img :src="pegarFotoUsuario(post.autorID)" class="fotoAutor">
-                  {{ pegarNomeAutor(post.autorID) }}
+                  <RouterLink :to="linkPerfil(post.autorID)">
+                    <img :src="pegarFotoUsuario(post.autorID)" class="fotoAutor" />
+                  </RouterLink>
+                  <RouterLink :to="linkPerfil(post.autorID)">
+                    {{ pegarNomeAutor(post.autorID) }}
+                  </RouterLink>
                 </strong>
               </p>
 
@@ -135,7 +158,7 @@ function salaDoPost(salaId) {
               <button class="editarDeletar" v-on:click="mostrarItens(post)">•••</button>
 
               <div class="vshow" v-show="post.aberto">
-                <div v-if="post.autor === usuario" class="btnsEditarDeletar">
+                <div v-if="post.autorID === usuario" class="btnsEditarDeletar">
                   <button @click="editar(post)" class="editar">Editar</button>
                   <button @click="excluir(post.id)" class="deletar">Excluir</button>
                 </div>
@@ -157,15 +180,26 @@ function salaDoPost(salaId) {
             {{ post.conteudo }}
           </p>
 
-          <button @click="mostrarComent = post.id" v-show="!mostrarComent" class="mostrarComent">
-            <font-awesome-icon icon="comment" />Abrir comentários
-          </button>
-          <div v-if="mostrarComent === post.id">
-            <CommentsPostagens :post="post" :usuario="usuario"></CommentsPostagens>
-            <button @click="mostrarComent = null" class="mostrarComent">
-              <font-awesome-icon icon="comment" />Fechar Comentários
+          <div class="interacao">
+            <button @click="mostrarComent = post.id" v-show="!mostrarComent" class="mostrarComent">
+              <font-awesome-icon icon="comment" />
             </button>
+
+            <div class="curtidas">
+              <button class="mostrarComent"><font-awesome-icon icon="heart" /></button>
+            </div>
+
+            <div class="salvos">
+              <button class="mostrarComent"><font-awesome-icon icon="bookmark" /></button>
+            </div>
           </div>
+
+                      <div v-if="mostrarComent === post.id">
+              <CommentsPostagens :post="post" :usuario="usuario"></CommentsPostagens>
+              <button @click="mostrarComent = null" class="mostrarComent">
+                <font-awesome-icon icon="comment" />
+              </button>
+            </div>
         </div>
       </div>
     </div>
@@ -195,20 +229,23 @@ div.listaPosts {
   color: #d9d9d9;
   border-radius: 20px;
   padding: 30px;
-  max-width: 40%;
+  max-width: 70%;
   margin: 0 auto;
   margin-bottom: 35px;
+  border: 1px solid #333333;
 }
 
 .cima {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 15px;
 }
 
 .esq {
   display: flex;
   align-items: center;
+  gap: 25px;
 }
 
 .dir {
@@ -217,8 +254,14 @@ div.listaPosts {
 
 p.autor {
   margin: 0;
-  font-size: 1.5rem;
-  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+}
+
+p.autor a {
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 h2.titulo {
@@ -251,19 +294,42 @@ button:hover {
   transition: 0.2s;
 }
 
-div.identificacao{
-  display: flex;
-  align-items: center;
+a:hover {
+  opacity: 0.6;
+  transition: 0.4s;
 }
 
-span.salas{
+div.identificacao {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+span.salas {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #1e1e1e;
+  padding: 5px 50px 5px 15px;
+  border-radius: 20px;
+  border: 1px solid #333333;
+  font-size: 0.85rem;
+}
+
+span.salas a {
   font-weight: bold;
 }
 
-span.salas img{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
+span.salas img {
+  width: 35px;
+  height: 35px;
+  border-radius: 10px;
+}
+
+.interacao {
+  display: flex;
+  gap: 10px;
+  margin: 2px 2px 7px 2px;
 }
 
 /*//////*/
@@ -360,22 +426,45 @@ h3 {
   font-size: 0.8rem;
 }
 
-.btnsEditarDeletar {
-  display: flex;
-  flex-direction: column;
+button.editarDeletar {
+  border: none;
+  color: #888888;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 6px;
 }
 
-.editar:hover,
+button.editarDeletar:hover {
+  background-color: #333333;
+  color: #ffffff;
+  transition: 0.2s;
+}
+
+.btnsEditarDeletar button,
+.denunciar {
+  color: #d9d9d9;
+  padding: 6px 12px;
+  text-align: left;
+  width: 100%;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.editar:hover {
+  color: #f8d76b;
+}
+
 .deletar:hover,
 .denunciar:hover {
-  color: #f8d668;
-  transform: scale(0.97);
-  transition: 0.3s;
+  color: #ff5252;
 }
 
 .fotoAutor {
-  width: 32px;
-  height: 32px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
   object-fit: cover;
   vertical-align: middle;
