@@ -94,8 +94,14 @@ function denunciar() {
       <div class="comentar">
         <textarea placeholder="O que está pensando?" v-bind="texto" v-model="novoComent"></textarea>
       </div>
-      <button type="submit" @click="comentar()" class="comentarBtn">Comentar</button>
-
+      <!-- aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii -->
+      <span v-if="loginOut === 'ativo'">
+        <button type="submit" @click="comentar()" class="comentarBtn">Comentar</button>
+      </span>
+      
+      <span v-else>
+        <button class="comentarBtn">Faça login para comentar!</button>
+      </span>
       <div class="todos" v-for="comentario in comentarios" :key="comentario.id">
         <div class="cima">
           <p class="autor">
@@ -115,10 +121,13 @@ function denunciar() {
               <button @click="editar(comentario)" class="editar">Editar</button>
               <button @click="excluir(comentario.id)" class="deletar">Excluir</button>
             </div>
-
+<!-- aquiiiiiiiiiiiiii -->
+            
             <div v-else>
-              <button @click="denunciar()" class="denunciar">Denunciar</button>
+              <span v-if="loginOut === 'ativo'"><button @click="denunciar()" class="denunciar">Denunciar</button></span>
+              <span v-else> <button class="denunciar"> Faça Login para denunciar!</button></span>
             </div>
+         
           </div>
         </div>
         <p class="texto">{{ comentario.texto }}</p>

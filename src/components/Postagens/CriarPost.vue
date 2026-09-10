@@ -3,6 +3,7 @@ import { ref, computed} from 'vue'
 const emit = defineEmits(['fechar', 'adicionar'])
 import { postagens } from '@/data/postagens.js';
  import { salas } from '@/data/salas.js'
+ import { loginOut } from '@/views/account/login/Loginout';
  import { salasUsuario } from '@/data/salasUsuario';
  import { pegarIDUsuario } from '@/views/account/login/UserReal';
 
@@ -58,6 +59,9 @@ console.log("Post atualizado:", JSON.parse(JSON.stringify(postagens.value)));
 
 </script>
 <template>
+  <span v-if="loginOut === 'ativo'">
+    
+  
     <section class="sessaoPostar">
     <v-card theme="dark" class="caixa">
       <h2 class="titulo-postar">Postar</h2>
@@ -120,6 +124,10 @@ console.log("Post atualizado:", JSON.parse(JSON.stringify(postagens.value)));
       </v-card-actions>
     </v-card>
   </section>
+  </span>
+  <span v-else-if="loginOut === 'inativo'" class="mensagemSemLogin">
+      <p>Faça Login para criar posts!</p>
+    </span>
 </template>
 
 <style scoped>
