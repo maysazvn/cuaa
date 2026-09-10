@@ -239,27 +239,12 @@ function criarPostRapido() {
 /*
 ///////////////////////////////////////////// BUGS/COISAS PRA ARRUMAR /////////////////////////////////////////////
 TIMELINE:
-1. curtidas!!! e salvos
-
-SALAS:
-1. quando vc cria uma sala vc nao está nela automaticamente
-2. tem como editar/excluir salas aleatorias q nem sao suas
-3. botao entra/sair da sala precisa funcionar e adc membros
-4. quando loga em uma conta e depois sai da conta, cria uma sala e sai com o nome do criador do login mesmo nao estando logado
+1. curtidas!!! e salvo
 
 PESQUISA:
-1. poder separar se vc quer pesquisar espeficamente uma sala, um usuario ou uma postagem
-2. ter como pesquisar postagens
-3. mostrar um numero especifico de resultados (tipo sla, 15) e colocar ver mais pra abrir mais é uma funcionalidade legal
-4. aparecer seu proprio usuario na pesquisa
-
-LOGIN:
-1. precisar ter conta pra comentar
-2. tem como ver posts sem ter conta logada (q esta relacionada a capacidade de entrar em salas sem ter conta)
-3. tem como criar sala sem ter conta
-4. tem como 'seguir' sem ter conta
-5. tem como entrar em salas sem conta
-6. tem como ver o proprio perfil sem ter conta
+1. aparecer seu proprio usuario na pesquisa
+2. Quando logado, nehuma pesquisa funciona
+(Uncaught (in promise) TypeError: user.nome.toLowerCase is not a function)
 
 USUARIOS:
 1. aparecer msg de excluir usuario assim como aparece em salas

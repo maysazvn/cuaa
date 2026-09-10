@@ -7,6 +7,7 @@ import { seguindo } from './Following'
 import { userReal } from '../account/login/UserReal'
 import { urlFoto } from './urlFoto';
 import { salas } from '@/data/salas';
+import { loginOut } from '../account/login/Loginout';
 import { pegarIDUsuario } from '../account/login/UserReal';
 import { postagens } from '@/data/postagens';
 import Postagens from '@/components/Postagens/Postagens.vue';
@@ -57,6 +58,7 @@ function excluir() {
 </script>
 
 <template>
+  <span v-if="loginOut === 'ativo'"> 
   <div class="container" v-show="existe == true">
     <div class="cartaoPerfil">
       <img v-if="urlBanner" :src="urlBanner" class="banner" />
@@ -109,6 +111,12 @@ function excluir() {
         <Postagens :posts="postsUsuario"></Postagens>
       </div>
   </div>
+  </span>
+  <span v-else>
+    <p>
+      Faça login para editar seu perfil!
+    </p>
+  </span>
 </template>
 
 <style scoped>

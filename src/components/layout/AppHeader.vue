@@ -62,6 +62,10 @@ header{
   margin: 5px;
 }
 
+.logo{
+  width: 9vw;
+}
+
 input{
 font-size: 1.2rem;
 background: transparent;
