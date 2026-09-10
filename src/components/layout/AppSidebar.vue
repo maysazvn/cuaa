@@ -6,7 +6,7 @@ import { loginOut } from '@/views/account/login/Loginout'
 
 import { RouterLink } from 'vue-router'
 import { salasUsuario } from '@/data/salasUsuario'
-
+import { onMounted } from 'vue'
 import { salas } from '@/data/salas'
 import { userReal } from '@/views/account/login/UserReal'
 import { emailReal } from '@/views/account/login/EmailReal'
@@ -21,6 +21,17 @@ function validarLoginout() {
     alert('Faça login primeiro!')
   }
 }
+
+onMounted(() => {
+   const statusLogin = localStorage.getItem('login_status')
+  if (statusLogin === 'ativo') {
+    loginOut.value = 'ativo'
+    userReal.value = localStorage.getItem('user_nome')
+    emailReal.value = localStorage.getItem('user_email')
+    
+    
+  }
+})
 </script>
 
 <template>
