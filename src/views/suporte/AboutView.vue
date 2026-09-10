@@ -409,4 +409,10 @@ background-color: #313131af;
 .seta-direita {
   right: 10px;
 }
+
+@media (max-width: 768px) {
+.logo{
+  width: 25vw;
+}
+}
 </style>

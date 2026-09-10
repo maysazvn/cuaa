@@ -235,6 +235,26 @@ function criarPostRapido() {
   box-shadow: 0 0 15px #0101012f;
 }
 
+@media (max-width: 768px) {
+
+    .container{
+    padding: 0;
+  }
+
+
+  .semPosts{
+    width: 200px;
+  }
+
+  .semPosts p{
+    font-size: 20px;
+  }
+
+  .postar{
+    width: 0;
+  }
+}
+
 
 /*
 ///////////////////////////////////////////// BUGS/COISAS PRA ARRUMAR /////////////////////////////////////////////

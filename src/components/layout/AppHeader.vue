@@ -88,4 +88,10 @@ input::placeholder {
   font-size: 1.5rem;
 }
 
+@media (max-width: 768px) {
+.logo{
+  width: 25vw;
+}
+}
+
 </style>

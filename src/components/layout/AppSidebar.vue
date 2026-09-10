@@ -259,6 +259,7 @@ hr {
     background: #313131;
     padding: 10px 0;
     z-index: 999;
+    color: #d9d9d9;
   }
 }
 </style>
