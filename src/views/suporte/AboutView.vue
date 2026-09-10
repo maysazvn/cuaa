@@ -193,7 +193,7 @@ function next() {
         </p>
       </div>
       <div class="about-img">
-        <img src="/logo-kuaa-2.png" alt="Logo" />
+        <img src="/logo-kuaa.png" alt="Logo" />
       </div>
     </div>
 
