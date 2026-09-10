@@ -16,6 +16,7 @@ import { urlFoto } from '@/views/user/urlFoto'
 function validarLoginout() {
   if (loginOut.value == 'ativo') {
     loginOut.value = 'inativo'
+    localStorage.setItem('login_status', 'inativo')
   } else {
     alert('Faça login primeiro!')
   }
