@@ -1,7 +1,8 @@
 <script setup>
 import CartSala from '@/components/cart/CartSala.vue'
+import ButtonEnter from '@/components/ButtonEnter.vue';
 import { salas } from '@/data/salas'
-import { salasUsuario } from '@/data/salasUsuario'
+/* 
 function estaNaSala(idSala) {
   return salasUsuario.value.some((i) => i.idSala === idSala)
 }
@@ -13,6 +14,7 @@ function enviar(sal) {
     salasUsuario.value.push(sal)
   }
 }
+*/
 </script>
 
 <template>
@@ -34,8 +36,7 @@ function enviar(sal) {
       >
       <div class="nav">
         <RouterLink :to="`/salas/${sala.idSala}`" class="visualizar"> Visualizar </RouterLink>
-        <button v-on:click="enviar(sala)" v-if="!estaNaSala(sala.idSala)" class="btn-entrar">Entrar</button>
-        <button v-on:click="sair(sala)" v-else class="btn-sair">Sair</button>
+        <ButtonEnter :sala="sala" />
         </div>
       </CartSala>
     </section>

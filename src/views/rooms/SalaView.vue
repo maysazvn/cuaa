@@ -2,17 +2,13 @@
 import { useRoute, useRouter } from 'vue-router'
 import { computed, ref } from 'vue'
 import { salas } from '@/data/salas'
+import ButtonEnter from '@/components/ButtonEnter.vue'
 defineProps(['idSala', 'nome', 'participantes', 'desc', 'usuarioCriador', 'status', 'banner'])
 
 const route = useRoute()
 const router = useRouter()
 const popupExcluir = ref(false)
 const menuAberto = ref(false)
-const entrouOuNao = ref(false)
-
-function alternarMembro() {
-  entrouOuNao.value = !entrouOuNao.value
-}
 
 console.log('ID da rota:', route.params.id)
 console.log('Salas:', salas.value)
@@ -67,11 +63,7 @@ console.log('Sala encontrada:', sala.value)
         </div>
 
         <div class="acoes-sala">
-          <button class="btn-entrar" :class="{ 'btn-sair': entrouOuNao }" @click="alternarMembro">
-            <span v-if="entrouOuNao">Sair da sala</span>
-            <span v-else>Entrar</span>
-          </button>
-
+       <ButtonEnter :sala="sala" />
           <div class="menu">
             <button class="menubotao" @click="menuAberto = !menuAberto">...</button>
             <div class="menuaberto" v-if="menuAberto">
