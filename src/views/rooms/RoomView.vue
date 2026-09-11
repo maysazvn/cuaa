@@ -5,6 +5,7 @@ import { salas } from '@/data/salas'
 import { ref } from 'vue'
 import { userReal } from '../account/login/UserReal'
 import { loginOut } from '../account/login/Loginout'
+import { salasUsuario } from '@/data/salasUsuario'
 const router = useRouter()
 const nome = ref('')
 const descricao = ref('')
@@ -29,6 +30,7 @@ function criar() {
       usuarioCriador: userReal.value,
       participantes: membros.value + 1,
     })
+    
   }
 
   console.log(salas.value)
@@ -39,6 +41,12 @@ function criar() {
 
   router.push('/')
 }
+
+// function enviar(sal) {
+//   if (!estaNaSala(sal.idSala)) {
+//     salasUsuario.value.push(sal)
+//   }
+// }
 
 // function gerar() {
 //   banner.value
