@@ -5,6 +5,8 @@ import { salas } from '@/data/salas'
 import { loginOut } from '../account/login/Loginout'
 import Postagens from '@/components/Postagens/Postagens.vue';
 import { postagens } from '@/data/postagens';
+import { users } from '../user/Users'
+import { userReal } from '../account/login/UserReal'
 defineProps(['idSala', 'nome', 'participantes', 'desc', 'usuarioCriador', 'status', 'banner'])
 
 const route = useRoute()
@@ -14,6 +16,12 @@ const menuAberto = ref(false)
 const entrouOuNao = ref(false)
 
 function alternarMembro() {
+  if (entrouOuNao.value) {
+    sala.value.participantes--
+  } else {
+    sala.value.participantes++
+  }
+
   entrouOuNao.value = !entrouOuNao.value
 }
 
@@ -24,6 +32,7 @@ const postsSala = computed(() => {
 console.log('ID da rota:', route.params.id)
 console.log('Salas:', salas.value)
 
+const criador = computed(() => users.find(usuario => usuario.nome === sala.value?.usuarioCriador))
 const sala = computed(() => salas.value.find((s) => s.idSala == route.params.id))
 function confirmarEx() {
   const index = salas.value.findIndex((s) => s.idSala == route.params.id)
@@ -55,7 +64,7 @@ console.log('Sala encontrada:', sala.value)
   <div class="container-sala" v-if="sala">
     <div class="header-pagina">
       <div class="titulo">
-        <RouterLink to="/" class="voltar">
+        <RouterLink to="/explore" class="voltar">
           <font-awesome-icon icon="chevron-left"></font-awesome-icon> Perfil de sala</RouterLink
         >
       </div>
@@ -68,7 +77,11 @@ console.log('Sala encontrada:', sala.value)
         <div class="info-sala">
           <h2 class="nome-sala">{{ sala.nome }}</h2>
           <div class="metadados">
-            <p><span>CRIADOR</span> {{ sala.usuarioCriador }}</p>
+            <div>
+              <RouterLink v-if="sala.usuarioCriador === userReal" :to="`/profile`"> <span>CRIADOR</span> {{ sala.usuarioCriador }} </RouterLink>
+              <RouterLink v-else :to="`/otherProfile/${criador.id}`"> <span>CRIADOR</span> {{ sala.usuarioCriador }} </RouterLink>
+            </div>
+
             <p><span>STATUS</span> {{ statusTexto }}</p>
           </div>
         </div>
@@ -76,7 +89,8 @@ console.log('Sala encontrada:', sala.value)
         <div class="acoes-sala">
           <span v-if="loginOut === 'ativo'">
 
-          <button class="btn-entrar" :class="{ 'btn-sair': entrouOuNao }" @click="alternarMembro">
+         
+          <button class="btn-entrar" :class="{ 'btn-sair': entrouOuNao }" @click="alternarMembro" v-if="sala.usuarioCriador != userReal" >
             <span v-if="entrouOuNao">Sair da sala</span>
             <span v-else>Entrar</span>
           </button>
@@ -85,7 +99,8 @@ console.log('Sala encontrada:', sala.value)
           <span v-else>
             <button class="btn-entrar">Faça Login para entrar!</button>
           </span>
-          <div class="menu">
+          
+          <div class="menu" v-if="sala.usuarioCriador === userReal">
             <button class="menubotao" @click="menuAberto = !menuAberto">...</button>
             <div class="menuaberto" v-if="menuAberto">
               <button @click="editarSala">Editar sala</button>
