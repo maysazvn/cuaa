@@ -18,6 +18,7 @@ const props = defineProps({
 })
 
 
+
 function linkPerfil(autorID){
  if(autorID === pegarIDUsuario()){
    return `/profile`
@@ -121,19 +122,30 @@ function denunciar() {
  alert('Comentário denunciado com sucesso.')
 }
 
-const alternarCurtida  = (postagens) => {
-  const post = postagens.value.findIndex((p) => p.id === post.id)
-
-  if (post) {
-    if (post.curtido) {
+function alternarCurtida(post) {
+    if (post.curtido === true) {
       post.curtido = false;
-      post.curtidas -= 1
+      post.curtidas = post.curtidas - 1
     } else {
       post.curtido = true;
-      post.curtidas += 1
+      post.curtidas = post.curtidas + 1
     }
+     localStorage.setItem(storage, JSON.stringify(postagens.value))
+
   }
- }
+ 
+  function salvarPost(post) {
+    if (post.salvou === true) {
+      post.salvou = false;
+      post.salvos = post.salvos - 1
+    } else {
+      post.salvou = true;
+      post.salvos = post.salvos + 1
+    }
+     localStorage.setItem(storage, JSON.stringify(postagens.value))
+
+
+  }
 
 function salaDoPost(salaId) {
  if (!salas.value) return 'Geral'
@@ -223,12 +235,15 @@ function salaDoPost(salaId) {
 
 
            <div class="curtidas">
-             <button class="mostrarComent"><font-awesome-icon :icon="post.curtido ? 'heart' : 'heart'" :style="{color: post.curtido ? red : grey}"/></button>
+            
+            <button class="mostrarComent" @click="alternarCurtida(post)">
+              <font-awesome-icon :icon="post.curtido ? 'heart' : 'heart'" :style="{color: post.curtido ? 'red' : 'grey'}"/>
+              <span> {{ post.curtidas }}</span></button>
            </div>
-
-
            <div class="salvos">
-             <button class="mostrarComent"><font-awesome-icon icon="bookmark" /></button>
+             <button class="mostrarComent" @click="salvarPost(post)">
+              <font-awesome-icon :icon="post.salvou ? 'bookmark' : 'bookmark'" :style="{color: post.salvou ? 'yellow' : 'grey'}"/>
+               {{ post.salvos }} </button>
            </div>
          </div>
 

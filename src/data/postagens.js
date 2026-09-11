@@ -10,9 +10,11 @@ export const postagens = ref([
    autorID: 22,
    data: '24/06/2009',
    salaId: 1,
-   curtido: true,
+   curtido: false,
    curtidas: 18 ,
    imagem: "",
+   salvou: false,
+   salvos: 0
  },
  {
    id: 2,
@@ -21,9 +23,11 @@ export const postagens = ref([
    autorID: 28,
    data: '08/04/2009',
    salaId: 5,
-    curtido: true,
+    curtido: false,
    curtidas: 5,
-   imagem: ""
+   imagem: "" , 
+   salvou: false,
+   salvos: 0
 
 
  },
@@ -36,7 +40,9 @@ export const postagens = ref([
    salaId: 4,
     curtido: false,
    curtidas: 14,
-   imagem: ""
+   imagem: "" ,
+   salvou: false,
+   salvos: 0
  },
  {
    id: 4,
@@ -45,9 +51,11 @@ export const postagens = ref([
    autorID: 23,
    data: '06/07/2009',
    salaId: 1,
-    curtido: true,
+    curtido: false,
    curtidas: 160,
-   imagem: ""
+   imagem: "",
+   salvou: false,
+   salvos: 0
  },
  {
    id: 5,
@@ -58,7 +66,9 @@ export const postagens = ref([
    salaId: 3,
     curtido: false,
    curtidas: 64,
-   imagem: ""
+   imagem: "",
+   salvou: false,
+   salvos: 0
  },
  {
    id: 6,
@@ -69,7 +79,9 @@ export const postagens = ref([
    salaId: 6,
     curtido: false,
    curtidas: 200,
-   imagem: ""
+   imagem: "",
+   salvou: false,
+   salvos: 0
 
 
  },
@@ -80,9 +92,11 @@ export const postagens = ref([
    autorID: 30,
    data: '11/07/2009',
    salaId: 4,
-    curtido: true,
+    curtido: false,
    curtidas: 300,
-   imagem: ""
+   imagem: "",
+   salvou: false,
+   salvos: 0
  },
  {
    id: 8,
@@ -93,7 +107,9 @@ export const postagens = ref([
    salaId: 2,
     curtido: false,
    curtidas: 500,
-   imagem: ""
+   imagem: "",
+   salvou: false,
+   salvos: 0
  },
 ])
 
