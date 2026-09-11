@@ -2,6 +2,7 @@
 import CartSala from '@/components/cart/CartSala.vue'
 import ButtonEnter from '@/components/ButtonEnter.vue';
 import { salas } from '@/data/salas'
+import { loginOut } from '../account/login/Loginout';
 </script>
 
 <template>
@@ -22,13 +23,14 @@ import { salas } from '@/data/salas'
         :status="sala.status"
       >
       <div class="nav">
-        <RouterLink :to="`/salas/${sala.idSala}`" class="visualizar"> Visualizar </RouterLink>
+        <span v-if="loginOut === 'ativo'">
+          <RouterLink :to="`/salas/${sala.idSala}`" class="visualizar"> Visualizar </RouterLink>
         <ButtonEnter :sala="sala" />
-
-      <span v-else>
+        </span>
+        <span v-else>
        <button class="btn-entrar">Faça Login para entrar!</button>
       </span>
-        </div>
+      </div>
       </CartSala>
     </section>
   </div>

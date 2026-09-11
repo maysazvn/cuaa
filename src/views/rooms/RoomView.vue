@@ -4,6 +4,7 @@ import { useRouter } from 'vue-router'
 import { salas } from '@/data/salas'
 import { ref } from 'vue'
 import { userReal } from '../account/login/UserReal'
+import { loginOut } from '../account/login/Loginout'
 import { salasUsuario } from '@/data/salasUsuario'
 const router = useRouter()
 const nome = ref('')
@@ -16,29 +17,34 @@ function cancelar() {
   router.push('/')
 }
 function criar() {
-  if (nome.value === '' || descricao.value === '') {
-    alert(mensagem)
-    return
-  } else {
-    const novaSala = {
-      idSala: Date.now(),
-      nome: nome.value,
-      desc: descricao.value,
-      banner: banner.value,
-      status: coisa.value,
-      usuarioCriador: userReal.value,
-      participantes: membros.value + 1,
-    })
-    
-  }
-  console.log(salas.value)
+ if (nome.value === '' || descricao.value === '') {
+   alert(mensagem)
+   return
+ } else {
+   salas.value.push({
+     idSala: Date.now(),
+     nome: nome.value,
+     desc: descricao.value,
+     banner: banner.value,
+     status: coisa.value,
+     usuarioCriador: userReal.value,
+     participantes: membros.value + 1,
+   })
+  
+ }
 
-  nome.value = ''
-  descricao.value = ''
-  banner.value = ''
 
-  router.push('/')
+ console.log(salas.value)
+
+
+ nome.value = ''
+ descricao.value = ''
+ banner.value = ''
+
+
+ router.push('/')
 }
+
 
 // function enviar(sal) {
 //   if (!estaNaSala(sal.idSala)) {
