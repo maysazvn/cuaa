@@ -1,18 +1,26 @@
 <!-- read usuario -->
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 /* import { novaFoto } from '../user/EditProfileView.vue'; */
 import { seguidores } from './Followers'
 import { seguindo } from './Following'
 import { userReal } from '../account/login/UserReal'
 import { urlFoto } from './urlFoto';
 import { salas } from '@/data/salas';
+import { loginOut } from '../account/login/Loginout';
+import { pegarIDUsuario } from '../account/login/UserReal';
+import { postagens } from '@/data/postagens';
+import Postagens from '@/components/Postagens/Postagens.vue';
 
 const suarios = JSON.parse(localStorage.getItem('salasEntradas')) || []
 const nomeUsuario = ref(localStorage.getItem('nomeUsuario') || userReal)
 const desc = ref(localStorage.getItem('desc') || '')
 const urlBanner = ref(localStorage.getItem('urlBanner') || '/bannerPlaceholder.png')
 const mostrarSala = ref(localStorage.getItem('mostrarSala?') || 'sim')
+
+const postsUsuario = computed(() => {
+  return postagens.value.filter((post) => post.autorID === pegarIDUsuario())
+})
 
 function buscarSalas() {
   return salas.value.filter(sala => {
@@ -50,6 +58,7 @@ function excluir() {
 </script>
 
 <template>
+  <span v-if="loginOut === 'ativo'"> 
   <div class="container" v-show="existe == true">
     <div class="cartaoPerfil">
       <img v-if="urlBanner" :src="urlBanner" class="banner" />
@@ -95,7 +104,19 @@ function excluir() {
         </li>
       </ul>
     </div>
+
+     <div class="postagens">
+        <h2>Posts</h2>
+        <hr>
+        <Postagens :posts="postsUsuario"></Postagens>
+      </div>
   </div>
+  </span>
+  <span v-else>
+    <p>
+      Faça login para editar seu perfil!
+    </p>
+  </span>
 </template>
 
 <style scoped>
@@ -241,5 +262,26 @@ ul {
   color: #e0e0e0;
   font-size: 0.9rem;
   font-weight: 500;
+}
+
+.postagens{
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center ;
+  flex-direction: column;
+}
+
+.postagens h2{
+  font-size: 1.4rem;
+  color: #d9d9d9;
+  font-family: 'Prompt', sans-serif;
+  font-weight: bold;
+  margin: 15px;
+}
+
+hr{
+  color: #444444;
+  margin: 1px 1px 25px 1px;
 }
 </style>

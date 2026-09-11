@@ -2,6 +2,9 @@
 import { useRoute, useRouter } from 'vue-router'
 import { computed, ref } from 'vue'
 import { salas } from '@/data/salas'
+import { loginOut } from '../account/login/Loginout'
+import Postagens from '@/components/Postagens/Postagens.vue';
+import { postagens } from '@/data/postagens';
 import { users } from '../user/Users'
 import { userReal } from '../account/login/UserReal'
 defineProps(['idSala', 'nome', 'participantes', 'desc', 'usuarioCriador', 'status', 'banner'])
@@ -21,6 +24,10 @@ function alternarMembro() {
 
   entrouOuNao.value = !entrouOuNao.value
 }
+
+const postsSala = computed(() => {
+  return postagens.value.filter((post) => post.salaId === Number(sala.value.idSala))
+})
 
 console.log('ID da rota:', route.params.id)
 console.log('Salas:', salas.value)
@@ -78,13 +85,21 @@ console.log('Sala encontrada:', sala.value)
             <p><span>STATUS</span> {{ statusTexto }}</p>
           </div>
         </div>
-
+        
         <div class="acoes-sala">
+          <span v-if="loginOut === 'ativo'">
+
+         
           <button class="btn-entrar" :class="{ 'btn-sair': entrouOuNao }" @click="alternarMembro" v-if="sala.usuarioCriador != userReal" >
             <span v-if="entrouOuNao">Sair da sala</span>
             <span v-else>Entrar</span>
           </button>
 
+          </span>
+          <span v-else>
+            <button class="btn-entrar">Faça Login para entrar!</button>
+          </span>
+          
           <div class="menu" v-if="sala.usuarioCriador === userReal">
             <button class="menubotao" @click="menuAberto = !menuAberto">...</button>
             <div class="menuaberto" v-if="menuAberto">
@@ -101,10 +116,10 @@ console.log('Sala encontrada:', sala.value)
         <span>{{ sala.participantes }} membros</span>
       </div>
 
-      <hr class="divisor" />
-
       <div class="secao-posts">
         <h2>Posts</h2>
+        <hr>
+        <Postagens :posts="postsSala"></Postagens>
       </div>
     </div>
 
@@ -140,7 +155,7 @@ a.voltar {
   font-size: 2rem;
   font-family: 'Prompt', sans-serif;
   font-weight: bold;
-  color: #e0d8c3;
+  color: #d9d9d9;
 }
 
 .titulo {
@@ -169,7 +184,7 @@ a.voltar {
 .nome-sala {
   font-size: 1.8rem;
   font-weight: 800;
-  color: #ffffff;
+  color: #d9d9d9;
   margin: 0 0 10px 0;
 }
 
@@ -271,16 +286,12 @@ a.voltar {
   font-size: 0.9rem;
 }
 
-.divisor {
-  border-top: 1px solid #333333;
-  margin: 25px 0;
-}
-
 .secao-posts h2 {
   font-size: 1.4rem;
-  color: #e0d8c3;
+  color: #d9d9d9;
   font-family: 'Prompt', sans-serif;
   font-weight: bold;
+  margin: 25px 0 5px 0;
 }
 
 .botoes {
@@ -359,5 +370,10 @@ a.voltar {
   align-items: center;
   gap: 15px;
   width: 100%;
+}
+
+hr{
+  color: #333333;
+  margin: 1px 1px 25px 1px;
 }
 </style>

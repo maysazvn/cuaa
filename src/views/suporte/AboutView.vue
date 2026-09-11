@@ -188,13 +188,12 @@ function next() {
       <div class="about-texto">
         <h1>O que é o KUAA?</h1>
         <p class="oq">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae molestias dignissimos
-          quia maxime, odio in itaque placeat sunt voluptates perspiciatis nostrum nobis, vel
-          provident qui odit alias illo quo ullam?
+          O KUAA é uma rede social focada 100% nos estudos e no desenvolvimento pessoal de todos os nossos estudantes, professores e universitários! A palavra “KUAA” significa “conhecimento” em tupi-guarani, escolhemos este nome pois acreditamos que o conhecimento é a chave para um futuro próspero, em conjunto com todos os estudantes que se esforçam dia e noite para transformar o mundo em um lugar melhor!
+
         </p>
       </div>
       <div class="about-img">
-        <img src="/logo-kuaa-2.png" alt="Logo" />
+        <img src="/logo-kuaa.png" alt="Logo" />
       </div>
     </div>
 

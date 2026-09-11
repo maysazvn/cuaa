@@ -1,7 +1,95 @@
 <script setup>
-//imports
+// //imports
 
-import { ref, watch } from 'vue'
+// import { ref, watch } from 'vue'
+// import ButtonChild from '@/components/ButtonChild.vue'
+// import { userReal } from './login/UserReal'
+// import { emailReal } from './login/EmailReal'
+// import { senhaReal } from './login/SenhaReal'
+// import { loginOut } from './login/Loginout'
+// import { users } from '../user/Users'
+
+// // lets ////////
+
+// let cadastro = ref(true)
+// let login = ref(false)
+// let emailFalso = ref('')
+// let userFalso = ref('')
+// let senhaFalsa = ref('')
+// let maiorId =  Math.max(...users.map(item => item.id))
+// const desc = ref(localStorage.getItem('desc') || '')
+// const mostrarSala = ref(localStorage.getItem('mostrarSala?') || 'sim')
+
+// // Functions /////
+
+// function selecionarLogin() {
+//   if (cadastro.value == true) {
+//     cadastro.value = false
+//     login.value = true
+//   }
+// }
+// function selecionarCadastro() {
+//   if (login.value == true) {
+//     login.value = false
+//     cadastro.value = true
+//   }
+// }
+
+// function enviar(email, senha, user) {
+//   if (email.trim() !== '' && senha.trim() !== '' && user.trim() !== '') {
+//     if (senhaReal.value.length == 0 && emailReal.value.length == 0 && userReal.value.length == 0) {
+//       emailReal.value = email
+//       userReal.value = user
+//       senhaReal.value = senha
+
+//       emailFalso.value = ''
+//       senhaFalsa.value = ''
+//       userFalso.value = ''
+
+//       const novoUsuario = {
+//         id: maiorId + 1,
+//         nome: userReal,
+//         pfp: ref(localStorage.getItem('urlFoto') || '/pfpPlaceholder.png'),
+//         banner: ref(localStorage.getItem('urlBanner') || '/bannerPlaceholder.png'),
+//         desc: watch(desc, (novaDesc) => {localStorage.setItem('desc', novaDesc)}),
+//         mostrarSala: watch(mostrarSala, (novoValor) => {localStorage.setItem('mostrarSala?', novoValor)}),
+//         salas: []
+//       }
+
+//       users.push(novoUsuario);
+
+//       console.log(users)
+//     } else {
+//       alert('Você já possui cadastro! Faça login!')
+//     }
+//   } else {
+//     alert('Preencha todos os campos!')
+//   }
+// }
+// function logar(email, senha) {
+//   if (email === emailReal.value && senha === senhaReal.value) {
+//     loginOut.value = 'ativo'
+//     alert('Você logou com sucesso!')
+//     senhaFalsa.value = ''
+//     emailFalso.value = ''
+//   } else {
+//     alert('Erro! Senha ou/e usuário inválido!')
+//   }
+// }
+
+
+
+
+
+
+// CÓDIGO TESTE///////////////////
+
+
+
+
+
+
+import { ref, watch, onMounted } from 'vue' 
 import ButtonChild from '@/components/ButtonChild.vue'
 import { userReal } from './login/UserReal'
 import { emailReal } from './login/EmailReal'
@@ -16,9 +104,32 @@ let login = ref(false)
 let emailFalso = ref('')
 let userFalso = ref('')
 let senhaFalsa = ref('')
-let maiorId =  Math.max(...users.map(item => item.id))
+let maiorId = Math.max(...users.map(item => item.id))
 const desc = ref(localStorage.getItem('desc') || '')
 const mostrarSala = ref(localStorage.getItem('mostrarSala?') || 'sim')
+
+
+onMounted(() => {
+  const emailSalvo = localStorage.getItem('user_email')
+  const userSalvo = localStorage.getItem('user_nome')
+  const senhaSalva = localStorage.getItem('user_senha')
+  const statusLogin = localStorage.getItem('login_status')
+
+ 
+  if (emailSalvo && userSalvo && senhaSalva) {
+    emailReal.value = emailSalvo
+    userReal.value = userSalvo
+    senhaReal.value = senhaSalva
+  }
+
+
+  if (statusLogin === 'ativo') {
+    loginOut.value = 'ativo'
+    cadastro.value = false
+    login.value = true
+    
+  }
+})
 
 // Functions /////
 
@@ -42,23 +153,29 @@ function enviar(email, senha, user) {
       userReal.value = user
       senhaReal.value = senha
 
+      
+      localStorage.setItem('user_email', email)
+      localStorage.setItem('user_nome', user)
+      localStorage.setItem('user_senha', senha)
+
       emailFalso.value = ''
       senhaFalsa.value = ''
       userFalso.value = ''
 
       const novoUsuario = {
         id: maiorId + 1,
-        nome: userReal,
-        pfp: ref(localStorage.getItem('urlFoto') || '/pfpPlaceholder.png'),
-        banner: ref(localStorage.getItem('urlBanner') || '/bannerPlaceholder.png'),
+        nome: userReal.value,
+        pfp: localStorage.getItem('urlFoto') || '/pfpPlaceholder.png',
+        banner: localStorage.getItem('urlBanner') || '/bannerPlaceholder.png',
         desc: watch(desc, (novaDesc) => {localStorage.setItem('desc', novaDesc)}),
         mostrarSala: watch(mostrarSala, (novoValor) => {localStorage.setItem('mostrarSala?', novoValor)}),
         salas: []
       }
 
       users.push(novoUsuario);
-
       console.log(users)
+      
+      alert('Cadastro realizado com sucesso! Vá para a aba Login.')
     } else {
       alert('Você já possui cadastro! Faça login!')
     }
@@ -66,9 +183,14 @@ function enviar(email, senha, user) {
     alert('Preencha todos os campos!')
   }
 }
+
 function logar(email, senha) {
   if (email === emailReal.value && senha === senhaReal.value) {
     loginOut.value = 'ativo'
+    
+    
+    localStorage.setItem('login_status', 'ativo')
+    
     alert('Você logou com sucesso!')
     senhaFalsa.value = ''
     emailFalso.value = ''
@@ -76,6 +198,7 @@ function logar(email, senha) {
     alert('Erro! Senha ou/e usuário inválido!')
   }
 }
+
 </script>
 
 <template>
