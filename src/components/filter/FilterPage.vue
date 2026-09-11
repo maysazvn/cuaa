@@ -41,25 +41,50 @@ const postsFiltrados = computed(() => {
     if (!coisaPesquisada.value) return [];
     const termo = coisaPesquisada.value.toLowerCase().trim();
     return lista.filter(post => post.conteudo && post.conteudo.toLowerCase().includes(termo));
-});
-
-const totalResultados = computed(() => {
-    return salasFiltradas.value.length + usersFiltrados.value.length + postsFiltrados.value.length;
-});
+}); 
 
 const salasExibidas = computed(() => {
+    if (!soSala.value) return [];
     return salasFiltradas.value.slice(0, itensExibidos.value);
 });
 
 const usersExibidos = computed(() => {
+    if (soSala.value && soPost.value) {
     const resto = Math.max(0, itensExibidos.value - salasExibidas.value.length);
     return usersFiltrados.value.slice(0, resto);
+    }
+
+    return usersFiltrados.value.slice(0, itensExibidos.value);
 });
 
 const postsExibidos = computed(() => {
+
+    if (soSala.value && soUser.value) {
     const resto = Math.max(0, itensExibidos.value - salasExibidas.value.length - usersExibidos.value.length);
     return postsFiltrados.value.slice(0, resto);
+    }
+
+    return postsFiltrados.value.slice(0, itensExibidos.value);
 });
+
+const totalFiltrado = computed(() =>{
+    let total = 0;
+    if (soSala.value){
+        total += salasFiltradas.value.length;
+    }
+    if (soUser.value){
+        total += usersFiltrados.value.length;
+    }
+    if (soPost.value){
+        total += postsFiltrados.value.length;
+    }
+
+    return total;
+});
+
+const totalExibido = computed(() => {
+    return salasExibidas.value.length + usersExibidos.value.length + postsExibidos.value.length;
+})
 
 function carregarMais() {
     itensExibidos.value += 15;
@@ -74,6 +99,7 @@ function resetarFiltros() {
 
 function filtrando(valor) {
     resetarFiltros();
+    itensExibidos.value = 15;
     
     if (valor === 'sala') {
         soSala.value = true;
@@ -137,7 +163,7 @@ function filtrando(valor) {
             </div>
         </div>
 
-        <div v-if="itensExibidos < totalResultados">
+        <div v-if="totalExibido < totalFiltrado">
             <button @click="carregarMais">Ver mais</button>
         </div>
     </div>
