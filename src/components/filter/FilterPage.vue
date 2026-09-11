@@ -116,7 +116,7 @@ function filtrando(valor) {
 </script>
 
 <template>
-    <div>
+    <div class="container">
         <div>
             <select name="filtrar" id="filtro" @change="filtrando($event.target.value)">
                 <option value="tudo">Tudo</option>
@@ -126,30 +126,30 @@ function filtrando(valor) {
             </select>
         </div>
 
-        <div v-show="soSala">   
-            <div v-if="salasFiltradas.length > 0">
-                <div v-for="sala in salasExibidas" :key="sala.idSala || sala.id">
-                    <RouterLink :to="`/salas/${sala.idSala}`">
-                        <img :src="sala.banner" alt="">
+        <div v-show="soSala" class="secao-resultado">   
+            <div v-if="salasFiltradas.length > 0" class="resultado">
+                <div v-for="sala in salasExibidas" :key="sala.idSala || sala.id" class="card-item">
+                    <RouterLink :to="`/salas/${sala.idSala}`" class="link">
+                        <img :src="sala.banner" alt="" class="img-sala">
                         {{ sala.nome }}
                     </RouterLink>
                 </div>
             </div>
-            <div v-else-if="coisaPesquisada">
+            <div v-else-if="coisaPesquisada" class="vazio">
                 <p>Nenhuma sala encontrada para "{{ coisaPesquisada }}"</p>
             </div>
         </div>
         
-        <div v-show="soUser">
-            <div v-if="usersFiltrados.length > 0">
-                <div v-for="user in usersExibidos" :key="user.id">
-                    <RouterLink :to="`/otherProfile/${user.id}`">
-                        <img :src="user.pfp" alt="">
+        <div v-show="soUser" class="secao-resultado">
+            <div v-if="usersFiltrados.length > 0" class="resultado">
+                <div v-for="user in usersExibidos" :key="user.id" class="card-item">
+                    <RouterLink :to="`/otherProfile/${user.id}`" class="link">
+                        <img :src="user.pfp" alt="" class="img-usuario">
                         {{ user.nome }}
                     </RouterLink>
                 </div>
             </div>
-            <div v-else-if="coisaPesquisada">
+            <div v-else-if="coisaPesquisada" class="vazio">
                 <p>Nenhum usuário encontrado para "{{ coisaPesquisada }}"</p>
             </div>
         </div>
