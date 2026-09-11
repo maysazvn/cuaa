@@ -1,46 +1,46 @@
 <script setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
 
-const busca = ref('');
-const router = useRouter();
+const busca = ref('')
+const router = useRouter()
 
 function irParaOFiltro() {
-  router.push({path: '/filter', query: {dado: busca.value}})
+  router.push({ path: '/filter', query: { dado: busca.value } })
 }
-
 </script>
 
 <template>
   <header>
     <div>
-     <img src="/logo-kuaa.png" alt="Logo Header" class="logo">
+      <img src="/logo-kuaa.png" alt="Logo Header" class="logo" />
     </div>
     <div class="direito">
       <div class="search">
-        <font-awesome-icon icon="magnifying-glass" class="lupa"/>
+        <font-awesome-icon icon="magnifying-glass" class="lupa" />
 
-        
         <form action="/filter" method="GET" @submit.prevent="irParaOFiltro">
-          <input type="search" v-model="busca" placeholder="Buscar..."> <!-- Busca de usuário, sala e postagem -->
+          <input type="search" v-model="busca" placeholder="Buscar..." />
+          <!-- Busca de usuário, sala e postagem -->
         </form>
-        
       </div>
       <div>
-        <router-link to="/login"><font-awesome-icon icon="right-to-bracket" class="login" /></router-link>
+        <router-link to="/login"
+          ><font-awesome-icon icon="right-to-bracket" class="login"
+        /></router-link>
       </div>
     </div>
   </header>
 </template>
 
 <style scoped>
-header{
+header {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 60px;
-  background: #1E1E1E;
+  background: #1e1e1e;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,25 +50,26 @@ header{
   z-index: 1000;
 }
 
-.search{
+.search {
   display: flex;
-  background: #F8D76B;
+  background: #f8d76b;
   border-radius: 50px;
   padding: 2px;
   align-items: center;
 }
 
-.lupa{
+.lupa {
   margin: 5px;
+  color: #1e1e1e;
 }
 
-.logo{
-  width: 9vw;
+.logo {
+  width: 6vw;
 }
 
-input{
-font-size: 1.2rem;
-background: transparent;
+input {
+  font-size: 1.2rem;
+  background: transparent;
   border: none;
   outline: none;
 }
@@ -77,21 +78,34 @@ input::placeholder {
   color: #584c3a;
 }
 
-.direito{
+.direito {
   display: flex;
   gap: 10px;
   align-items: center;
 }
 
-.login{
-  color: #D9D9D9;
+.login {
+  color: #d9d9d9;
   font-size: 1.5rem;
 }
 
 @media (max-width: 768px) {
-.logo{
-  width: 25vw;
-}
-}
+  header {
+    display: flex;
+    justify-content: space-between !important;
+  }
 
+  .logo {
+    width: 25vw;
+  }
+
+  .search {
+    width: 50%;
+  }
+
+  input {
+    font-size: 1rem;
+    width: 50%;
+  }
+}
 </style>

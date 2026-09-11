@@ -306,4 +306,26 @@ hr{
   color: #444444;
   margin: 1px 1px 25px 1px;
 }
+
+@media (max-width: 768px) {
+
+  .container{
+    padding: 0 !important;
+  }
+
+  img.foto{
+    width: 80px;
+    height: 80px;
+    top: 130px;
+  }
+
+  .editarDeletar{
+    font-size: 1.2rem;
+  }
+
+  .cardSala{
+    padding: 10px 15px;
+  }
+
+}
 </style>

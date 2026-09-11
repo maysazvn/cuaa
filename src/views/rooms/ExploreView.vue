@@ -143,4 +143,25 @@ button:hover{
   text-align: center;
 }
 
+@media (max-width: 768px) {
+
+  .salas{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    margin: 0 auto;
+  }
+
+  a.visualizar, .btn-entrar{
+    width: 80%;
+  }
+
+}
+
 </style>

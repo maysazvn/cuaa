@@ -63,6 +63,7 @@ console.log('Sala encontrada:', sala.value)
 
     <div class="card-sala">
       <div class="topo-sala">
+        <div class="fotoinfo">
         <img :src="sala.banner" class="foto-sala" />
 
         <div class="info-sala">
@@ -70,6 +71,7 @@ console.log('Sala encontrada:', sala.value)
           <div class="metadados">
             <p><span>CRIADOR</span> {{ sala.usuarioCriador }}</p>
             <p><span>STATUS</span> {{ statusTexto }}</p>
+            </div>
           </div>
         </div>
         
@@ -153,6 +155,7 @@ a.voltar {
   gap: 20px;
   position: relative;
   align-items: center;
+  justify-content: space-between;
 }
 
 .foto-sala {
@@ -360,5 +363,26 @@ a.voltar {
 hr{
   color: #333333;
   margin: 1px 1px 25px 1px;
+}
+
+.fotoinfo{
+  display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+
+@media (max-width: 768px) {
+
+  .topo-sala{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fotoinfo{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
 }
 </style>
