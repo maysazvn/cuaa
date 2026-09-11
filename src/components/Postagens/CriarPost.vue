@@ -40,7 +40,7 @@ function usuarioEstaNaSala(salaIdDoPost) {
 
 
 function adicionar() {
- if (!postagensTituloNovo.value.trim() || !postagensConteudoNovo.value.trim()) {
+ if (!postagensTituloNovo.value.trim() || !postagensConteudoNovo.value.trim() || !salaFinal.value) {
    alert(`Preencha os campos!`);
 } else {
    let maiorId =  Math.max(...postagens.value.map(item => item.id))
@@ -52,6 +52,8 @@ function adicionar() {
        id: maiorId + 1,
        salaId: Number(salaFinal.value),
        imagem: imagemPost.value || "",
+       curtidas: 0,
+       salvos: 0
    }
 
 
@@ -138,7 +140,12 @@ console.log("Post atualizado:", JSON.parse(JSON.stringify(postagens.value)));
              base-color="#3e3e3e"
              bg-color="#1e1e1e"
              :menu-props="{ contentClass: 'menu-salas-custom' }"
-           ></v-autocomplete>
+           > <template v-slot:no-data>
+      <v-list-item>
+        <v-list-item-title>Você não está em nenhuma sala</v-list-item-title>
+      </v-list-item>
+    </template></v-autocomplete>
+          
          </v-col>
        </v-row>
 
