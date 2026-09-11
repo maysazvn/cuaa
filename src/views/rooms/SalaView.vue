@@ -81,7 +81,7 @@ console.log('Sala encontrada:', sala.value)
         </div>
 
         <div class="acoes-sala">
-          <ButtonEnter :sala="sala" />
+          <ButtonEnter :sala="sala" v-if="sala.usuarioCriador != userReal" />
           <div class="menu">
             <span v-if="loginOut === 'ativo'"> </span>
             <span v-else>

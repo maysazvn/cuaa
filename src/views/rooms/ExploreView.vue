@@ -25,7 +25,7 @@ import { loginOut } from '../account/login/Loginout';
       <div class="nav">
         <span v-if="loginOut === 'ativo'">
           <RouterLink :to="`/salas/${sala.idSala}`" class="visualizar"> Visualizar </RouterLink>
-        <ButtonEnter :sala="sala" />
+        <ButtonEnter :sala="sala" v-if="sala.usuarioCriador != userReal" />
         </span>
         <span v-else>
        <button class="btn-entrar">Faça Login para entrar!</button>
