@@ -18,9 +18,9 @@ let soPost = ref(true);
 watch(
   () => route.query.dado,
   (novoDado) => {
-    coisaPesquisada.value = novoDado || '';
-  }
-);
+    coisaPesquisada.value = novoDado || ''
+  },
+)
 
 const salasFiltradas = computed(() => {
     const lista = Array.isArray(salas) ? salas : salas.value || []; 
@@ -170,6 +170,75 @@ function filtrando(valor) {
 </template>
 
 <style scoped>
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+  color: #d9d9d9;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
 
+.secao-resultado h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #E0D8C3;
+  margin-bottom: 15px;
+  font-family: 'Prompt', sans-serif;
+}
 
+.resultado {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+}
+
+.card-item {
+  background-color: #242424;
+  border: 1px solid #333333;
+  border-radius: 15px;
+  padding: 10px;
+}
+
+.card-item:hover {
+  background-color: #2e2e2e;
+  transform: translateY(-3px);
+  transition: .2s;
+}
+
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+}
+
+.link span{
+  font-weight: bold;
+  color: #8f8f8f;
+}
+
+.img-sala {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.img-usuario {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.vazio {
+  background-color: #1e1e1e;
+  border: 1px solid #3d3d3d;
+  border-radius: 10px;
+  padding: 15px 20px;
+  color: #8f8f8f;
+}
 </style>
