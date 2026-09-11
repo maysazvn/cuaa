@@ -1,10 +1,7 @@
 <script setup>
-import { useRoute} from 'vue-router'
 import { salasUsuario } from '@/data/salasUsuario'
 import { salas } from '@/data/salas'
-import { computed } from 'vue'
-const route = useRoute()
-const salaa = computed(() => salas.value.find((s) => s.idSala == route.params.id))
+
 
 const props = defineProps({
   sala: {
@@ -14,26 +11,35 @@ const props = defineProps({
 })
 
 function estaNaSala() {
-  return salasUsuario.value.some((i) => i.idSala === props.sala.idSala)
+  return salasUsuario.value.some(
+    (i) => i.idSala === props.sala.idSala
+  )
 }
 
 function entrar() {
   if (!estaNaSala()) {
     salasUsuario.value.push(props.sala)
-    salaa.value.participantes++
+    props.sala.participantes++
   }
 }
 
 function sair() {
-  salasUsuario.value = salasUsuario.value.filter((i) => i.idSala !== props.sala.idSala)
-  salaa.value.participantes--
+  const index = salasUsuario.value.findIndex(
+    (i) => i.idSala === props.sala.idSala
+  )
+
+  if (index !== -1) {
+    salasUsuario.value.splice(index, 1)
+    props.sala.participantes--
+  }
 }
 </script>
 
 <template>
-  <button v-if="estaNaSala()" @click="sair" class="btn-sair">
+ <button v-if="estaNaSala()" @click="sair" class="btn-sair">
     Sair
   </button>
+
   <button v-else @click="entrar" class="btn-entrar">
     Entrar
   </button>

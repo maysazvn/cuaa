@@ -28,7 +28,7 @@ function criar() {
      banner: banner.value,
      status: coisa.value,
      usuarioCriador: userReal.value,
-     participantes: membros.value,
+     participantes: membros.value + 1,
    }
   
    salas.value.push(novaSala)
