@@ -206,7 +206,7 @@ a.voltar {
   cursor: pointer;
 }
 
-.btn-entrar span {
+.btn-entrar span{
   font-weight: bold;
 }
 
@@ -360,7 +360,7 @@ a.voltar {
   width: 100%;
 }
 
-hr {
+hr{
   color: #333333;
   margin: 1px 1px 25px 1px;
 }

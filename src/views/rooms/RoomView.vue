@@ -21,19 +21,19 @@ function criar() {
    alert(mensagem)
    return
  } else {
-   salas.value.push({
+   const novaSala = {
      idSala: Date.now(),
      nome: nome.value,
      desc: descricao.value,
      banner: banner.value,
      status: coisa.value,
      usuarioCriador: userReal.value,
-     participantes: membros.value + 1,
-   })
+     participantes: membros.value,
+   }
   
+   salas.value.push(novaSala)
+   salasUsuario.value.push(novaSala)
  }
-
-
  console.log(salas.value)
 
 
@@ -44,6 +44,7 @@ function criar() {
 
  router.push('/')
 }
+
 
 
 // function enviar(sal) {
