@@ -97,6 +97,7 @@ console.log('Sala encontrada:', sala.value)
             </div>
           </div>
         </div>
+      </div>  
 
         <p class="descricao">{{ sala.desc }}</p>
 
@@ -109,7 +110,7 @@ console.log('Sala encontrada:', sala.value)
           <hr />
           <Postagens :posts="postsSala"></Postagens>
         </div>
-      </div>
+      
 
       <div v-if="popupExcluir" class="telapopup">
         <div class="popup">

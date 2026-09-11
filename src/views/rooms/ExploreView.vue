@@ -3,6 +3,7 @@ import CartSala from '@/components/cart/CartSala.vue'
 import ButtonEnter from '@/components/ButtonEnter.vue';
 import { salas } from '@/data/salas'
 import { loginOut } from '../account/login/Loginout';
+import { userReal } from '../account/login/UserReal';
 </script>
 
 <template>
