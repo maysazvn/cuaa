@@ -42,6 +42,7 @@ function pegarFotoUsuario(autorID) {
 }
 
 function comentar() {
+  if(loginOut == 'attivo'){
   if (!novoComent.value.trim()) {
     alert(`Preencha os campos!!`)
   } else {
@@ -60,6 +61,9 @@ function comentar() {
     novoComent.value = ''
     localStorage.setItem(chaveStorage, JSON.stringify(comentarios.value))
   }
+}else{
+  alert('Faça login para comentar!')
+}
 }
 
 function excluir(idItem) {
@@ -86,7 +90,12 @@ function mostrarItens(comentario) {
 }
 
 function denunciar() {
-  alert('Comentário denunciado com sucesso.')
+  if(loginOut == 'ativo'){
+    alert('Comentário denunciado com sucesso.')
+  }else{
+    alert('Faça login para denunciar!')
+  }
+  
 }
 </script>
 <template>
@@ -96,13 +105,12 @@ function denunciar() {
         <textarea placeholder="O que está pensando?" v-bind="texto" v-model="novoComent"></textarea>
       </div>
       <!-- aquiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii -->
-      <span v-if="loginOut === 'ativo'">
+    
         <button type="submit" @click="comentar()" class="comentarBtn">Comentar</button>
-      </span>
+     
       
-      <span v-else>
-        <button class="comentarBtn">Faça login para comentar!</button>
-      </span>
+
+       
       <div class="todos" v-for="comentario in comentarios" :key="comentario.id">
         <div class="cima">
           <p class="autor">
@@ -125,8 +133,8 @@ function denunciar() {
 <!-- aquiiiiiiiiiiiiii -->
             
             <div v-else>
-              <span v-if="loginOut === 'ativo'"><button @click="denunciar()" class="denunciar">Denunciar</button></span>
-              <span v-else> <button class="denunciar"> Faça Login para denunciar!</button></span>
+              <button @click="denunciar()" class="denunciar">Denunciar</button>
+            
             </div>
          
           </div>
