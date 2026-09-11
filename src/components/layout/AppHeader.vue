@@ -13,7 +13,9 @@ function irParaOFiltro() {
 <template>
   <header>
     <div>
+      <router-link to="/">
       <img src="/logo-kuaa.png" alt="Logo Header" class="logo" />
+      </router-link>
     </div>
     <div class="direito">
       <div class="search">
@@ -48,30 +50,37 @@ header {
   border-bottom: 2px solid #313131;
   box-sizing: border-box;
   z-index: 1000;
+  gap: 10px;
 }
 
 .search {
   display: flex;
+  align-items: center;
   background: #f8d76b;
   border-radius: 50px;
-  padding: 2px;
-  align-items: center;
+  padding: 4px 10px;
+  height: 36px;
+  box-sizing: border-box;
 }
 
 .lupa {
-  margin: 5px;
+  margin-right: 6px;
   color: #1e1e1e;
+  flex-shrink: 0;
 }
 
 .logo {
-  width: 6vw;
+  width: clamp(45px, 6vw, 120px);
+  display: block;
 }
 
 input {
-  font-size: 1.2rem;
+  font-size: 1rem;
   background: transparent;
   border: none;
   outline: none;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 input::placeholder {
@@ -80,32 +89,52 @@ input::placeholder {
 
 .direito {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   align-items: center;
+  flex: 1;
+  min-width: 0;
+  justify-content: flex-end;
 }
 
 .login {
   color: #d9d9d9;
   font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+input, .search, .direito{
+  color: #1e1e1e;
 }
 
 @media (max-width: 768px) {
   header {
-    display: flex;
-    justify-content: space-between !important;
+    padding: 5px 12px;
+    gap: 8px;
   }
 
   .logo {
-    width: 25vw;
+    width: clamp(90px, 12vw, 110px);
   }
 
   .search {
-    width: 50%;
+    flex: 1;
+    max-width: 140px;
+    height: 32px;
   }
 
   input {
-    font-size: 1rem;
-    width: 50%;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo {
+    width: clamp(36px, 14vw, 45px);
+  }
+
+  .search {
+    max-width: 100px;
   }
 }
 </style>

@@ -68,7 +68,7 @@ a.voltar{
 
 .salas {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2vw;
   margin: 0px auto;
   padding: 40px;
@@ -146,8 +146,7 @@ button:hover{
 @media (max-width: 768px) {
 
   .salas{
-    display: flex;
-    flex-direction: column;
+    padding: 20px 15px;
   }
 
   .nav{
@@ -156,10 +155,12 @@ button:hover{
     gap: 10px;
     justify-content: center;
     margin: 0 auto;
+    align-items: center;
   }
 
   a.visualizar, .btn-entrar{
-    width: 80%;
+    width: 60%;
+    padding: 10px 12px;
   }
 
 }

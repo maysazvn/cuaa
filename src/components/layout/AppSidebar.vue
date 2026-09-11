@@ -9,6 +9,7 @@ import { userReal } from '@/views/account/login/UserReal'
 import { emailReal } from '@/views/account/login/EmailReal'
 import { urlFoto } from '@/views/user/urlFoto'
 const menuSalasAberto = ref(false);
+const menuMaisAberto = ref(false)
 
 // functions /////////////////
 function validarLoginout() {
@@ -111,18 +112,39 @@ function validarLoginout() {
       <font-awesome-icon icon="user" />
       <span>Perfil</span>
     </router-link>
-    <div class="item" @click="menuSalasAberto = !menuSalasAberto">
+    <div class="item item-salas" @click="menuSalasAberto = !menuSalasAberto; menuMaisAberto = false">
       <font-awesome-icon icon="comments" />
       <span>Salas</span>
 
       <div class="salasAberto" v-if="menuSalasAberto" @click.stop>
-        <div v-for="sala in salasUsuario" :key="sala.nome">
+        <RouterLink to="/room" class="sala-link criar-sala-link">
+          <font-awesome-icon icon="plus" />
+          <span>Criar sala</span>
+        </RouterLink>
+
+        <div v-for="sala in salasUsuario" :key="sala.idSala || sala.nome">
           <RouterLink :to="`/salas/${sala.idSala}`" class="sala-link">
             <span>{{ sala.nome }}</span>
           </RouterLink>
         </div>
       </div>
     </div>
+
+   <div class="item item-mais" @click="menuMaisAberto = !menuMaisAberto; menuSalasAberto = false">
+  <font-awesome-icon icon="ellipsis" />
+  <span>Mais</span>
+
+  <div class="maisAberto" v-if="menuMaisAberto" @click.stop>
+    <RouterLink to="/help" class="sala-link">
+      <font-awesome-icon icon="circle-question" />
+      <span>Ajuda</span>
+    </RouterLink>
+    <RouterLink to="/about" class="sala-link">
+      <font-awesome-icon icon="circle-info" />
+      <span>Sobre</span>
+    </RouterLink>
+  </div>
+</div>
   </nav>
 </template>
 
@@ -286,11 +308,11 @@ hr {
     cursor: pointer;
   }
 
-  .item-salas {
+  .item-salas, .item-mais {
     position: relative;
   }
 
-  .salasAberto {
+  .salasAberto, .maisAberto {
     position: absolute;
     bottom: 45px;
     right: 0;
@@ -321,8 +343,13 @@ hr {
     white-space: nowrap;
   }
 
-  .salasAberto div:last-child .sala-link {
+  .salasAberto div:last-child .sala-link,
+  .maisAberto div:last-child .sala-link {
     border-bottom: none;
+  }
+
+  .criar-sala-link {
+    color: #f8d76b;
   }
 }
 </style>

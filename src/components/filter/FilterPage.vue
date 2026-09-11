@@ -152,4 +152,13 @@ const usersFiltrados = computed(() => {
   padding: 15px 20px;
   color: #8f8f8f;
 }
+
+@media (max-width: 768px) {
+
+  .resultado{
+    display: flex;
+    flex-direction: column;
+  }
+
+}
 </style>

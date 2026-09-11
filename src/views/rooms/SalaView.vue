@@ -55,7 +55,7 @@ console.log('Sala encontrada:', sala.value)
   <div class="container-sala" v-if="sala">
     <div class="header-pagina">
       <div class="titulo">
-        <RouterLink to="/" class="voltar">
+        <RouterLink to="/explore" class="voltar">
           <font-awesome-icon icon="chevron-left"></font-awesome-icon> Perfil de sala</RouterLink
         >
       </div>
@@ -74,7 +74,7 @@ console.log('Sala encontrada:', sala.value)
             </div>
           </div>
         </div>
-        
+
         <div class="acoes-sala">
           <span v-if="loginOut === 'ativo'">
 
