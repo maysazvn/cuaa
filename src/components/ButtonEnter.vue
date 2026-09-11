@@ -1,5 +1,10 @@
 <script setup>
+import { useRoute} from 'vue-router'
 import { salasUsuario } from '@/data/salasUsuario'
+import { salas } from '@/data/salas'
+import { computed } from 'vue'
+const route = useRoute()
+const salaa = computed(() => salas.value.find((s) => s.idSala == route.params.id))
 
 const props = defineProps({
   sala: {
@@ -15,11 +20,13 @@ function estaNaSala() {
 function entrar() {
   if (!estaNaSala()) {
     salasUsuario.value.push(props.sala)
+    salaa.value.participantes++
   }
 }
 
 function sair() {
   salasUsuario.value = salasUsuario.value.filter((i) => i.idSala !== props.sala.idSala)
+  salaa.value.participantes--
 }
 </script>
 
