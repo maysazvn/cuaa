@@ -4,7 +4,6 @@ import { useRouter } from 'vue-router'
 import { salas } from '@/data/salas'
 import { ref } from 'vue'
 import { userReal } from '../account/login/UserReal'
-import { loginOut } from '../account/login/Loginout'
 import { salasUsuario } from '@/data/salasUsuario'
 const router = useRouter()
 const nome = ref('')
@@ -21,7 +20,7 @@ function criar() {
     alert(mensagem)
     return
   } else {
-    salas.value.push({
+    const novaSala = {
       idSala: Date.now(),
       nome: nome.value,
       desc: descricao.value,
@@ -32,7 +31,6 @@ function criar() {
     })
     
   }
-
   console.log(salas.value)
 
   nome.value = ''

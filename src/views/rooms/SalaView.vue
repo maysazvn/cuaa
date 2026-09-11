@@ -2,6 +2,7 @@
 import { useRoute, useRouter } from 'vue-router'
 import { computed, ref } from 'vue'
 import { salas } from '@/data/salas'
+import ButtonEnter from '@/components/ButtonEnter.vue'
 import { loginOut } from '../account/login/Loginout'
 import Postagens from '@/components/Postagens/Postagens.vue';
 import { postagens } from '@/data/postagens';
@@ -13,17 +14,6 @@ const route = useRoute()
 const router = useRouter()
 const popupExcluir = ref(false)
 const menuAberto = ref(false)
-const entrouOuNao = ref(false)
-
-function alternarMembro() {
-  if (entrouOuNao.value) {
-    sala.value.participantes--
-  } else {
-    sala.value.participantes++
-  }
-
-  entrouOuNao.value = !entrouOuNao.value
-}
 
 const postsSala = computed(() => {
   return postagens.value.filter((post) => post.salaId === Number(sala.value.idSala))
@@ -87,13 +77,12 @@ console.log('Sala encontrada:', sala.value)
         </div>
         
         <div class="acoes-sala">
+       <ButtonEnter :sala="sala" />
+          <div class="menu">
           <span v-if="loginOut === 'ativo'">
 
          
-          <button class="btn-entrar" :class="{ 'btn-sair': entrouOuNao }" @click="alternarMembro" v-if="sala.usuarioCriador != userReal" >
-            <span v-if="entrouOuNao">Sair da sala</span>
-            <span v-else>Entrar</span>
-          </button>
+       
 
           </span>
           <span v-else>
