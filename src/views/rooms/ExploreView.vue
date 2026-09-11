@@ -24,6 +24,10 @@ import { salas } from '@/data/salas'
       <div class="nav">
         <RouterLink :to="`/salas/${sala.idSala}`" class="visualizar"> Visualizar </RouterLink>
         <ButtonEnter :sala="sala" />
+
+      <span v-else>
+       <button class="btn-entrar">Faça Login para entrar!</button>
+      </span>
         </div>
       </CartSala>
     </section>

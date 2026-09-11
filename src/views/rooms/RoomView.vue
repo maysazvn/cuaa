@@ -27,11 +27,9 @@ function criar() {
       banner: banner.value,
       status: coisa.value,
       usuarioCriador: userReal.value,
-      participantes: membros.value,
-    }
+      participantes: membros.value + 1,
+    })
     
-    salas.value.push(novaSala)
-    salasUsuario.value.push(novaSala)
   }
   console.log(salas.value)
 
@@ -42,12 +40,21 @@ function criar() {
   router.push('/')
 }
 
+// function enviar(sal) {
+//   if (!estaNaSala(sal.idSala)) {
+//     salasUsuario.value.push(sal)
+//   }
+// }
+
 // function gerar() {
 //   banner.value
 // }
 </script>
 
 <template>
+  <span v-if="loginOut === 'ativo'">
+
+  
   <div class="container">
     <h1 class="tituloCriarSala"><font-awesome-icon icon="chevron-left" /> Criar Sala</h1>
 
@@ -99,6 +106,12 @@ function criar() {
       </div>
     </div>
   </div>
+  </span>
+   <span v-else-if="loginOut === 'inativo'" class="mensagemSemLogin">
+    <p>
+      Faça Login para criar salas!
+    </p>
+   </span>
 </template>
 
 <style scoped>

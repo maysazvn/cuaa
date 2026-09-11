@@ -3,6 +3,11 @@ import { useRoute, useRouter } from 'vue-router'
 import { computed, ref } from 'vue'
 import { salas } from '@/data/salas'
 import ButtonEnter from '@/components/ButtonEnter.vue'
+import { loginOut } from '../account/login/Loginout'
+import Postagens from '@/components/Postagens/Postagens.vue';
+import { postagens } from '@/data/postagens';
+import { users } from '../user/Users'
+import { userReal } from '../account/login/UserReal'
 defineProps(['idSala', 'nome', 'participantes', 'desc', 'usuarioCriador', 'status', 'banner'])
 
 const route = useRoute()
@@ -10,9 +15,14 @@ const router = useRouter()
 const popupExcluir = ref(false)
 const menuAberto = ref(false)
 
+const postsSala = computed(() => {
+  return postagens.value.filter((post) => post.salaId === Number(sala.value.idSala))
+})
+
 console.log('ID da rota:', route.params.id)
 console.log('Salas:', salas.value)
 
+const criador = computed(() => users.find(usuario => usuario.nome === sala.value?.usuarioCriador))
 const sala = computed(() => salas.value.find((s) => s.idSala == route.params.id))
 function confirmarEx() {
   const index = salas.value.findIndex((s) => s.idSala == route.params.id)
@@ -44,7 +54,7 @@ console.log('Sala encontrada:', sala.value)
   <div class="container-sala" v-if="sala">
     <div class="header-pagina">
       <div class="titulo">
-        <RouterLink to="/" class="voltar">
+        <RouterLink to="/explore" class="voltar">
           <font-awesome-icon icon="chevron-left"></font-awesome-icon> Perfil de sala</RouterLink
         >
       </div>
@@ -57,14 +67,29 @@ console.log('Sala encontrada:', sala.value)
         <div class="info-sala">
           <h2 class="nome-sala">{{ sala.nome }}</h2>
           <div class="metadados">
-            <p><span>CRIADOR</span> {{ sala.usuarioCriador }}</p>
+            <div>
+              <RouterLink v-if="sala.usuarioCriador === userReal" :to="`/profile`"> <span>CRIADOR</span> {{ sala.usuarioCriador }} </RouterLink>
+              <RouterLink v-else :to="`/otherProfile/${criador.id}`"> <span>CRIADOR</span> {{ sala.usuarioCriador }} </RouterLink>
+            </div>
+
             <p><span>STATUS</span> {{ statusTexto }}</p>
           </div>
         </div>
-
+        
         <div class="acoes-sala">
        <ButtonEnter :sala="sala" />
           <div class="menu">
+          <span v-if="loginOut === 'ativo'">
+
+         
+       
+
+          </span>
+          <span v-else>
+            <button class="btn-entrar">Faça Login para entrar!</button>
+          </span>
+          
+          <div class="menu" v-if="sala.usuarioCriador === userReal">
             <button class="menubotao" @click="menuAberto = !menuAberto">...</button>
             <div class="menuaberto" v-if="menuAberto">
               <button @click="editarSala">Editar sala</button>
@@ -80,10 +105,10 @@ console.log('Sala encontrada:', sala.value)
         <span>{{ sala.participantes }} membros</span>
       </div>
 
-      <hr class="divisor" />
-
       <div class="secao-posts">
         <h2>Posts</h2>
+        <hr>
+        <Postagens :posts="postsSala"></Postagens>
       </div>
     </div>
 
@@ -119,7 +144,7 @@ a.voltar {
   font-size: 2rem;
   font-family: 'Prompt', sans-serif;
   font-weight: bold;
-  color: #e0d8c3;
+  color: #d9d9d9;
 }
 
 .titulo {
@@ -148,7 +173,7 @@ a.voltar {
 .nome-sala {
   font-size: 1.8rem;
   font-weight: 800;
-  color: #ffffff;
+  color: #d9d9d9;
   margin: 0 0 10px 0;
 }
 
@@ -250,16 +275,12 @@ a.voltar {
   font-size: 0.9rem;
 }
 
-.divisor {
-  border-top: 1px solid #333333;
-  margin: 25px 0;
-}
-
 .secao-posts h2 {
   font-size: 1.4rem;
-  color: #e0d8c3;
+  color: #d9d9d9;
   font-family: 'Prompt', sans-serif;
   font-weight: bold;
+  margin: 25px 0 5px 0;
 }
 
 .botoes {
@@ -338,5 +359,10 @@ a.voltar {
   align-items: center;
   gap: 15px;
   width: 100%;
+}
+
+hr{
+  color: #333333;
+  margin: 1px 1px 25px 1px;
 }
 </style>

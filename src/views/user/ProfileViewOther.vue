@@ -5,6 +5,9 @@ import { users } from './Users';
 import { ref } from 'vue';
 import { watchEffect } from 'vue';
 import { salas } from '@/data/salas';
+import { loginOut } from '../account/login/Loginout';
+import Postagens from '@/components/Postagens/Postagens.vue';
+import { postagens } from '@/data/postagens';
 
 
 const route = useRoute();
@@ -21,6 +24,10 @@ const usuario = computed(() => {
   return users.find(
     (usuario) => usuario.id === Number(route.params.id),
   )
+})
+
+const postsUsuario = computed(() => {
+  return postagens.value.filter((post) => post.autorID === usuario.value.id)
 })
 
 // const suarios = JSON.parse(localStorage.getItem('salasEntradas')) || [];
@@ -43,7 +50,7 @@ function seguir() {
   const segui = users.find(usu => usu.id === usuario.value.id)
 
   if (!estaseguindo.value) {
-    
+
     estaseguindo.value = true;
     localStorage.setItem(`seguindo_${usuario.value.id}`, 'true');
     segui.seguidores += 1
@@ -59,15 +66,23 @@ function seguir() {
 </script>
 
 <template>
+  
   <div class="container">
     <div v-if="usuario" class="cartaoPerfil">
       <img v-if="usuario.banner" :src="usuario.banner" class="banner" />
       <img v-if="usuario.pfp" :src="usuario.pfp" class="foto" />
 
+      <span v-if="loginOut === 'ativo'">
+
+      
       <div class="acoesPerfil">
         <button class="seguirUsuario" v-on:click="seguir()">{{ mensagemSeguir }}</button>
       </div>
 
+      </span>
+      <span v-else class="acoesPerfil">
+        <button class="seguirUsuario">Faça login para seguir!</button>
+      </span>
       <div class="info">
         <h1>{{ usuario.nome }}</h1>
         <p>{{ usuario.desc }}</p>
@@ -93,6 +108,12 @@ function seguir() {
           </li>
         </ul>
       </div>
+
+      <div class="postagens">
+        <h2>Posts</h2>
+        <hr>
+        <Postagens :posts="postsUsuario"></Postagens>
+      </div>
     </div>
 
 
@@ -100,11 +121,13 @@ function seguir() {
       <p>Usuário não encontrado.</p>
     </div>
   </div>
+  
+   
 </template>
 
 <style scoped>
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -261,5 +284,26 @@ ul {
   color: #e0e0e0;
   font-size: 0.9rem;
   font-weight: 500;
+}
+
+.postagens{
+  width: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: center ;
+  flex-direction: column;
+}
+
+.postagens h2{
+  font-size: 1.4rem;
+  color: #d9d9d9;
+  font-family: 'Prompt', sans-serif;
+  font-weight: bold;
+  margin: 15px;
+}
+
+hr{
+  color: #444444;
+  margin: 1px 1px 25px 1px;
 }
 </style>
