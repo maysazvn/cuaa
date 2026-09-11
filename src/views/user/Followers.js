@@ -1,22 +1,3 @@
-export const seguidores = [
-        {
-            id: 1,
-            nome: 'joaozinho'
+import { ref } from "vue";
 
-        },
-        {
-            id: 2,
-            nome: 'mariazinha'
-
-        },
-        {
-            id: 3,
-            nome: 'sixsevenzinho'
-
-        },
-        {
-            id: 4,
-            nome: 'red'
-
-        },
-    ]
+export const seguidores = ref(4);
