@@ -3,6 +3,7 @@ import { ref, onMounted, computed } from 'vue'
 import { pegarIDUsuario } from '@/views/account/login/UserReal'
 import { users } from '@/views/user/Users'
 import { comentariosReais } from '@/data/comentarios'
+import { loginOut } from '@/views/account/login/Loginout'
 
 const props = defineProps(['post', 'usuario'])
 
