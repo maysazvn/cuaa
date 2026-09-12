@@ -48,7 +48,7 @@ function criar() {
 <template>
   <span v-if="loginOut === 'ativo'">
 
-  
+
   <div class="container">
     <h1 class="tituloCriarSala"><font-awesome-icon icon="chevron-left" /> Criar Sala</h1>
 
@@ -229,7 +229,7 @@ function criar() {
   color: #8f8f8f;
   font-size: 0.8rem;
   position: absolute;
-  left: 310px;
+  right: 10px;
   bottom: 10px;
 }
 
@@ -260,5 +260,62 @@ function criar() {
 
 .btnCancelar {
   background: #848484;
+}
+
+@media (max-width: 768px) {
+  .container{
+    padding: 0;
+  }
+
+  .criarSala{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .conteudo{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .img,
+  .area-imagem {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .campos{
+    width: 100%;
+  }
+
+  .img input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .input{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .input input,
+.input textarea {
+  width: 100%;
+}
+
+@media (min-width: 1440px) {
+  .img,
+  .area-imagem {
+    width: 300px;
+  }
+
+  .foto-preview,
+  .imagem {
+    height: 240px;
+  }
+}
 }
 </style>

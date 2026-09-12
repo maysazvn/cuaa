@@ -60,7 +60,7 @@ function excluirUser() {
 </script>
 
 <template>
-  <span v-if="loginOut === 'ativo'"> 
+  <span v-if="loginOut === 'ativo'">
   <div class="container" v-show="existe == true">
     <div class="cartaoPerfil">
       <img v-if="urlBanner" :src="urlBanner" class="banner" />
@@ -134,7 +134,7 @@ function excluirUser() {
 
 <style scoped>
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -165,15 +165,16 @@ function excluirUser() {
 }
 
 .foto {
-  width: 8vw;
-  height: 8vw;
+  width: 110px;
+  height: 110px;
   object-fit: cover;
   border-radius: 50%;
   position: absolute;
   z-index: 10;
-  top: 100px;
+  top: 130px;
   left: 25px;
-  border: 5px solid#1e1e1e;
+  border: 5px solid #1e1e1e;
+  background-color: #1e1e1e;
 }
 
 .editarDeletar {
@@ -211,6 +212,10 @@ ul {
   display: flex;
   gap: 20px;
   margin: 15px 0;
+}
+
+.info {
+  padding-top: 15px;
 }
 
 .info h1,
@@ -279,10 +284,6 @@ ul {
 
 .postagens{
   width: 100%;
-  margin: auto;
-  display: flex;
-  justify-content: center ;
-  flex-direction: column;
 }
 
 .postagens h2{
@@ -296,5 +297,27 @@ ul {
 hr{
   color: #444444;
   margin: 1px 1px 25px 1px;
+}
+
+@media (max-width: 768px) {
+
+  .container{
+    padding: 0 !important;
+  }
+
+  img.foto{
+    width: 80px;
+    height: 80px;
+    top: 130px;
+  }
+
+  .editarDeletar{
+    font-size: 1.2rem;
+  }
+
+  .cardSala{
+    padding: 10px 15px;
+  }
+
 }
 </style>
