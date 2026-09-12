@@ -66,7 +66,7 @@ function seguir() {
 </script>
 
 <template>
-  
+
   <div class="container">
     <div v-if="usuario" class="cartaoPerfil">
       <img v-if="usuario.banner" :src="usuario.banner" class="banner" />
@@ -74,7 +74,7 @@ function seguir() {
 
       <span v-if="loginOut === 'ativo'">
 
-      
+
       <div class="acoesPerfil">
         <button class="seguirUsuario" v-on:click="seguir()">{{ mensagemSeguir }}</button>
       </div>
@@ -121,8 +121,8 @@ function seguir() {
       <p>Usuário não encontrado.</p>
     </div>
   </div>
-  
-   
+
+
 </template>
 
 <style scoped>
@@ -158,15 +158,16 @@ function seguir() {
 }
 
 .foto {
-  width: 8vw;
-  height: 8vw;
+  width: 110px;
+  height: 110px;
   object-fit: cover;
   border-radius: 50%;
   position: absolute;
   z-index: 10;
-  top: 100px;
+  top: 130px;
   left: 25px;
-  border: 5px solid#1e1e1e;
+  border: 5px solid #1e1e1e;
+  background-color: #1e1e1e;
 }
 
 button.seguirUsuario {
@@ -219,6 +220,10 @@ ul {
   display: flex;
   gap: 20px;
   margin: 15px 0;
+}
+
+.info {
+  padding-top: 15px;
 }
 
 .info h1,
@@ -288,10 +293,6 @@ ul {
 
 .postagens{
   width: 100%;
-  margin: auto;
-  display: flex;
-  justify-content: center ;
-  flex-direction: column;
 }
 
 .postagens h2{

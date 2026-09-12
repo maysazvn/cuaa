@@ -58,7 +58,7 @@ function excluir() {
 </script>
 
 <template>
-  <span v-if="loginOut === 'ativo'"> 
+  <span v-if="loginOut === 'ativo'">
   <div class="container" v-show="existe == true">
     <div class="cartaoPerfil">
       <img v-if="urlBanner" :src="urlBanner" class="banner" />
@@ -121,7 +121,7 @@ function excluir() {
 
 <style scoped>
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -152,15 +152,16 @@ function excluir() {
 }
 
 .foto {
-  width: 8vw;
-  height: 8vw;
+  width: 110px;
+  height: 110px;
   object-fit: cover;
   border-radius: 50%;
   position: absolute;
   z-index: 10;
-  top: 100px;
+  top: 130px;
   left: 25px;
-  border: 5px solid#1e1e1e;
+  border: 5px solid #1e1e1e;
+  background-color: #1e1e1e;
 }
 
 .editarDeletar {
@@ -198,6 +199,10 @@ ul {
   display: flex;
   gap: 20px;
   margin: 15px 0;
+}
+
+.info {
+  padding-top: 15px;
 }
 
 .info h1,
@@ -266,10 +271,6 @@ ul {
 
 .postagens{
   width: 100%;
-  margin: auto;
-  display: flex;
-  justify-content: center ;
-  flex-direction: column;
 }
 
 .postagens h2{
