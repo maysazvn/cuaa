@@ -286,6 +286,10 @@ function criarPostRapido() {
 TIMELINE:
 1. curtidas!!! e salvo
 
+SALAS:
+5. quando loga em uma conta e depois sai da conta, cria uma sala e sai com o nome do criador do login mesmo nao estando logado
+Samuel ta resolvendo a parte de linkar os botoes de entrar na sdala
+
 PESQUISA:
 1. aparecer seu proprio usuario na pesquisa
 2. Quando logado, nehuma pesquisa funciona

@@ -5,6 +5,8 @@ import { loginOut } from '@/views/account/login/Loginout'
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { salasUsuario } from '@/data/salasUsuario'
+import { onMounted } from 'vue'
+import { salas } from '@/data/salas'
 import { userReal } from '@/views/account/login/UserReal'
 import { emailReal } from '@/views/account/login/EmailReal'
 import { urlFoto } from '@/views/user/urlFoto'
@@ -15,10 +17,22 @@ const menuMaisAberto = ref(false)
 function validarLoginout() {
   if (loginOut.value == 'ativo') {
     loginOut.value = 'inativo'
+    localStorage.setItem('login_status', 'inativo')
   } else {
     alert('Faça login primeiro!')
   }
 }
+
+onMounted(() => {
+   const statusLogin = localStorage.getItem('login_status')
+  if (statusLogin === 'ativo') {
+    loginOut.value = 'ativo'
+    userReal.value = localStorage.getItem('user_nome')
+    emailReal.value = localStorage.getItem('user_email')
+    
+    
+  }
+})
 </script>
 
 <template>

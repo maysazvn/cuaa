@@ -5,6 +5,7 @@ import { users } from './Users';
 import { ref } from 'vue';
 import { watchEffect } from 'vue';
 import { salas } from '@/data/salas';
+import { seguindo } from './Following';
 import { loginOut } from '../account/login/Loginout';
 import Postagens from '@/components/Postagens/Postagens.vue';
 import { postagens } from '@/data/postagens';
@@ -32,7 +33,7 @@ const postsUsuario = computed(() => {
 
 // const suarios = JSON.parse(localStorage.getItem('salasEntradas')) || [];
 
-const mostrarSala = ref(localStorage.getItem('mostrarSala?') || 'sim')
+// const mostrarSala = ref(localStorage.getItem('mostrarSala?') || 'sim')
 let estaseguindo = ref(false);
 
 watchEffect(() => {
@@ -53,12 +54,22 @@ function seguir() {
 
     estaseguindo.value = true;
     localStorage.setItem(`seguindo_${usuario.value.id}`, 'true');
-    segui.seguidores += 1
+
+
+    segui.seguidores += 1;
+    seguindo.value += 1;
+    localStorage.setItem('total_seguindo', seguindo.value);
+    console.log(seguindo)
+
   } else {
     estaseguindo.value = false;
     localStorage.setItem(`seguindo_${usuario.value.id}`, 'false');
 
-        segui.seguidores -= 1
+
+    segui.seguidores -= 1
+    seguindo.value -= 1;
+    localStorage.setItem('total_seguindo', seguindo.value);
+    console.log(seguindo)
 
   }
 }
