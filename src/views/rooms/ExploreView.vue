@@ -159,7 +159,7 @@ button:hover{
   }
 
   a.visualizar, .btn-entrar{
-    width: 60%;
+    width: 200px;
     padding: 10px 12px;
   }
 

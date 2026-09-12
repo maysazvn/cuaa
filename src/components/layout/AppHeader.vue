@@ -137,4 +137,10 @@ input, .search, .direito{
     max-width: 100px;
   }
 }
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .search {
+    max-width: 220px;
+  }
+}
 </style>

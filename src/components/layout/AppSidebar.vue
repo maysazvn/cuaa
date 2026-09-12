@@ -49,9 +49,9 @@ function validarLoginout() {
         </div>
 
         <div class="salas">
-          <div v-for="sala in salasUsuario" :key="sala.nome">
+          <div v-for="sala in salasUsuario" :key="sala.nome" class="salas-link">
             <RouterLink :to="`/salas/${sala.idSala}`">
-              <h2>{{ sala.nome }}</h2>
+              <h2 class="sala-link">{{ sala.nome }}</h2>
             </RouterLink>
           </div>
           <!-- quem for criar as salas, já cria lá na pasta data um dataset de salas padrão pfv, pra deixar um v-for aqui. -->
@@ -194,7 +194,7 @@ div.salas {
 ul li a {
   color: #d9d9d9;
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   transition: 0.25s ease;
 }
 
@@ -238,6 +238,10 @@ hr {
 .usuarioSidebar,
 .emailSidebar {
   margin: 1px 10px;
+  white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+max-width: 140px;
 }
 
 .usuarioSidebar {
@@ -277,6 +281,17 @@ hr {
 .dadosUser {
   padding: 2px 10px;
 }
+
+.sala-link{
+  font-size: 1.2rem;
+}
+
+.sala-link:hover{
+color: #e1bc42;
+transition: .2s;
+transform: scale(0.95);
+}
+
 
 @media (max-width: 768px) {
   aside.sidebar {

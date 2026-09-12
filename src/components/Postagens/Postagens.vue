@@ -144,7 +144,7 @@ function salaDoPost(salaId) {
                     <img :src="pegarFotoUsuario(post.autorID)" class="fotoAutor" />
                   </RouterLink>
                   <RouterLink :to="linkPerfil(post.autorID)">
-                    {{ pegarNomeAutor(post.autorID) }}
+                    <span class="nomeAutor">{{ pegarNomeAutor(post.autorID) }}</span>
                   </RouterLink>
                 </strong>
               </p>
@@ -224,6 +224,12 @@ function salaDoPost(salaId) {
 </template>
 
 <style scoped>
+
+section {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 div.listaPosts {
   background: #262626;
   color: #d9d9d9;
@@ -474,6 +480,17 @@ button.editarDeletar:hover {
   margin-right: 6px;
 }
 
+.nomeAutor {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+  font-weight: bold;
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
 @media (max-width: 768px) {
   .postagens {
     padding: 0;
@@ -526,13 +543,13 @@ button.editarDeletar:hover {
   }
 
   .btn-fixo {
-  position: fixed !important;
-  bottom: 50px !important;
-  left: 250px !important;
-  width: fit-content !important;
-  height: fit-content !important;
-  z-index: 10 !important;
-}
+    position: fixed !important;
+    bottom: 50px !important;
+    left: 250px !important;
+    width: fit-content !important;
+    height: fit-content !important;
+    z-index: 10 !important;
+  }
 }
 
 /*

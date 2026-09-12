@@ -201,7 +201,7 @@ a.voltar{
   color: #8f8f8f;
   font-size: 0.8rem;
   position: absolute;
-  left: 310px;
+  right: 10px;
   bottom: 10px;
 }
 
@@ -232,5 +232,46 @@ a.voltar{
 
 .btn-cancelar {
   background: #848484;
+}
+
+@media (max-width: 768px) {
+  .container-edit{
+    padding: 0;
+
+  }
+
+  .card-editar{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .conteudo-editar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .img,
+  .area-imagem {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .formulario{
+    width: 100%;
+  }
+
+  input .input-url{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .input input,
+.input textarea {
+  width: 100%;
+}
 }
 </style>

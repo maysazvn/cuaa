@@ -229,7 +229,7 @@ function criar() {
   color: #8f8f8f;
   font-size: 0.8rem;
   position: absolute;
-  left: 310px;
+  right: 10px;
   bottom: 10px;
 }
 
@@ -276,6 +276,17 @@ function criar() {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+  }
+
+  .img,
+  .area-imagem {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .campos{
+    width: 100%;
   }
 
   .img input{
@@ -293,6 +304,18 @@ function criar() {
   .input input,
 .input textarea {
   width: 100%;
+}
+
+@media (min-width: 1440px) {
+  .img,
+  .area-imagem {
+    width: 300px;
+  }
+
+  .foto-preview,
+  .imagem {
+    height: 240px;
+  }
 }
 }
 </style>

@@ -180,7 +180,7 @@ a.voltar {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-family: 'Prompt', sans-serif;
 }
 
@@ -263,6 +263,7 @@ a.voltar {
   line-height: 1.2;
   max-width: 600px;
   word-break: break-word;
+  font-size: 1.1rem;
 }
 
 .membros {
@@ -271,7 +272,11 @@ a.voltar {
   gap: 5px;
   margin-top: 15px;
   color: #aaaaaa;
-  font-size: 0.9rem;
+  font-size: 1rem;
+}
+
+.secao-posts{
+  padding: 0;
 }
 
 .secao-posts h2 {
@@ -295,7 +300,7 @@ a.voltar {
   border-radius: 20px;
   border: none;
   font-weight: bold;
-  font-size: 0.95rem;
+  font-size: 1rem;
   cursor: pointer;
 }
 
@@ -347,7 +352,7 @@ a.voltar {
 }
 
 .popup p {
-  font-size: 0.88rem;
+  font-size: 1rem;
   color: #a5a5a5;
   margin-bottom: 24px;
 }

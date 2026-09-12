@@ -346,6 +346,7 @@ input {
 
   img {
     width: 80%;
+    margin-bottom: 25px;
   }
 
   p {

@@ -298,6 +298,7 @@ function next() {
   margin: 0 auto;
   padding: 20px;
   display: block;
+  max-width: 1200px
 }
 
 h1,
@@ -322,19 +323,24 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 60px;
+  gap: 40px;
   width: 100%;
 }
 
 .about img {
   width: 20vw;
-  max-width: 250px;
+  max-width: 320px;
+}
+
+.about-texto {
+  max-width: 480px;
+  flex-shrink: 0;
 }
 
 p.oq {
   text-align: center;
   font-size: 1.2rem;
-  width: 40%;
+  width: 100%;
   color: #d9d9d9;
 }
 
@@ -464,6 +470,20 @@ img{
     padding: 15px;
     max-width: 75%;
     max-height: 300px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .estudante-card {
+    width: 550px;
+  }
+
+  .janela {
+    height: 420px;
+  }
+
+  p.oq {
+    max-width: 700px;
   }
 }
 </style>
