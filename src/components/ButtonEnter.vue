@@ -1,6 +1,7 @@
 <script setup>
 import { salasUsuario } from '@/data/salasUsuario'
 import { salas } from '@/data/salas'
+import { loginOut } from '@/views/account/login/Loginout'
 
 
 const props = defineProps({
@@ -17,10 +18,15 @@ function estaNaSala() {
 }
 
 function entrar() {
+  if(loginOut.value === 'ativo'){
   if (!estaNaSala()) {
     salasUsuario.value.push(props.sala)
     props.sala.participantes++
   }
+}else{
+  alert('Faça login para entrar!')
+  alert(`${loginOut}`)
+}
 }
 
 function sair() {

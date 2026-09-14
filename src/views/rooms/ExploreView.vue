@@ -24,13 +24,11 @@ import { userReal } from '../account/login/UserReal';
         :status="sala.status"
       >
       <div class="nav">
-        <span v-if="loginOut === 'ativo'">
+      
           <RouterLink :to="`/salas/${sala.idSala}`" class="visualizar"> Visualizar </RouterLink>
         <ButtonEnter :sala="sala" v-if="sala.usuarioCriador != userReal" />
-        </span>
-        <span v-else>
-       <button class="btn-entrar">Faça Login para entrar!</button>
-      </span>
+       
+       
       </div>
       </CartSala>
     </section>

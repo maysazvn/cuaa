@@ -83,10 +83,8 @@ console.log('Sala encontrada:', sala.value)
         <div class="acoes-sala">
           <ButtonEnter :sala="sala" v-if="sala.usuarioCriador != userReal" />
           <div class="menu">
-            <span v-if="loginOut === 'ativo'"> </span>
-            <span v-else>
-              <button class="btn-entrar">Faça Login para entrar!</button>
-            </span>
+          
+          
 
             <div class="menu" v-if="sala.usuarioCriador === userReal">
               <button class="menubotao" @click="menuAberto = !menuAberto">...</button>
