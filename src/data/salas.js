@@ -1,6 +1,10 @@
-import { ref } from "vue"
+import { ref, watch } from "vue"
 
-export const salas = ref([
+const dadosSalvos = JSON.parse(
+  localStorage.getItem('salas')
+)
+
+export const salas = ref(dadosSalvos || [
 {
     idSala: 1,
     nome: '22info22',
@@ -57,8 +61,52 @@ export const salas = ref([
     nome: 'Five Nights At Freddy',
     participantes: 21,
     desc: '',
-    usuarioCriador: 'Samusaax',
+    usuarioCriador: 'erererer',
     status: 1,
     banner: 'https://i.pinimg.com/736x/7f/01/fe/7f01fe7cac4f06697b8b61066da99a4b.jpg'
+},{
+    idSala: 8,
+    nome: 'Programação',
+    participantes: 99,
+    desc: 'Duvidas de JS, Vue, Python, etc...',
+    usuarioCriador: 'sackboy',
+    status: 1,
+    banner: 'https://i.pinimg.com/1200x/80/22/68/8022682b6bbe4ddf22132d07d55f4635.jpg'
+},{
+    idSala: 9,
+    nome: 'CSS',
+    participantes: 0,
+    desc: 'Ajudando a entender css',
+    usuarioCriador: 'homotron3000',
+    status: 0,
+    banner: 'https://i.pinimg.com/736x/a6/b5/cd/a6b5cdc8d9b2bf6003950a997230e3ba.jpg'
+},{
+    idSala: 10,
+    nome: 'MATEMÁTICA',
+    participantes: 0,
+    desc: 'Matemática pode ser legal :D',
+    usuarioCriador: 'Gabriel',
+    status: 0,
+    banner: 'https://i.pinimg.com/736x/f0/fc/3f/f0fc3fbf591538641cdc8bee744be8e2.jpg'
+},{
+    idSala: 11,
+    nome: 'Filosofia',
+    participantes: 13,
+    desc: 'Filosofando com Dexter',
+    usuarioCriador: 'Bay-harbor Butcher',
+    status: 1,
+    banner: 'https://i.pinimg.com/1200x/51/76/34/517634feafe0323c9687ff7ef2e0a220.jpg'
 },
+
 ])
+
+watch(
+  salas,
+  (novoValor) => {
+    localStorage.setItem(
+      'salas',
+      JSON.stringify(novoValor)
+    )
+  },
+  { deep: true }
+)
