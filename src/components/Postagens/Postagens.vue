@@ -8,6 +8,7 @@ import { shallowRef } from 'vue'
 import { salas } from '@/data/salas.js'
 import { users } from '@/views/user/Users.js'
 import { pegarIDUsuario } from '@/views/account/login/UserReal.js'
+import { loginOut } from '@/views/account/login/Loginout.js'
 
 
 const props = defineProps({
@@ -123,6 +124,7 @@ function denunciar() {
 }
 
 function alternarCurtida(post) {
+  if(loginOut.value === 'ativo'){
     if (post.curtido === true) {
       post.curtido = false;
       post.curtidas = post.curtidas - 1
@@ -132,9 +134,13 @@ function alternarCurtida(post) {
     }
      localStorage.setItem(storage, JSON.stringify(postagens.value))
 
+  }else{
+    alert('Faça login para curtir!')
   }
+}
  
   function salvarPost(post) {
+    if(loginOut.value === 'ativo'){
     if (post.salvou === true) {
       post.salvou = false;
       post.salvos = post.salvos - 1
@@ -145,7 +151,10 @@ function alternarCurtida(post) {
      localStorage.setItem(storage, JSON.stringify(postagens.value))
 
 
+  }else{
+    alert('Faça login para salvar!')
   }
+}
 
 function salaDoPost(salaId) {
  if (!salas.value) return 'Geral'
