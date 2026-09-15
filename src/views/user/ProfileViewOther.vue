@@ -46,7 +46,7 @@ watchEffect(() => {
 const mensagemSeguir = computed(() => (estaseguindo.value ? 'Seguindo' : 'Seguir'));
 
 function seguir() {
-  if(loginOut == 'ativo'){
+  if(loginOut.value == 'ativo'){
   if (!usuario.value) return;
 
   const segui = users.find(usu => usu.id === usuario.value.id)

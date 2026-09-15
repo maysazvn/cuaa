@@ -9,7 +9,7 @@ import { salas } from '@/data/salas.js'
 import { users } from '@/views/user/Users.js'
 import { loginOut } from '@/views/account/login/Loginout.js'
 import { pegarIDUsuario } from '@/views/account/login/UserReal.js'
-import { loginOut } from '@/views/account/login/Loginout.js'
+
 
 
 const props = defineProps({
@@ -119,7 +119,12 @@ function mostrarItens(post) {
 
 
 function denunciar() {
- alert('Comentário denunciado com sucesso.')
+  if(loginOut.value === 'ativo'){
+     alert('Comentário denunciado com sucesso.')
+  }else{
+    alert('Faça login para denunciar!')
+  }
+
 }
 
 function alternarCurtida(post) {
@@ -153,13 +158,9 @@ function alternarCurtida(post) {
   }else{
     alert('Faça login para salvar!')
   }
-  if(loginOut == 'ativo'){
-    alert('Comentário denunciado com sucesso.')
-  }else{
-    alert('Faça login para denunciar!')
-  }
-  
 }
+
+
 
 function salaDoPost(salaId) {
  if (!salas.value) return 'Geral'

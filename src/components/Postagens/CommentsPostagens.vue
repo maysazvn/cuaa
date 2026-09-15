@@ -90,7 +90,7 @@ function mostrarItens(comentario) {
 }
 
 function denunciar() {
-  if(loginOut == 'ativo'){
+  if(loginOut.value == 'ativo'){
     alert('Comentário denunciado com sucesso.')
   }else{
     alert('Faça login para denunciar!')

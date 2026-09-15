@@ -25,7 +25,6 @@ function entrar() {
   }
 }else{
   alert('Faça login para entrar!')
-  alert(`${loginOut}`)
 }
 }
 
