@@ -111,6 +111,32 @@ export const postagens = ref([
    salvou: false,
    salvos: 0
  },
+  {
+   id: 9,
+   titulo: 'Amortentia',
+   conteudo: 'Gente alguém sabe os ingredientes pra fazer a amortencia? Para fins academicos',
+   autorID: 26,
+   data: '11/09/2004',
+   salaId: 13,
+    curtido: false,
+   curtidas: 67,
+   imagem: "https://i.pinimg.com/736x/b6/b7/9d/b6b79dbeeaf3ea4428104685a42440a5.jpg",
+   salvou: false,
+   salvos: 30
+ },
+  {
+   id: 10,
+   titulo: 'HARRY POTTAH',
+   conteudo: 'EU VOU TE ENCONTRAR',
+   autorID: 31,
+   data: '31/07/1980',
+   salaId: 12,
+    curtido: false,
+   curtidas: 10,
+   imagem: "",
+   salvou: false,
+   salvos: 30
+ },
 ])
 
 
