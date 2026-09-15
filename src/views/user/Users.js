@@ -332,6 +332,17 @@ export const users = [
         seguidores: 2,
         seguindo: 1,
         salas: [1, 3]
+    },
+    {
+        id: 31,
+        nome: 'Kátia',
+        pfp: 'https://i1.rgstatic.net/ii/profile.image/1062860247531523-1630417038409_Q512/Katia-Siewert.jpg',
+        banner: 'https://tse4.mm.bing.net/th/id/OIP.aBDOOuiC3X-w3RTMNH09-AHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+        desc: 'Doutorado em Educação pelo PPGE da Universidade do Estado de Santa Catarina (UDESC). Mestrado em Computação Aplicada pela Universidade do Vale do Rio dos Sinos (UNISINOS). Bacharel em Arquitetura e Urbanismo e Licenciatura em Matemática pela Universidade Regional de Blumenau (FURB). Integrante do grupo de pesquisa NEPesTEEM',
+        mostrarSala: 'sim',
+        seguidores: 32,
+        seguindo: 9,
+        salas: [4]
     }
 
 
