@@ -343,6 +343,17 @@ export const users = [
         seguidores: 32,
         seguindo: 9,
         salas: [4]
+    },
+    {
+        id: 32,
+        nome: 'John',
+        pfp: 'https://www.bayayadg.com/wp-content/uploads/2023/03/ava4.png',
+        banner: 'https://web.dev/static/images/social-wide.jpg',
+        desc: 'Hi! I am John',
+        mostrarSala: 'sim',
+        seguidores: 1010,
+        seguindo: 1111,
+        salas: [9]
     }
 
 
