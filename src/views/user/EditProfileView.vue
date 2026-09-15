@@ -300,6 +300,7 @@ input.fotoPerfil{
 
 .sim,
 .nao {
+  display: flex;
   align-items: center;
   gap: 10px;
   margin-right: 20px;
@@ -336,5 +337,58 @@ button:hover {
   background-color: #f8d668e7;
   transform: scale(0.97);
   transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+
+  .container {
+    padding: 0 !important;
+  }
+
+  .label-banner {
+    height: 140px;
+  }
+
+  .previewBanner {
+    height: 140px;
+  }
+
+  .adicionarFotoPerfil {
+    width: 90px;
+    height: 90px;
+    margin-left: 20px;
+    margin-top: -45px;
+  }
+
+  .previewFoto {
+    width: 90px;
+    height: 90px;
+  }
+
+  .campos {
+    padding: 0 20px;
+  }
+
+  .nomeUsuario {
+    width: 100%;
+  }
+
+  .descricao {
+    max-width: 100%;
+  }
+
+  button {
+    width: calc(100% - 40px);
+    margin: 20px;
+  }
+
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .adicionarFotoPerfil,
+  .previewFoto {
+    width: 100px;
+    height: 100px;
+  }
 }
 </style>

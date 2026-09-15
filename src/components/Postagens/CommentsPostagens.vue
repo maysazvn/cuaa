@@ -53,7 +53,7 @@ function comentar() {
       usu: usuarioLogado.value,
       data: Date(Date.now()).toLocaleString('pt-BR'),
       id: maiorId + 1,
-      autorID: pegarIDUsuario()
+      autorID: pegarIDUsuario(),
     }
 
     comentarios.value.unshift(novoNoComentario)
@@ -115,14 +115,14 @@ function denunciar() {
         <div class="cima">
           <p class="autor">
             <strong>
-          <RouterLink :to="`/otherProfile/${comentario.autorID}`">
-                    <img :src="pegarFotoUsuario(comentario.autorID)" class="fotoAutor" />
-                  </RouterLink>
-                  <RouterLink :to="`/otherProfile/${comentario.autorID}`">
-                    {{ pegarNomeAutor(comentario.autorID) }}
-                  </RouterLink>
-                  </strong>
-                  </p>
+              <RouterLink :to="`/otherProfile/${comentario.autorID}`">
+                <img :src="pegarFotoUsuario(comentario.autorID)" class="fotoAutor" />
+              </RouterLink>
+              <RouterLink :to="`/otherProfile/${comentario.autorID}`">
+                {{ pegarNomeAutor(comentario.autorID) }}
+              </RouterLink>
+            </strong>
+          </p>
           <button class="editarDeletar" v-on:click="mostrarItens(comentario)">•••</button>
 
           <div class="vshow" v-show="comentario.aberto">
@@ -130,26 +130,25 @@ function denunciar() {
               <button @click="editar(comentario)" class="editar">Editar</button>
               <button @click="excluir(comentario.id)" class="deletar">Excluir</button>
             </div>
-<!-- aquiiiiiiiiiiiiii -->
-            
+            <!-- aquiiiiiiiiiiiiii -->
+
             <div v-else>
               <button @click="denunciar()" class="denunciar">Denunciar</button>
             
             </div>
-         
           </div>
         </div>
         <p class="texto">{{ comentario.texto }}</p>
 
         <div class="interacao">
-            <div class="curtidas">
-              <button class="mostrarComent"><font-awesome-icon icon="heart" /></button>
-            </div>
-
-            <div class="salvos">
-              <button class="mostrarComent"><font-awesome-icon icon="bookmark" /></button>
-            </div>
+          <div class="curtidas">
+            <button class="mostrarComent"><font-awesome-icon icon="heart" /></button>
           </div>
+
+          <div class="salvos">
+            <button class="mostrarComent"><font-awesome-icon icon="bookmark" /></button>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -302,5 +301,26 @@ button:hover {
   opacity: 0.9;
   transform: scale(0.95);
   transition: 0.2s;
+}
+
+@media (max-width: 768px) {
+  .comentarios {
+    border-top: 2px solid #3e3e3e;
+  }
+
+  textarea {
+    border: 2px solid #3e3e3e;
+    width: 100% !important;
+    height: 90px !important;
+    border-radius: 10px;
+    margin-top: 25px;
+    resize: none;
+    outline: none;
+    padding: 5px 10px;
+  }
+
+  p.texto{
+    max-width: 100%;
+  }
 }
 </style>

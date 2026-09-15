@@ -17,10 +17,10 @@ const props = defineProps({
   },
 })
 
-function linkPerfil(autorID){
-  if(autorID === pegarIDUsuario()){
+function linkPerfil(autorID) {
+  if (autorID === pegarIDUsuario()) {
     return `/profile`
-  } else{
+  } else {
     return `/otherProfile/${autorID}`
   }
 }
@@ -149,7 +149,7 @@ function salaDoPost(salaId) {
                     <img :src="pegarFotoUsuario(post.autorID)" class="fotoAutor" />
                   </RouterLink>
                   <RouterLink :to="linkPerfil(post.autorID)">
-                    {{ pegarNomeAutor(post.autorID) }}
+                    <span class="nomeAutor">{{ pegarNomeAutor(post.autorID) }}</span>
                   </RouterLink>
                 </strong>
               </p>
@@ -167,7 +167,7 @@ function salaDoPost(salaId) {
                   <button @click="editar(post)" class="editar">Editar</button>
                   <button @click="excluir(post.id)" class="deletar">Excluir</button>
                 </div>
-<!-- aquiiiiiiiiiiiiiiiiiii -->
+                <!-- aquiiiiiiiiiiiiiiiiiii -->
                 <div v-else>
                 
                   <button @click="denunciar(post)" class="denunciar">Denunciar</button>
@@ -198,12 +198,12 @@ function salaDoPost(salaId) {
             </div>
           </div>
 
-                      <div v-if="mostrarComent === post.id">
-              <CommentsPostagens :post="post" :usuario="usuario"></CommentsPostagens>
-              <button @click="mostrarComent = null" class="mostrarComent">
-                <font-awesome-icon icon="comment" />
-              </button>
-            </div>
+          <div v-if="mostrarComent === post.id">
+            <CommentsPostagens :post="post" :usuario="usuario"></CommentsPostagens>
+            <button @click="mostrarComent = null" class="mostrarComent">
+              <font-awesome-icon icon="comment" />
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -228,6 +228,12 @@ function salaDoPost(salaId) {
 </template>
 
 <style scoped>
+
+section {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 div.listaPosts {
   background: #262626;
   color: #d9d9d9;
@@ -352,6 +358,9 @@ div.postar {
   max-width: 30%;
   margin: 0 auto;
   margin-bottom: 30px;
+  object-fit: cover;
+  vertical-align: middle;
+  margin-right: 6px;
 }
 
 h3 {
@@ -475,11 +484,82 @@ button.editarDeletar:hover {
   margin-right: 6px;
 }
 
+.nomeAutor {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+  font-weight: bold;
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .postagens {
+    padding: 0;
+  }
+
+  div.listaPosts {
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 90%;
+    margin-bottom: 15px;
+  }
+
+  .cima {
+    margin-bottom: 5px;
+  }
+
+  .esq {
+    gap: 15px;
+    object-fit: cover;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+
+  .dir {
+    position: relative;
+  }
+
+  p.autor a {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  h2.titulo {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1px;
+  }
+
+  p.conteudo {
+    font-size: 1rem;
+    margin: 15px 0;
+    margin-top: 1px;
+  }
+
+  .fotoAutor {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .btn-fixo {
+    position: fixed !important;
+    bottom: 50px !important;
+    left: 250px !important;
+    width: fit-content !important;
+    height: fit-content !important;
+    z-index: 10 !important;
+  }
+}
+
 /*
 checklist:
 -- função adicionar imagem e fotos do usuario e das salas nos posts
 
 //////////////////////////// evita usar vuetify nao sei fazer css disso //////////////////////////////////////
-
 */
 </style>
