@@ -10,8 +10,6 @@ import { users } from '@/views/user/Users.js'
 import { loginOut } from '@/views/account/login/Loginout.js'
 import { pegarIDUsuario } from '@/views/account/login/UserReal.js'
 
-
-
 const props = defineProps({
  posts: {
    type: Array,
@@ -55,12 +53,13 @@ function pegarBanner(salaId) {
 
 //essa procura la no users.js o banner da sala
 function pegarFotoUsuario(autorID) {
- const usuarioEncontrado = users.find((usu) => usu.id === autorID)
- if (usuarioEncontrado) {
-   return usuarioEncontrado.pfp
- } else {
-   return '/pfpPlaceholder.png'
- }
+  const usuarioEncontrado = users.find((usu) => {
+    return Number(usu.id) === Number(autorID)
+  })
+  if (usuarioEncontrado && usuarioEncontrado.pfp) {
+    return usuarioEncontrado.pfp
+  }
+  return '/pfpPlaceholder.png'
 }
 
 
@@ -142,7 +141,7 @@ function alternarCurtida(post) {
     alert('Faça login para curtir!')
   }
 }
- 
+
   function salvarPost(post) {
     if(loginOut.value === 'ativo'){
     if (post.salvou === true) {
@@ -165,7 +164,7 @@ function alternarCurtida(post) {
 function salaDoPost(salaId) {
  if (!salas.value) return 'Geral'
  const salaEncontrada = salas.value.find((s) => Number(s.idSala) === Number(salaId))
- return salaEncontrada ? salaEncontrada.nome : 'Geral' 
+ return salaEncontrada ? salaEncontrada.nome : 'Geral'
 }
 </script>
 
@@ -250,7 +249,7 @@ function salaDoPost(salaId) {
 
 
            <div class="curtidas">
-            
+
             <button class="mostrarComent" @click="alternarCurtida(post)">
               <font-awesome-icon :icon="post.curtido ? 'heart' : 'heart'" :style="{color: post.curtido ? 'red' : 'grey'}"/>
               <span> {{ post.curtidas }}</span></button>

@@ -1,5 +1,3 @@
-import { salas } from "@/data/salas";
-
 export const users = [
     {
         id: 1,
@@ -336,4 +334,14 @@ export const users = [
 
 
 ];
+
+const usuariosSalvos = JSON.parse(localStorage.getItem('usuarios_cadastrados') || '[]');
+
+for (const novoUser of usuariosSalvos) {
+  novoUser.id = Number(novoUser.id)
+
+  if (!users.some(u => u.id === novoUser.id)) {
+    users.push(novoUser)
+  }
+};
 

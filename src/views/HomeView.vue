@@ -19,12 +19,13 @@ function usuarioEstaNaSala(salaIdDoPost) {
 }
 
 function pegarFotoUsuario(autorID) {
-  const usuarioEncontrado = users.find((usu) => usu.id === autorID)
-  if (usuarioEncontrado) {
+  const usuarioEncontrado = users.find((usu) => {
+    return Number(usu.id) === Number(autorID)
+  })
+  if (usuarioEncontrado && usuarioEncontrado.pfp) {
     return usuarioEncontrado.pfp
-  } else {
-    return '/pfpPlaceholder.png'
   }
+  return '/pfpPlaceholder.png'
 }
 
 const postsTimeline = computed(() => {
@@ -58,7 +59,7 @@ function criarPostRapido() {
     data: new Date().toLocaleDateString('pt-BR'),
     id: maiorId + 1,
     salaId: Number(salaSelecionada.value),
-    curtidas: 0, 
+    curtidas: 0,
     salvos: 0,
   }
 

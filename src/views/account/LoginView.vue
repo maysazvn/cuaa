@@ -79,7 +79,7 @@
 
 // CÓDIGO TESTE///////////////////
 
-import { ref, watch, onMounted } from 'vue'
+import { ref, onMounted } from 'vue'
 import ButtonChild from '@/components/ButtonChild.vue'
 import { userReal } from './login/UserReal'
 import { emailReal } from './login/EmailReal'
@@ -148,21 +148,17 @@ function enviar(email, senha, user) {
       userFalso.value = ''
 
       const novoUsuario = {
-        id: maiorId + 1,
-        nome: userReal.value,
-        pfp: localStorage.getItem('urlFoto') || '/pfpPlaceholder.png',
-        banner: localStorage.getItem('urlBanner') || '/bannerPlaceholder.png',
-        desc: watch(desc, (novaDesc) => {
-          localStorage.setItem('desc', novaDesc)
-        }),
-        mostrarSala: watch(mostrarSala, (novoValor) => {
-          localStorage.setItem('mostrarSala?', novoValor)
-        }),
-        salas: [],
-      }
+  id: maiorId + 1,
+  nome: userReal.value,
+  pfp: localStorage.getItem('urlFoto') || '/pfpPlaceholder.png',
+  banner: localStorage.getItem('urlBanner') || '/bannerPlaceholder.png',
+  desc: desc.value,
+  mostrarSala: mostrarSala.value,
+  salas: [],
+}
 
-      users.push(novoUsuario)
-      console.log(users)
+      users.push(novoUsuario);
+      localStorage.setItem('usuarios_cadastrados', JSON.stringify(users.filter(u => u.id > 30)));
 
       alert('Cadastro realizado com sucesso! Vá para a aba Login.')
     } else {

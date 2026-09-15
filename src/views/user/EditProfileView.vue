@@ -1,16 +1,35 @@
 <script setup>
 import { ref, watch } from 'vue'
+import { users } from '@/views/user/Users'
+import { pegarIDUsuario } from '@/views/account/login/UserReal'
+
+const meuid = pegarIDUsuario()
+
+function sincronizarUsuarioGlobal(campo, valor) {
+  const usuarioMemoria = users.find((u) => Number(u.id) === Number(meuid))
+  if (usuarioMemoria) {
+    usuarioMemoria[campo] = valor
+  }
+  const usuariosSalvos = JSON.parse(localStorage.getItem('usuarios_cadastrados') || '[]')
+  const usuarioSalvo = usuariosSalvos.find((u) => Number(u.id) === Number(meuid))
+
+  if (usuarioSalvo) {
+    usuarioSalvo[campo] = valor
+    localStorage.setItem('usuarios_cadastrados', JSON.stringify(usuariosSalvos))
+  }
+}
 
 const nomeUsuario = ref(localStorage.getItem('user_nome') || '')
-
 const desc = ref(localStorage.getItem('desc') || '')
 
 watch(nomeUsuario, (novoNome) => {
   localStorage.setItem('user_nome', novoNome)
+  sincronizarUsuarioGlobal('nome', novoNome)
 })
 
 watch(desc, (novaDesc) => {
   localStorage.setItem('desc', novaDesc)
+  sincronizarUsuarioGlobal('desc', novaDesc)
 })
 
 const urlFoto = ref(localStorage.getItem('urlFoto') || '/pfpPlaceholder.png')
@@ -28,6 +47,7 @@ function mudarFoto(event) {
     reader.onload = () => {
       urlFoto.value = reader.result
       localStorage.setItem('urlFoto', reader.result)
+      sincronizarUsuarioGlobal('pfp', reader.result) 
     }
 
     reader.readAsDataURL(novaFoto.value)
@@ -43,6 +63,7 @@ function mudarBanner(event) {
     reader.onload = () => {
       urlBanner.value = reader.result
       localStorage.setItem('urlBanner', reader.result)
+      sincronizarUsuarioGlobal('banner', reader.result)
     }
 
     reader.readAsDataURL(novoBanner.value)
@@ -53,6 +74,7 @@ const mostrarSala = ref(localStorage.getItem('mostrarSala?') || 'sim')
 
 watch(mostrarSala, (novoValor) => {
   localStorage.setItem('mostrarSala?', novoValor)
+  sincronizarUsuarioGlobal('mostrarSala', novoValor)
 })
 </script>
 
