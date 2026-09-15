@@ -7,6 +7,7 @@ import { seguindo } from './Following'
 import { userReal } from '../account/login/UserReal'
 import { urlFoto } from './urlFoto';
 import { salas } from '@/data/salas';
+import { loginOut } from '../account/login/Loginout';
 import { pegarIDUsuario } from '../account/login/UserReal';
 import { postagens } from '@/data/postagens';
 import Postagens from '@/components/Postagens/Postagens.vue';
@@ -29,28 +30,25 @@ const postsExibidos = computed(() => {
     return postsSalvos.value
   }
 });
+const popupExcluir = ref(false)
 
 const postsUsuario = computed(() => {
   return postagens.value.filter((post) => post.autorID === pegarIDUsuario())
 })
 
 function buscarSalas() {
-  return salas.value.filter(sala => {
+  return salas.value.filter((sala) => {
     for (const item of suarios) {
       if (item.idSala === sala.idSala) {
-        return true;
+        return true
       }
     }
-    return false;
-  });
+    return false
+  })
 }
 
-let existe = ref(true);
+let existe = ref(true)
 // const urlFoto = ref(localStorage.getItem('urlFoto') || '');
-
-
-
-
 
 let mostrar = ref(false)
 
@@ -66,17 +64,22 @@ function editar() {
 function excluir() {
   localStorage.clear()
   existe.value = false
+  popupExcluir.value = true
+}
+
+function excluirUser() {
+  popupExcluir.value = true
 }
 </script>
 
 <template>
+  <span v-if="loginOut === 'ativo'">
   <div class="container" v-show="existe == true">
     <div class="cartaoPerfil">
       <img v-if="urlBanner" :src="urlBanner" class="banner" />
       <img v-if="urlFoto" :src="urlFoto" class="foto" />
 
       <div class="acoesPerfil">
-
         <div class="menu">
           <button class="editarDeletar" v-on:click="mostrarItens()">•••</button>
 
@@ -84,23 +87,35 @@ function excluir() {
             <router-link to="/edit">
               <button v-on:click="editar" class="btn-menu">Editar</button>
             </router-link>
-            <button v-on:click="excluir" class="btn-menu">Deletar</button>
+            <button v-on:click="excluirUser" class="btn-menu">Deletar</button>
+          </div>
+
+          <div v-if="popupExcluir" class="telapopup">
+            <h2>Tem certeza que deseja excluir seu usuário?</h2>
+            <p>
+              Esta ação é permanente e todos os seus dados, salas e posts serão perdidos para
+              sempre.
+            </p>
+            <div class="botoes">
+              <button @click="excluir">Sim</button>
+              <button @click="popupExcluir = false">Não</button>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="info">
         <h1>{{ nomeUsuario }}</h1>
-        <p>{{ desc }} </p>
+        <p>{{ desc }}</p>
       </div>
 
       <div>
         <ul>
           <li class="seguidores">
-            <span>{{ seguidores.length }}</span> Seguidores
+            <span>{{ seguidores }}</span> Seguidores
           </li>
           <li class="seguindo">
-            <span>{{ seguindo.length }}</span> Seguindo
+            <span>{{ seguindo }}</span> Seguindo
           </li>
         </ul>
       </div>
@@ -110,8 +125,8 @@ function excluir() {
       <ul class="listaSalas">
         <li v-for="sala in buscarSalas()" :key="sala.idSala" :nome="sala.nome" class="cardSala">
           <RouterLink :to="`/salas/${sala.idSala}`">
-              <span class="nomesala">{{ sala.nome }}</span>
-            </RouterLink>
+            <span class="nomesala">{{ sala.nome }}</span>
+          </RouterLink>
         </li>
       </ul>
     </div>
@@ -127,11 +142,17 @@ function excluir() {
         <Postagens :posts="postsExibidos"></Postagens>
       </div>
   </div>
+  </span>
+  <span v-else>
+    <p>
+      Faça login para editar seu perfil!
+    </p>
+  </span>
 </template>
 
 <style scoped>
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 20px;
 }
@@ -162,15 +183,16 @@ function excluir() {
 }
 
 .foto {
-  width: 8vw;
-  height: 8vw;
+  width: 110px;
+  height: 110px;
   object-fit: cover;
   border-radius: 50%;
   position: absolute;
   z-index: 10;
-  top: 100px;
+  top: 130px;
   left: 25px;
-  border: 5px solid#1e1e1e;
+  border: 5px solid #1e1e1e;
+  background-color: #1e1e1e;
 }
 
 .editarDeletar {
@@ -198,9 +220,9 @@ div.editEdelete {
 }
 
 :deep(.btn-menu:hover) {
-color: #f8d668;
+  color: #f8d668;
   transform: scale(0.97);
-    transition: 0.3s;
+  transition: 0.3s;
 }
 
 ul {
@@ -210,18 +232,22 @@ ul {
   margin: 15px 0;
 }
 
+.info {
+  padding-top: 15px;
+}
+
 .info h1,
-.info p{
+.info p {
   color: #d9d9d9;
   margin: 15px 30px;
 }
 
-.info h1{
+.info h1 {
   font-weight: bold;
   font-size: 1.8rem;
 }
 
-.info p{
+.info p {
   max-width: 500px;
   word-break: break-word;
 }
@@ -265,7 +291,7 @@ ul {
 .cardSala:hover {
   opacity: 0.9;
   transform: scale(0.95);
-  transition: .2s;
+  transition: 0.2s;
 }
 
 .nomesala {
@@ -276,10 +302,6 @@ ul {
 
 .postagens{
   width: 100%;
-  margin: auto;
-  display: flex;
-  justify-content: center ;
-  flex-direction: column;
 }
 
 .postagens h2{
@@ -314,5 +336,25 @@ hr{
 .tabs button.ativo {
   color: #f8d76b;
   border-bottom: 2px solid #f8d76b;
+@media (max-width: 768px) {
+
+  .container{
+    padding: 0 !important;
+  }
+
+  img.foto{
+    width: 80px;
+    height: 80px;
+    top: 130px;
+  }
+
+  .editarDeletar{
+    font-size: 1.2rem;
+  }
+
+  .cardSala{
+    padding: 10px 15px;
+  }
+
 }
 </style>

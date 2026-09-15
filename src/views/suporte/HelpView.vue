@@ -74,7 +74,6 @@ div.p{
   border-radius: 15px;
   color: #D9D9D9;
   width: 50%;
-  box-shadow: 0px 0px 10px #0000005d;
 }
 
 summary{
@@ -113,5 +112,23 @@ font-weight: bold;
 width: fit-content;
 padding: 5px 15px;
 font-size: 1.2rem;
+}
+
+@media (max-width: 768px) {
+  h1{
+    font-size: 2rem;
+  }
+
+  h2{
+    font-size: 1.5rem;
+    margin: 5vw;
+  }
+.p{
+  width: 100% !important ;
+}
+
+summary{
+  font-size: 1.3rem;
+}
 }
 </style>

@@ -3,10 +3,10 @@
 import { ref, computed} from 'vue'
 const emit = defineEmits(['fechar', 'adicionar'])
 import { postagens } from '@/data/postagens.js';
-import { salas } from '@/data/salas.js'
-import { salasUsuario } from '@/data/salasUsuario';
-import { pegarIDUsuario } from '@/views/account/login/UserReal';
-
+ import { salas } from '@/data/salas.js'
+ import { loginOut } from '@/views/account/login/Loginout';
+ import { salasUsuario } from '@/data/salasUsuario';
+ import { pegarIDUsuario } from '@/views/account/login/UserReal';
 
 const postagensTituloNovo = ref('');
 const postagensConteudoNovo = ref('');
@@ -78,93 +78,75 @@ console.log("Post atualizado:", JSON.parse(JSON.stringify(postagens.value)));
 
 </script>
 <template>
-   <section class="sessaoPostar">
-   <v-card theme="dark" class="caixa">
-     <h2 class="titulo-postar">Postar</h2>
+  <span v-if="loginOut === 'ativo'">
+    
+  
+    <section class="sessaoPostar">
+    <v-card theme="dark" class="caixa">
+      <h2 class="titulo-postar">Postar</h2>
 
+      <v-card-text class="conteudo-postar">
+        <v-row density="comfortable">
+          <v-col cols="12" md="12">
+            <v-text-field
+              label="Título *"
+              required
+              v-model="postagensTituloNovo"
+              class="formulario"
+              variant="outlined"
+              base-color="#3e3e3e"
+              bg-color="#1e1e1e"
+            ></v-text-field>
+          </v-col>
 
-     <v-card-text class="conteudo-postar">
-       <v-row density="comfortable">
-         <v-col cols="12" md="12">
-           <v-text-field
-             label="Título *"
-             required
-             v-model="postagensTituloNovo"
-             class="formulario"
-             variant="outlined"
-             base-color="#3e3e3e"
-             bg-color="#1e1e1e"
-           ></v-text-field>
-         </v-col>
+          <v-col cols="12" md="12">
+            <v-textarea
+              hint="Compartilhe suas ideias"
+              label="O que está pensando agora? *"
+              v-model="postagensConteudoNovo"
+              class="formulario"
+              variant="outlined"
+              base-color="#3e3e3e"
+              bg-color="#1e1e1e"
+              rows="3"
+            ></v-textarea>
+          </v-col>
 
+          <v-col cols="12">
+            <v-autocomplete
+              v-model="salaSelecionada"
+              :items="(salas.value || salas).filter(sala => usuarioEstaNaSala(sala.idSala))"
+              item-title="nome"
+              item-value="idSala"
+              label="Sala *"
+              required
+              auto-select-first
+              class="formulario"
+              variant="outlined"
+              base-color="#3e3e3e"
+              bg-color="#1e1e1e"
+              :menu-props="{ contentClass: 'menu-salas-custom' }"
+            ></v-autocomplete>
+          </v-col>
+        </v-row>
 
-         <v-col cols="12" md="12">
-           <v-textarea
-             hint="Compartilhe suas ideias"
-             label="O que está pensando agora? *"
-             v-model="postagensConteudoNovo"
-             class="formulario"
-             variant="outlined"
-             base-color="#3e3e3e"
-             bg-color="#1e1e1e"
-             rows="3"
-           ></v-textarea>
-         </v-col>
+        <small class="aviso-obrigatorio">
+          * Indica campo obrigatório
+        </small>
+      </v-card-text>
 
-         <v-col cols="12" md="12">
-           <v-text-field
-             label="Insira o URL de sua imagem (opcional)"
-             required
-             v-model="imagemPost"
-             class="formulario"
-             variant="outlined"
-             base-color="#3e3e3e"
-             bg-color="#1e1e1e"
-           ></v-text-field>
-         </v-col>
+      <v-divider class="divisor"></v-divider>
 
-        
-
-
-         <v-col cols="12">
-           <v-autocomplete
-             v-model="salaSelecionada"
-             :items="(salas.value || salas).filter(sala => usuarioEstaNaSala(sala.idSala))"
-             item-title="nome"
-             item-value="idSala"
-             label="Sala *"
-             required
-             auto-select-first
-             class="formulario"
-             variant="outlined"
-             base-color="#3e3e3e"
-             bg-color="#1e1e1e"
-             :menu-props="{ contentClass: 'menu-salas-custom' }"
-           > <template v-slot:no-data>
-      <v-list-item>
-        <v-list-item-title>Você não está em nenhuma sala</v-list-item-title>
-      </v-list-item>
-    </template></v-autocomplete>
-          
-         </v-col>
-       </v-row>
-
-
-       <small class="aviso-obrigatorio">
-         * Indica campo obrigatório
-       </small>
-     </v-card-text>
-
-
-     <v-divider class="divisor"></v-divider>
-
-
-     <v-card-actions class="acoes">
-       <button class="btnPostar" @click="adicionar">Postar</button>
-       <button class="btnFechar" @click="$emit('fechar')">Fechar</button>
-     </v-card-actions>
-   </v-card>
- </section>
+      <v-card-actions class="acoes">
+        <button class="btnPostar" @click="adicionar">Postar</button>
+        <button class="btnFechar" @click="$emit('fechar')">Fechar</button>
+      </v-card-actions>
+    </v-card>
+  </section>
+  </span>
+  <span v-else-if="loginOut === 'inativo'" class="mensagemSemLogin">
+      <p>Faça Login para criar posts!</p>
+    </span>
 </template>
 
 

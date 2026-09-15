@@ -2,19 +2,18 @@
 import { useRoute, useRouter } from 'vue-router'
 import { computed, ref } from 'vue'
 import { salas } from '@/data/salas'
-import Postagens from '@/components/Postagens/Postagens.vue';
-import { postagens } from '@/data/postagens';
+import ButtonEnter from '@/components/ButtonEnter.vue'
+import { loginOut } from '../account/login/Loginout'
+import Postagens from '@/components/Postagens/Postagens.vue'
+import { postagens } from '@/data/postagens'
+import { users } from '../user/Users'
+import { userReal } from '../account/login/UserReal'
 defineProps(['idSala', 'nome', 'participantes', 'desc', 'usuarioCriador', 'status', 'banner'])
 
 const route = useRoute()
 const router = useRouter()
 const popupExcluir = ref(false)
 const menuAberto = ref(false)
-const entrouOuNao = ref(false)
-
-function alternarMembro() {
-  entrouOuNao.value = !entrouOuNao.value
-}
 
 const postsSala = computed(() => {
   return postagens.value.filter((post) => post.salaId === Number(sala.value.idSala))
@@ -23,6 +22,7 @@ const postsSala = computed(() => {
 console.log('ID da rota:', route.params.id)
 console.log('Salas:', salas.value)
 
+const criador = computed(() => users.find((usuario) => usuario.nome === sala.value?.usuarioCriador))
 const sala = computed(() => salas.value.find((s) => s.idSala == route.params.id))
 function confirmarEx() {
   const index = salas.value.findIndex((s) => s.idSala == route.params.id)
@@ -54,7 +54,7 @@ console.log('Sala encontrada:', sala.value)
   <div class="container-sala" v-if="sala">
     <div class="header-pagina">
       <div class="titulo">
-        <RouterLink to="/" class="voltar">
+        <RouterLink to="/explore" class="voltar">
           <font-awesome-icon icon="chevron-left"></font-awesome-icon> Perfil de sala</RouterLink
         >
       </div>
@@ -62,57 +62,68 @@ console.log('Sala encontrada:', sala.value)
 
     <div class="card-sala">
       <div class="topo-sala">
+        <div class="fotoinfo">
         <img :src="sala.banner" class="foto-sala" />
 
         <div class="info-sala">
           <h2 class="nome-sala">{{ sala.nome }}</h2>
           <div class="metadados">
-            <p><span>CRIADOR</span> {{ sala.usuarioCriador }}</p>
+            <div>
+              <RouterLink v-if="sala.usuarioCriador === userReal" :to="`/profile`">
+                <span>CRIADOR</span> {{ sala.usuarioCriador }}
+              </RouterLink>
+              <RouterLink v-else :to="`/otherProfile/${criador.id}`">
+                <span>CRIADOR</span> {{ sala.usuarioCriador }}
+              </RouterLink>
+            </div>
+
             <p><span>STATUS</span> {{ statusTexto }}</p>
+            </div>
           </div>
         </div>
 
         <div class="acoes-sala">
-          <button class="btn-entrar" :class="{ 'btn-sair': entrouOuNao }" @click="alternarMembro">
-            <span v-if="entrouOuNao">Sair da sala</span>
-            <span v-else>Entrar</span>
-          </button>
-
+          <ButtonEnter :sala="sala" v-if="sala.usuarioCriador != userReal" />
           <div class="menu">
-            <button class="menubotao" @click="menuAberto = !menuAberto">...</button>
-            <div class="menuaberto" v-if="menuAberto">
-              <button @click="editarSala">Editar sala</button>
-              <button @click="excluirSala">Apagar sala</button>
+          
+          
+
+            <div class="menu" v-if="sala.usuarioCriador === userReal">
+              <button class="menubotao" @click="menuAberto = !menuAberto">...</button>
+              <div class="menuaberto" v-if="menuAberto">
+                <button @click="editarSala">Editar sala</button>
+                <button @click="excluirSala">Apagar sala</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </div>  
 
-      <p class="descricao">{{ sala.desc }}</p>
+        <p class="descricao">{{ sala.desc }}</p>
 
-      <div class="membros">
-        <span>{{ sala.participantes }} membros</span>
-      </div>
+        <div class="membros">
+          <span>{{ sala.participantes }} membros</span>
+        </div>
 
-      <div class="secao-posts">
-        <h2>Posts</h2>
-        <hr>
-        <Postagens :posts="postsSala"></Postagens>
-      </div>
-    </div>
+        <div class="secao-posts">
+          <h2>Posts</h2>
+          <hr />
+          <Postagens :posts="postsSala"></Postagens>
+        </div>
+      
 
-    <div v-if="popupExcluir" class="telapopup">
-      <div class="popup">
-        <h2>Tem certeza que deseja excluir sua sala?</h2>
-        <p>Esta ação é permanente e todos os seus dados e posts serão perdidos para sempre.</p>
-        <div class="botoes">
-          <button @click="confirmarEx" class="btn-confirmar">Apagar</button>
-          <button @click="popupExcluir = false" class="btn-cancelar">Cancelar</button>
+      <div v-if="popupExcluir" class="telapopup">
+        <div class="popup">
+          <h2>Tem certeza que deseja excluir sua sala?</h2>
+          <p>Esta ação é permanente e todos os seus dados e posts serão perdidos para sempre.</p>
+          <div class="botoes">
+            <button @click="confirmarEx" class="btn-confirmar">Apagar</button>
+            <button @click="popupExcluir = false" class="btn-cancelar">Cancelar</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
   <div class="container-sala" v-else>
     <h1>Sala não encontrada</h1>
   </div>
@@ -146,6 +157,7 @@ a.voltar {
   gap: 20px;
   position: relative;
   align-items: center;
+  justify-content: space-between;
 }
 
 .foto-sala {
@@ -170,7 +182,7 @@ a.voltar {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-family: 'Prompt', sans-serif;
 }
 
@@ -253,6 +265,7 @@ a.voltar {
   line-height: 1.2;
   max-width: 600px;
   word-break: break-word;
+  font-size: 1.1rem;
 }
 
 .membros {
@@ -261,7 +274,11 @@ a.voltar {
   gap: 5px;
   margin-top: 15px;
   color: #aaaaaa;
-  font-size: 0.9rem;
+  font-size: 1rem;
+}
+
+.secao-posts{
+  padding: 0;
 }
 
 .secao-posts h2 {
@@ -285,7 +302,7 @@ a.voltar {
   border-radius: 20px;
   border: none;
   font-weight: bold;
-  font-size: 0.95rem;
+  font-size: 1rem;
   cursor: pointer;
 }
 
@@ -337,7 +354,7 @@ a.voltar {
 }
 
 .popup p {
-  font-size: 0.88rem;
+  font-size: 1rem;
   color: #a5a5a5;
   margin-bottom: 24px;
 }
@@ -353,5 +370,26 @@ a.voltar {
 hr{
   color: #333333;
   margin: 1px 1px 25px 1px;
+}
+
+.fotoinfo{
+  display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+
+@media (max-width: 768px) {
+
+  .topo-sala{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fotoinfo{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
 }
 </style>

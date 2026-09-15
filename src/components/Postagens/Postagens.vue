@@ -7,6 +7,7 @@ import { salasUsuario } from '@/data/salasUsuario.js'
 import { shallowRef } from 'vue'
 import { salas } from '@/data/salas.js'
 import { users } from '@/views/user/Users.js'
+import { loginOut } from '@/views/account/login/Loginout.js'
 import { pegarIDUsuario } from '@/views/account/login/UserReal.js'
 import { loginOut } from '@/views/account/login/Loginout.js'
 
@@ -18,14 +19,12 @@ const props = defineProps({
  },
 })
 
-
-
-function linkPerfil(autorID){
- if(autorID === pegarIDUsuario()){
-   return `/profile`
- } else{
-   return `/otherProfile/${autorID}`
- }
+function linkPerfil(autorID) {
+  if (autorID === pegarIDUsuario()) {
+    return `/profile`
+  } else {
+    return `/otherProfile/${autorID}`
+  }
 }
 
 
@@ -154,6 +153,12 @@ function alternarCurtida(post) {
   }else{
     alert('Faça login para salvar!')
   }
+  if(loginOut == 'ativo'){
+    alert('Comentário denunciado com sucesso.')
+  }else{
+    alert('Faça login para denunciar!')
+  }
+  
 }
 
 function salaDoPost(salaId) {
@@ -299,6 +304,11 @@ div.imagem-post {
 
 
 
+section {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
 div.listaPosts {
  background: #262626;
  color: #d9d9d9;
@@ -437,11 +447,14 @@ textarea {
 
 
 div.postar {
- display: flex;
- flex-direction: column;
- max-width: 30%;
- margin: 0 auto;
- margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  max-width: 30%;
+  margin: 0 auto;
+  margin-bottom: 30px;
+  object-fit: cover;
+  vertical-align: middle;
+  margin-right: 6px;
 }
 
 
@@ -579,6 +592,77 @@ button.editarDeletar:hover {
  margin-right: 6px;
 }
 
+.nomeAutor {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 120px;
+  font-weight: bold;
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+  .postagens {
+    padding: 0;
+  }
+
+  div.listaPosts {
+    border-radius: 20px;
+    padding: 20px;
+    max-width: 90%;
+    margin-bottom: 15px;
+  }
+
+  .cima {
+    margin-bottom: 5px;
+  }
+
+  .esq {
+    gap: 15px;
+    object-fit: cover;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+
+  .dir {
+    position: relative;
+  }
+
+  p.autor a {
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  h2.titulo {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1px;
+  }
+
+  p.conteudo {
+    font-size: 1rem;
+    margin: 15px 0;
+    margin-top: 1px;
+  }
+
+  .fotoAutor {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .btn-fixo {
+    position: fixed !important;
+    bottom: 50px !important;
+    left: 250px !important;
+    width: fit-content !important;
+    height: fit-content !important;
+    z-index: 10 !important;
+  }
+}
 
 /*
 checklist:
