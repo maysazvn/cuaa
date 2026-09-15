@@ -1,6 +1,10 @@
-import { ref } from "vue"
+import { ref, watch } from "vue"
 
-export const salas = ref([
+const dadosSalvos = JSON.parse(
+  localStorage.getItem('salas')
+)
+
+export const salas = ref(dadosSalvos || [
 {
     idSala: 1,
     nome: '22info22',
@@ -95,3 +99,14 @@ export const salas = ref([
 },
 
 ])
+
+watch(
+  salas,
+  (novoValor) => {
+    localStorage.setItem(
+      'salas',
+      JSON.stringify(novoValor)
+    )
+  },
+  { deep: true }
+)

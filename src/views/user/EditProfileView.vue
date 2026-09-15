@@ -1,12 +1,12 @@
 <script setup>
 import { ref, watch } from 'vue'
 
-const nomeUsuario = ref(localStorage.getItem('nomeUsuario') || '')
+const nomeUsuario = ref(localStorage.getItem('user_nome') || '')
 
 const desc = ref(localStorage.getItem('desc') || '')
 
 watch(nomeUsuario, (novoNome) => {
-  localStorage.setItem('nomeUsuario', novoNome)
+  localStorage.setItem('user_nome', novoNome)
 })
 
 watch(desc, (novaDesc) => {

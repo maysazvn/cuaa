@@ -2,9 +2,10 @@
 import { useRoute, useRouter } from 'vue-router'
 import { computed, ref } from 'vue'
 import { salas } from '@/data/salas'
+import ButtonEnter from '@/components/ButtonEnter.vue'
 import { loginOut } from '../account/login/Loginout'
-import Postagens from '@/components/Postagens/Postagens.vue';
-import { postagens } from '@/data/postagens';
+import Postagens from '@/components/Postagens/Postagens.vue'
+import { postagens } from '@/data/postagens'
 import { users } from '../user/Users'
 import { userReal } from '../account/login/UserReal'
 defineProps(['idSala', 'nome', 'participantes', 'desc', 'usuarioCriador', 'status', 'banner'])
@@ -13,17 +14,6 @@ const route = useRoute()
 const router = useRouter()
 const popupExcluir = ref(false)
 const menuAberto = ref(false)
-const entrouOuNao = ref(false)
-
-function alternarMembro() {
-  if (entrouOuNao.value) {
-    sala.value.participantes--
-  } else {
-    sala.value.participantes++
-  }
-
-  entrouOuNao.value = !entrouOuNao.value
-}
 
 const postsSala = computed(() => {
   return postagens.value.filter((post) => post.salaId === Number(sala.value.idSala))
@@ -32,7 +22,7 @@ const postsSala = computed(() => {
 console.log('ID da rota:', route.params.id)
 console.log('Salas:', salas.value)
 
-const criador = computed(() => users.find(usuario => usuario.nome === sala.value?.usuarioCriador))
+const criador = computed(() => users.find((usuario) => usuario.nome === sala.value?.usuarioCriador))
 const sala = computed(() => salas.value.find((s) => s.idSala == route.params.id))
 function confirmarEx() {
   const index = salas.value.findIndex((s) => s.idSala == route.params.id)
@@ -79,8 +69,12 @@ console.log('Sala encontrada:', sala.value)
           <h2 class="nome-sala">{{ sala.nome }}</h2>
           <div class="metadados">
             <div>
-              <RouterLink v-if="sala.usuarioCriador === userReal" :to="`/profile`"> <span>CRIADOR</span> {{ sala.usuarioCriador }} </RouterLink>
-              <RouterLink v-else :to="`/otherProfile/${criador.id}`"> <span>CRIADOR</span> {{ sala.usuarioCriador }} </RouterLink>
+              <RouterLink v-if="sala.usuarioCriador === userReal" :to="`/profile`">
+                <span>CRIADOR</span> {{ sala.usuarioCriador }}
+              </RouterLink>
+              <RouterLink v-else :to="`/otherProfile/${criador.id}`">
+                <span>CRIADOR</span> {{ sala.usuarioCriador }}
+              </RouterLink>
             </div>
 
             <p><span>STATUS</span> {{ statusTexto }}</p>
@@ -89,54 +83,47 @@ console.log('Sala encontrada:', sala.value)
         </div>
 
         <div class="acoes-sala">
-          <span v-if="loginOut === 'ativo'">
-
-         
-          <button class="btn-entrar" :class="{ 'btn-sair': entrouOuNao }" @click="alternarMembro" v-if="sala.usuarioCriador != userReal" >
-            <span v-if="entrouOuNao">Sair da sala</span>
-            <span v-else>Entrar</span>
-          </button>
-
-          </span>
-          <span v-else>
-            <button class="btn-entrar">Faça Login para entrar!</button>
-          </span>
+          <ButtonEnter :sala="sala" v-if="sala.usuarioCriador != userReal" />
+          <div class="menu">
           
-          <div class="menu" v-if="sala.usuarioCriador === userReal">
-            <button class="menubotao" @click="menuAberto = !menuAberto">...</button>
-            <div class="menuaberto" v-if="menuAberto">
-              <button @click="editarSala">Editar sala</button>
-              <button @click="excluirSala">Apagar sala</button>
+          
+
+            <div class="menu" v-if="sala.usuarioCriador === userReal">
+              <button class="menubotao" @click="menuAberto = !menuAberto">...</button>
+              <div class="menuaberto" v-if="menuAberto">
+                <button @click="editarSala">Editar sala</button>
+                <button @click="excluirSala">Apagar sala</button>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      </div>  
 
-      <p class="descricao">{{ sala.desc }}</p>
+        <p class="descricao">{{ sala.desc }}</p>
 
-      <div class="membros">
-        <span>{{ sala.participantes }} membros</span>
-      </div>
+        <div class="membros">
+          <span>{{ sala.participantes }} membros</span>
+        </div>
 
-      <div class="secao-posts">
-        <h2>Posts</h2>
-        <hr>
-        <Postagens :posts="postsSala"></Postagens>
-      </div>
-    </div>
+        <div class="secao-posts">
+          <h2>Posts</h2>
+          <hr />
+          <Postagens :posts="postsSala"></Postagens>
+        </div>
+      
 
-    <div v-if="popupExcluir" class="telapopup">
-      <div class="popup">
-        <h2>Tem certeza que deseja excluir sua sala?</h2>
-        <p>Esta ação é permanente e todos os seus dados e posts serão perdidos para sempre.</p>
-        <div class="botoes">
-          <button @click="confirmarEx" class="btn-confirmar">Apagar</button>
-          <button @click="popupExcluir = false" class="btn-cancelar">Cancelar</button>
+      <div v-if="popupExcluir" class="telapopup">
+        <div class="popup">
+          <h2>Tem certeza que deseja excluir sua sala?</h2>
+          <p>Esta ação é permanente e todos os seus dados e posts serão perdidos para sempre.</p>
+          <div class="botoes">
+            <button @click="confirmarEx" class="btn-confirmar">Apagar</button>
+            <button @click="popupExcluir = false" class="btn-cancelar">Cancelar</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-
   <div class="container-sala" v-else>
     <h1>Sala não encontrada</h1>
   </div>

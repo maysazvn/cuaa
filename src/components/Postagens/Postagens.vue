@@ -103,7 +103,12 @@ function mostrarItens(post) {
 }
 
 function denunciar() {
-  alert('Comentário denunciado com sucesso.')
+  if(loginOut == 'ativo'){
+    alert('Comentário denunciado com sucesso.')
+  }else{
+    alert('Faça login para denunciar!')
+  }
+  
 }
 
 function salaDoPost(salaId) {
@@ -164,10 +169,9 @@ function salaDoPost(salaId) {
                 </div>
                 <!-- aquiiiiiiiiiiiiiiiiiii -->
                 <div v-else>
-                  <span v-if="loginOut === 'ativo'">
-                    <button @click="denunciar(post)" class="denunciar">Denunciar</button>
-                  </span>
-                  <span v-else> <button class="denunciar">Faça Login para denunciar!</button></span>
+                
+                  <button @click="denunciar(post)" class="denunciar">Denunciar</button>
+               
                 </div>
               </div>
             </div>

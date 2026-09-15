@@ -46,6 +46,7 @@ watchEffect(() => {
 const mensagemSeguir = computed(() => (estaseguindo.value ? 'Seguindo' : 'Seguir'));
 
 function seguir() {
+  if(loginOut == 'ativo'){
   if (!usuario.value) return;
 
   const segui = users.find(usu => usu.id === usuario.value.id)
@@ -72,6 +73,9 @@ function seguir() {
     console.log(seguindo)
 
   }
+}else{
+  alert('Faça login para seguir!')
+}
 }
 
 </script>
@@ -83,17 +87,16 @@ function seguir() {
       <img v-if="usuario.banner" :src="usuario.banner" class="banner" />
       <img v-if="usuario.pfp" :src="usuario.pfp" class="foto" />
 
-      <span v-if="loginOut === 'ativo'">
+   
 
 
       <div class="acoesPerfil">
         <button class="seguirUsuario" v-on:click="seguir()">{{ mensagemSeguir }}</button>
       </div>
 
-      </span>
-      <span v-else class="acoesPerfil">
-        <button class="seguirUsuario">Faça login para seguir!</button>
-      </span>
+     
+     
+     
       <div class="info">
         <h1>{{ usuario.nome }}</h1>
         <p>{{ usuario.desc }}</p>
