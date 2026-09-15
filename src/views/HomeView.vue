@@ -58,6 +58,8 @@ function criarPostRapido() {
     data: new Date().toLocaleDateString('pt-BR'),
     id: maiorId + 1,
     salaId: Number(salaSelecionada.value),
+    curtidas: 0, 
+    salvos: 0,
   }
 
   postagens.value.unshift(novoPost)

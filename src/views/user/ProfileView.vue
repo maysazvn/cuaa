@@ -17,6 +17,19 @@ const nomeUsuario = ref(localStorage.getItem('nomeUsuario') || userReal)
 const desc = ref(localStorage.getItem('desc') || '')
 const urlBanner = ref(localStorage.getItem('urlBanner') || '/bannerPlaceholder.png')
 const mostrarSala = ref(localStorage.getItem('mostrarSala?') || 'sim')
+const abaAtiva = ref('posts')
+
+const postsSalvos = computed(() => {
+  return postagens.value.filter((post) => post.salvou === true)
+});
+
+const postsExibidos = computed(() => {
+  if (abaAtiva.value === 'posts') {
+    return postsUsuario.value
+  } else {
+    return postsSalvos.value
+  }
+});
 const popupExcluir = ref(false)
 
 const postsUsuario = computed(() => {
@@ -118,10 +131,15 @@ function excluirUser() {
       </ul>
     </div>
 
+    <div class="tabs">
+  <button :class="{ ativo: abaAtiva === 'posts' }" @click="abaAtiva = 'posts'">Posts</button>
+  <button :class="{ ativo: abaAtiva === 'salvos' }" @click="abaAtiva = 'salvos'">Salvos</button>
+</div>
+
      <div class="postagens">
         <h2>Posts</h2>
         <hr>
-        <Postagens :posts="postsUsuario"></Postagens>
+        <Postagens :posts="postsExibidos"></Postagens>
       </div>
   </div>
   </span>
@@ -299,6 +317,25 @@ hr{
   margin: 1px 1px 25px 1px;
 }
 
+.tabs {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.tabs button {
+  background: transparent;
+  color: #8f8f8f;
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.tabs button.ativo {
+  color: #f8d76b;
+  border-bottom: 2px solid #f8d76b;
 @media (max-width: 768px) {
 
   .container{
