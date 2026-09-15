@@ -77,19 +77,9 @@
 //   }
 // }
 
-
-
-
-
-
 // CÓDIGO TESTE///////////////////
 
-
-
-
-
-
-import { ref, watch, onMounted } from 'vue' 
+import { ref, watch, onMounted } from 'vue'
 import ButtonChild from '@/components/ButtonChild.vue'
 import { userReal } from './login/UserReal'
 import { emailReal } from './login/EmailReal'
@@ -104,10 +94,9 @@ let login = ref(false)
 let emailFalso = ref('')
 let userFalso = ref('')
 let senhaFalsa = ref('')
-let maiorId = Math.max(...users.map(item => item.id))
+let maiorId = Math.max(...users.map((item) => item.id))
 const desc = ref(localStorage.getItem('desc') || '')
 const mostrarSala = ref(localStorage.getItem('mostrarSala?') || 'sim')
-
 
 onMounted(() => {
   const emailSalvo = localStorage.getItem('user_email')
@@ -115,19 +104,16 @@ onMounted(() => {
   const senhaSalva = localStorage.getItem('user_senha')
   const statusLogin = localStorage.getItem('login_status')
 
- 
   if (emailSalvo && userSalvo && senhaSalva) {
     emailReal.value = emailSalvo
     userReal.value = userSalvo
     senhaReal.value = senhaSalva
   }
 
-
   if (statusLogin === 'ativo') {
     loginOut.value = 'ativo'
     cadastro.value = false
     login.value = true
-    
   }
 })
 
@@ -153,7 +139,6 @@ function enviar(email, senha, user) {
       userReal.value = user
       senhaReal.value = senha
 
-      
       localStorage.setItem('user_email', email)
       localStorage.setItem('user_nome', user)
       localStorage.setItem('user_senha', senha)
@@ -167,14 +152,18 @@ function enviar(email, senha, user) {
         nome: userReal.value,
         pfp: localStorage.getItem('urlFoto') || '/pfpPlaceholder.png',
         banner: localStorage.getItem('urlBanner') || '/bannerPlaceholder.png',
-        desc: watch(desc, (novaDesc) => {localStorage.setItem('desc', novaDesc)}),
-        mostrarSala: watch(mostrarSala, (novoValor) => {localStorage.setItem('mostrarSala?', novoValor)}),
-        salas: []
+        desc: watch(desc, (novaDesc) => {
+          localStorage.setItem('desc', novaDesc)
+        }),
+        mostrarSala: watch(mostrarSala, (novoValor) => {
+          localStorage.setItem('mostrarSala?', novoValor)
+        }),
+        salas: [],
       }
 
-      users.push(novoUsuario);
+      users.push(novoUsuario)
       console.log(users)
-      
+
       alert('Cadastro realizado com sucesso! Vá para a aba Login.')
     } else {
       alert('Você já possui cadastro! Faça login!')
@@ -187,10 +176,9 @@ function enviar(email, senha, user) {
 function logar(email, senha) {
   if (email === emailReal.value && senha === senhaReal.value) {
     loginOut.value = 'ativo'
-    
-    
+
     localStorage.setItem('login_status', 'ativo')
-    
+
     alert('Você logou com sucesso!')
     senhaFalsa.value = ''
     emailFalso.value = ''
@@ -198,7 +186,6 @@ function logar(email, senha) {
     alert('Erro! Senha ou/e usuário inválido!')
   }
 }
-
 </script>
 
 <template>
@@ -348,5 +335,38 @@ input {
   transition: 0.2s;
   background-color: #f8d76ba4;
   transform: scale(0.98);
+}
+
+@media (max-width: 768px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    gap: 5px !important;
+  }
+
+  img {
+    width: 80%;
+    margin-bottom: 25px;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  .cadastro{
+    width: 100%;
+  }
+
+  .login{
+    width: 100%;
+  }
+
+  .direita {
+    padding: 0;
+  }
 }
 </style>

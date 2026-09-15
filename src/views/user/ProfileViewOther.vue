@@ -5,6 +5,7 @@ import { users } from './Users';
 import { ref } from 'vue';
 import { watchEffect } from 'vue';
 import { salas } from '@/data/salas';
+import { seguindo } from './Following';
 import { loginOut } from '../account/login/Loginout';
 import Postagens from '@/components/Postagens/Postagens.vue';
 import { postagens } from '@/data/postagens';
@@ -32,7 +33,7 @@ const postsUsuario = computed(() => {
 
 // const suarios = JSON.parse(localStorage.getItem('salasEntradas')) || [];
 
-const mostrarSala = ref(localStorage.getItem('mostrarSala?') || 'sim')
+// const mostrarSala = ref(localStorage.getItem('mostrarSala?') || 'sim')
 let estaseguindo = ref(false);
 
 watchEffect(() => {
@@ -45,6 +46,7 @@ watchEffect(() => {
 const mensagemSeguir = computed(() => (estaseguindo.value ? 'Seguindo' : 'Seguir'));
 
 function seguir() {
+  if(loginOut.value == 'ativo'){
   if (!usuario.value) return;
 
   const segui = users.find(usu => usu.id === usuario.value.id)
@@ -53,36 +55,48 @@ function seguir() {
 
     estaseguindo.value = true;
     localStorage.setItem(`seguindo_${usuario.value.id}`, 'true');
-    segui.seguidores += 1
+
+
+    segui.seguidores += 1;
+    seguindo.value += 1;
+    localStorage.setItem('total_seguindo', seguindo.value);
+    console.log(seguindo)
+
   } else {
     estaseguindo.value = false;
     localStorage.setItem(`seguindo_${usuario.value.id}`, 'false');
 
-        segui.seguidores -= 1
+
+    segui.seguidores -= 1
+    seguindo.value -= 1;
+    localStorage.setItem('total_seguindo', seguindo.value);
+    console.log(seguindo)
 
   }
+}else{
+  alert('Faça login para seguir!')
+}
 }
 
 </script>
 
 <template>
-  
+
   <div class="container">
     <div v-if="usuario" class="cartaoPerfil">
       <img v-if="usuario.banner" :src="usuario.banner" class="banner" />
       <img v-if="usuario.pfp" :src="usuario.pfp" class="foto" />
 
-      <span v-if="loginOut === 'ativo'">
+   
 
-      
+
       <div class="acoesPerfil">
         <button class="seguirUsuario" v-on:click="seguir()">{{ mensagemSeguir }}</button>
       </div>
 
-      </span>
-      <span v-else class="acoesPerfil">
-        <button class="seguirUsuario">Faça login para seguir!</button>
-      </span>
+     
+     
+     
       <div class="info">
         <h1>{{ usuario.nome }}</h1>
         <p>{{ usuario.desc }}</p>
@@ -121,8 +135,8 @@ function seguir() {
       <p>Usuário não encontrado.</p>
     </div>
   </div>
-  
-   
+
+
 </template>
 
 <style scoped>
@@ -158,15 +172,16 @@ function seguir() {
 }
 
 .foto {
-  width: 8vw;
-  height: 8vw;
+  width: 110px;
+  height: 110px;
   object-fit: cover;
   border-radius: 50%;
   position: absolute;
   z-index: 10;
-  top: 100px;
+  top: 130px;
   left: 25px;
-  border: 5px solid#1e1e1e;
+  border: 5px solid #1e1e1e;
+  background-color: #1e1e1e;
 }
 
 button.seguirUsuario {
@@ -219,6 +234,10 @@ ul {
   display: flex;
   gap: 20px;
   margin: 15px 0;
+}
+
+.info {
+  padding-top: 15px;
 }
 
 .info h1,
@@ -288,10 +307,6 @@ ul {
 
 .postagens{
   width: 100%;
-  margin: auto;
-  display: flex;
-  justify-content: center ;
-  flex-direction: column;
 }
 
 .postagens h2{
@@ -305,5 +320,27 @@ ul {
 hr{
   color: #444444;
   margin: 1px 1px 25px 1px;
+}
+
+@media (max-width: 768px) {
+
+  .container{
+    padding: 0 !important;
+  }
+
+  img.foto{
+    width: 80px;
+    height: 80px;
+    top: 130px;
+  }
+
+  .editarDeletar{
+    font-size: 1.2rem;
+  }
+
+  .cardSala{
+    padding: 10px 15px;
+  }
+
 }
 </style>

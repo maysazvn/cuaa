@@ -58,6 +58,8 @@ function criarPostRapido() {
     data: new Date().toLocaleDateString('pt-BR'),
     id: maiorId + 1,
     salaId: Number(salaSelecionada.value),
+    curtidas: 0, 
+    salvos: 0,
   }
 
   postagens.value.unshift(novoPost)
@@ -130,8 +132,15 @@ function criarPostRapido() {
   flex-direction: column;
   gap: 20px;
   box-shadow: 0 0 6px #0000002d;
-  width: 800px;
+  width: 100%;
   margin: 2vw auto;
+}
+
+.postar .semPosts{
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+  box-sizing: border-box;
 }
 
 .botoeSala {
@@ -142,8 +151,10 @@ function criarPostRapido() {
 
 .imginput {
   display: flex;
+  align-items: center;
   gap: 10px;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .imginput img {
@@ -233,6 +244,42 @@ function criarPostRapido() {
   padding: 8px;
   max-width: 300px;
   box-shadow: 0 0 15px #0101012f;
+}
+
+@media (max-width: 768px) {
+
+    .container{
+    padding: 0;
+  }
+
+
+  .semPosts{
+    width: 200px;
+  }
+
+  .semPosts p{
+    font-size: 20px;
+  }
+
+  .postar{
+    width: 100%;
+  }
+
+  .btn-fixo {
+    bottom: 20px !important;
+    right: 16px !important;
+  }
+
+  .text-none {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .imginput img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
 }
 
 

@@ -193,7 +193,7 @@ function next() {
         </p>
       </div>
       <div class="about-img">
-        <img src="/logo-kuaa.png" alt="Logo" />
+        <img src="/kuaa.png" alt="Logo" />
       </div>
     </div>
 
@@ -208,8 +208,9 @@ function next() {
               <h2>Maysa Bagnhuk Machado</h2>
               <ul>
                 <li>Product Owner</li>
-                <li>Desenvolvimento HTML, CSS e JavaScript</li>
-                <li>Levantamento de requisitos</li>
+                <li>Estilização do CSS e desenvolvimento da Timeline</li>
+                <li>Banco de dados e levantamento de requisitos</li>
+                <li>Prototipação no figma</li>
               </ul>
             </div>
           </div>
@@ -222,8 +223,8 @@ function next() {
               <h2>André Kosmala</h2>
               <ul>
                 <li>Scrum Master</li>
-                <li>Desenvolvimento JavaScript</li>
-                <li>Banco de dados</li>
+                <li>Desenvolvimento do Login</li>
+                <li>Banco de dados e levantamento de requisitos</li>
               </ul>
             </div>
           </div>
@@ -235,8 +236,9 @@ function next() {
               <img src="" alt="" />
               <h2>Clara Kellermann</h2>
               <ul>
-                <li>Desenvolvimento JavaScript</li>
-                <li>Banco de dados</li>
+                <li>Desenvolvimento de salas</li>
+                <li>Banco de dados e levantamento de requisitos</li>
+                <li>Prototipação no figma</li>
               </ul>
             </div>
           </div>
@@ -248,9 +250,9 @@ function next() {
               <img src="" alt="" />
               <h2>Hallana Moura</h2>
               <ul>
-                <li>Desenvolvimento HTML, CSS e JavaScript</li>
-                <li>Levantamento de requisitos</li>
-                <li>Design gráfico</li>
+                <li>Desenvolvimento de postagens</li>
+                <li>Banco de dados e levantamento de requisitos</li>
+                <li>Prototipação no figma e design gráfico</li>
               </ul>
             </div>
           </div>
@@ -262,9 +264,9 @@ function next() {
               <img src="" alt="" />
               <h2>Pietro Fonseca</h2>
               <ul>
-                <li>Desenvolvimento JavaScript</li>
-                <li>Banco de dados</li>
-                <li>Design gráfico</li>
+                <li>Desenvolvimento de usuários e busca</li>
+                <li>Banco de dados e levantamento de requisitos</li>
+                <li>Prototipação no figma</li>
               </ul>
             </div>
           </div>
@@ -276,8 +278,9 @@ function next() {
               <img src="" alt="" />
               <h2>Samuel Gadotti</h2>
               <ul>
-                <li>Desenvolvimento JavaScript</li>
-                <li>Banco de dados</li>
+                <li>Desenvolvimento de explorar salas</li>
+                <li>Banco de dados e levantamento de requisitos</li>
+                <li>Prototipação no figma</li>
               </ul>
             </div>
           </div>
@@ -295,6 +298,7 @@ function next() {
   margin: 0 auto;
   padding: 20px;
   display: block;
+  max-width: 1200px
 }
 
 h1,
@@ -319,21 +323,25 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 60px;
+  gap: 40px;
   width: 100%;
 }
 
 .about img {
   width: 20vw;
-  max-width: 250px;
+  max-width: 320px;
+}
+
+.about-texto {
+  max-width: 480px;
+  flex-shrink: 0;
 }
 
 p.oq {
   text-align: center;
   font-size: 1.2rem;
-  width: 30vw;
+  width: 100%;
   color: #d9d9d9;
-  font-weight: bold;
 }
 
 .carrossel {
@@ -341,6 +349,7 @@ p.oq {
   width: 100%;
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .janela {
@@ -363,12 +372,14 @@ p.oq {
   border-radius: 15px;
   width: 450px;
   max-width: 85%;
-  min-height: 250px;
+  height: 100%;
+  max-height: 320px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .estudante-card ul {
@@ -385,6 +396,8 @@ p.oq {
 
 .seta {
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 2;
   background: #313131;
   color: #d9d9d9;
@@ -396,10 +409,10 @@ p.oq {
   cursor: pointer;
 }
 
-.seta:hover{
-transform: scale(0.9);
-transition: 0.3s;
-background-color: #313131af;
+.seta:hover {
+  transform: translateY(-50%) scale(0.9);
+  transition: 0.3s;
+  background-color: #313131af;
 }
 
 .seta-esquerda {
@@ -408,5 +421,69 @@ background-color: #313131af;
 
 .seta-direita {
   right: 10px;
+}
+
+@media (max-width: 768px) {
+.about{
+  display: flex;
+  flex-direction: column;
+}
+
+h1{
+  font-size: 1.6rem;
+}
+
+h2{
+  font-size: 1.4rem;
+}
+
+p.oq{
+  width: 100%;
+  font-size: 1.1rem;
+}
+
+.about-img{
+  width: 100% !important;
+  display: flex;
+  justify-content: center;
+}
+
+img{
+  width: 80% !important;
+}
+
+.estudante-card{
+  padding: 15px;
+  max-width: 75%;
+}
+
+  .janela {
+    height: 340px;
+  }
+
+  .card {
+    height: auto;
+    padding: 20px 0;
+  }
+
+  .estudante-card {
+    padding: 15px;
+    max-width: 75%;
+    max-height: 300px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .estudante-card {
+    width: 550px;
+  }
+
+  .janela {
+    height: 420px;
+  }
+
+  p.oq {
+    max-width: 700px;
+  }
 }
 </style>

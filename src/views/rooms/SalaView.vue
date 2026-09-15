@@ -62,6 +62,7 @@ console.log('Sala encontrada:', sala.value)
 
     <div class="card-sala">
       <div class="topo-sala">
+        <div class="fotoinfo">
         <img :src="sala.banner" class="foto-sala" />
 
         <div class="info-sala">
@@ -77,16 +78,15 @@ console.log('Sala encontrada:', sala.value)
             </div>
 
             <p><span>STATUS</span> {{ statusTexto }}</p>
+            </div>
           </div>
         </div>
 
         <div class="acoes-sala">
           <ButtonEnter :sala="sala" v-if="sala.usuarioCriador != userReal" />
           <div class="menu">
-            <span v-if="loginOut === 'ativo'"> </span>
-            <span v-else>
-              <button class="btn-entrar">Faça Login para entrar!</button>
-            </span>
+          
+          
 
             <div class="menu" v-if="sala.usuarioCriador === userReal">
               <button class="menubotao" @click="menuAberto = !menuAberto">...</button>
@@ -157,6 +157,7 @@ a.voltar {
   gap: 20px;
   position: relative;
   align-items: center;
+  justify-content: space-between;
 }
 
 .foto-sala {
@@ -181,7 +182,7 @@ a.voltar {
   display: flex;
   flex-direction: column;
   gap: 5px;
-  font-size: 0.85rem;
+  font-size: 1rem;
   font-family: 'Prompt', sans-serif;
 }
 
@@ -264,6 +265,7 @@ a.voltar {
   line-height: 1.2;
   max-width: 600px;
   word-break: break-word;
+  font-size: 1.1rem;
 }
 
 .membros {
@@ -272,7 +274,11 @@ a.voltar {
   gap: 5px;
   margin-top: 15px;
   color: #aaaaaa;
-  font-size: 0.9rem;
+  font-size: 1rem;
+}
+
+.secao-posts{
+  padding: 0;
 }
 
 .secao-posts h2 {
@@ -296,7 +302,7 @@ a.voltar {
   border-radius: 20px;
   border: none;
   font-weight: bold;
-  font-size: 0.95rem;
+  font-size: 1rem;
   cursor: pointer;
 }
 
@@ -348,7 +354,7 @@ a.voltar {
 }
 
 .popup p {
-  font-size: 0.88rem;
+  font-size: 1rem;
   color: #a5a5a5;
   margin-bottom: 24px;
 }
@@ -364,5 +370,26 @@ a.voltar {
 hr{
   color: #333333;
   margin: 1px 1px 25px 1px;
+}
+
+.fotoinfo{
+  display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+
+@media (max-width: 768px) {
+
+  .topo-sala{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .fotoinfo{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+
 }
 </style>
