@@ -165,9 +165,7 @@ function denunciar() {
             <button @click="CurtidaCOemn(comentario)" class="mostrarComent"><font-awesome-icon icon="heart" :style="{color: comentario.curtido ? 'red' : 'grey'}" /></button>
           </div>
 
-          <div class="salvos">
-            <button class="mostrarComent"><font-awesome-icon icon="bookmark" /></button>
-          </div>
+      
         </div>
       </div>
     </div>
