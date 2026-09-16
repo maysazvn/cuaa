@@ -330,7 +330,19 @@ export const users = [
         seguidores: 2,
         seguindo: 1,
         salas: [1, 3]
+    },
+     {
+        id: 31,
+        nome: 'Not Mentioned',
+        pfp: 'https://i.pinimg.com/736x/3e/00/a3/3e00a37b520efc95b058adb6f8ab58ff.jpg',
+        banner: 'https://i.pinimg.com/1200x/e6/bc/f3/e6bcf336a7fe0399b58e5207b6a9a4db.jpg',
+        desc: 'AVADA KEDRAVRA',
+        mostrarSala: 'nao',
+        seguidores: 30,
+        seguindo: 1,
+        salas: [1, 12]
     }
+
 
 
 ];
