@@ -112,6 +112,19 @@ console.log("Post atualizado:", JSON.parse(JSON.stringify(postagens.value)));
             ></v-textarea>
           </v-col>
 
+          <v-col cols="12" md="12">
+            <v-textarea
+              hint="Imagem"
+              label="Uma imagem pode dizer mais que palavras (URL imagem)"
+              v-model="imagemPost"
+              class="formulario"
+              variant="outlined"
+              base-color="#3e3e3e"
+              bg-color="#1e1e1e"
+              rows="3"
+            ></v-textarea>
+          </v-col>
+
           <v-col cols="12">
             <v-autocomplete
               v-model="salaSelecionada"
