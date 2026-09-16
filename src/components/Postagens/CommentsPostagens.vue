@@ -42,7 +42,7 @@ function pegarFotoUsuario(autorID) {
 }
 
 function comentar() {
-  if(loginOut == 'attivo'){
+  if(loginOut.value == 'ativo'){
   if (!novoComent.value.trim()) {
     alert(`Preencha os campos!!`)
   } else {
