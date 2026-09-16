@@ -1,16 +1,35 @@
 <script setup>
 import { ref, watch } from 'vue'
+import { users } from '@/views/user/Users'
+import { pegarIDUsuario } from '@/views/account/login/UserReal'
 
-const nomeUsuario = ref(localStorage.getItem('nomeUsuario') || '')
+const meuid = pegarIDUsuario()
 
+function sincronizarUsuarioGlobal(campo, valor) {
+  const usuarioMemoria = users.find((u) => Number(u.id) === Number(meuid))
+  if (usuarioMemoria) {
+    usuarioMemoria[campo] = valor
+  }
+  const usuariosSalvos = JSON.parse(localStorage.getItem('usuarios_cadastrados') || '[]')
+  const usuarioSalvo = usuariosSalvos.find((u) => Number(u.id) === Number(meuid))
+
+  if (usuarioSalvo) {
+    usuarioSalvo[campo] = valor
+    localStorage.setItem('usuarios_cadastrados', JSON.stringify(usuariosSalvos))
+  }
+}
+
+const nomeUsuario = ref(localStorage.getItem('user_nome') || '')
 const desc = ref(localStorage.getItem('desc') || '')
 
 watch(nomeUsuario, (novoNome) => {
-  localStorage.setItem('nomeUsuario', novoNome)
+  localStorage.setItem('user_nome', novoNome)
+  sincronizarUsuarioGlobal('nome', novoNome)
 })
 
 watch(desc, (novaDesc) => {
   localStorage.setItem('desc', novaDesc)
+  sincronizarUsuarioGlobal('desc', novaDesc)
 })
 
 const urlFoto = ref(localStorage.getItem('urlFoto') || '/pfpPlaceholder.png')
@@ -28,6 +47,7 @@ function mudarFoto(event) {
     reader.onload = () => {
       urlFoto.value = reader.result
       localStorage.setItem('urlFoto', reader.result)
+      sincronizarUsuarioGlobal('pfp', reader.result) 
     }
 
     reader.readAsDataURL(novaFoto.value)
@@ -43,6 +63,7 @@ function mudarBanner(event) {
     reader.onload = () => {
       urlBanner.value = reader.result
       localStorage.setItem('urlBanner', reader.result)
+      sincronizarUsuarioGlobal('banner', reader.result)
     }
 
     reader.readAsDataURL(novoBanner.value)
@@ -53,6 +74,7 @@ const mostrarSala = ref(localStorage.getItem('mostrarSala?') || 'sim')
 
 watch(mostrarSala, (novoValor) => {
   localStorage.setItem('mostrarSala?', novoValor)
+  sincronizarUsuarioGlobal('mostrarSala', novoValor)
 })
 </script>
 
@@ -300,6 +322,7 @@ input.fotoPerfil{
 
 .sim,
 .nao {
+  display: flex;
   align-items: center;
   gap: 10px;
   margin-right: 20px;
@@ -336,5 +359,58 @@ button:hover {
   background-color: #f8d668e7;
   transform: scale(0.97);
   transition: 0.3s;
+}
+
+@media (max-width: 768px) {
+
+  .container {
+    padding: 0 !important;
+  }
+
+  .label-banner {
+    height: 140px;
+  }
+
+  .previewBanner {
+    height: 140px;
+  }
+
+  .adicionarFotoPerfil {
+    width: 90px;
+    height: 90px;
+    margin-left: 20px;
+    margin-top: -45px;
+  }
+
+  .previewFoto {
+    width: 90px;
+    height: 90px;
+  }
+
+  .campos {
+    padding: 0 20px;
+  }
+
+  .nomeUsuario {
+    width: 100%;
+  }
+
+  .descricao {
+    max-width: 100%;
+  }
+
+  button {
+    width: calc(100% - 40px);
+    margin: 20px;
+  }
+
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .adicionarFotoPerfil,
+  .previewFoto {
+    width: 100px;
+    height: 100px;
+  }
 }
 </style>

@@ -1,5 +1,3 @@
-import { salas } from "@/data/salas";
-
 export const users = [
     {
         id: 1,
@@ -39,7 +37,7 @@ export const users = [
     {
         id: 4,
         nome: 'Lara Croft',
-        pfp: 'https://play-lh.googleusercontent.com/Nv145J-7-ewRpJKts_VhqDZ0UvvIHbzdzVZBe28wYFKRr1I7l9WZ223IlbLMVm_UKL4eTpoax1yMSXvWDRiq',
+        pfp: 'https://conteudo.imguol.com.br/c/entretenimento/93/2015/11/03/modelo-original-de-lara-para-tomb-raider-com-o-infame-busto-com-aumento-de-150-1446584032674_300x300.jpg.webp',
         banner: 'https://p2.trrsf.com/image/fget/cf/1200/900/middle/images.terra.com/2022/05/20/lara-croft-1h7gdz69qqn90.jpg',
         desc: 'Arqueóloga formada!',
         mostrarSala: 'sim',
@@ -116,13 +114,13 @@ export const users = [
     {
         id: 11,
         nome: 'o inimigo',
-        pfp: 'https://content.imageresizer.com/images/memes/Buddy-satan-meme-5.jpg',
+        pfp: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkgvyqy43W83pfBKiblvyBc5NqL_Dm2NtaMtj-6zB6LFCVjt_AwcoIFaID&s=10',
         banner: 'https://aventurasnahistoria.com.br/wp-content/uploads/demoniocapafilme2.jpg',
         desc: 'Fale palavrão minha criança',
         mostrarSala: 'sim',
         seguidores: 666,
         seguindo: 666,
-        salas: [1, 3]
+        salas: [1, 9, 3]
     },
     {
         id: 12,
@@ -155,7 +153,7 @@ export const users = [
         mostrarSala: 'sim',
         seguidores: 314,
         seguindo: 932,
-        salas: [1, 3]
+        salas: [1, 4]
     },
     {
         id: 15,
@@ -166,7 +164,7 @@ export const users = [
         mostrarSala: 'sim',
         seguidores: 59,
         seguindo: 87,
-        salas: [1, 3]
+        salas: [1, 5]
     },
     {
         id: 16,
@@ -177,7 +175,7 @@ export const users = [
         mostrarSala: 'nao',
         seguidores: 149,
         seguindo: 1,
-        salas: [1, 3]
+        salas: [1, 6]
     },
     {
         id: 17,
@@ -188,7 +186,7 @@ export const users = [
         mostrarSala: 'nao',
         seguidores: 1244543,
         seguindo: 1,
-        salas: [1, 3]
+        salas: [1, 7]
     },
     {
         id: 18,
@@ -199,7 +197,7 @@ export const users = [
         mostrarSala: 'sim',
         seguidores: 1,
         seguindo: 1,
-       salas: [1, 3]
+       salas: [1, 8]
     },
     {
         id: 19,
@@ -354,8 +352,29 @@ export const users = [
         seguidores: 1010,
         seguindo: 1111,
         salas: [9]
+     {
+        id: 33,
+        nome: 'Not Mentioned',
+        pfp: 'https://i.pinimg.com/736x/3e/00/a3/3e00a37b520efc95b058adb6f8ab58ff.jpg',
+        banner: 'https://i.pinimg.com/1200x/e6/bc/f3/e6bcf336a7fe0399b58e5207b6a9a4db.jpg',
+        desc: 'AVADA KEDRAVRA',
+        mostrarSala: 'nao',
+        seguidores: 30,
+        seguindo: 1,
+        salas: [1, 12]
     }
 
 
+
 ];
+
+const usuariosSalvos = JSON.parse(localStorage.getItem('usuarios_cadastrados') || '[]');
+
+for (const novoUser of usuariosSalvos) {
+  novoUser.id = Number(novoUser.id)
+
+  if (!users.some(u => u.id === novoUser.id)) {
+    users.push(novoUser)
+  }
+};
 

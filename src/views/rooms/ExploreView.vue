@@ -1,22 +1,9 @@
 <script setup>
 import CartSala from '@/components/cart/CartSala.vue'
+import ButtonEnter from '@/components/ButtonEnter.vue';
 import { salas } from '@/data/salas'
-import { salasUsuario } from '@/data/salasUsuario'
-import { loginOut } from '../account/login/Loginout'
-function estaNaSala(idSala) {
-  return salasUsuario.value.some((i) => i.idSala === idSala)
-}
-function sair(saal) {
-  console.log(salasUsuario.value, saal)
-  salasUsuario.value = salasUsuario.value.filter((i) => i.idSala != saal.idSala)
-  console.log(salasUsuario.value, saal)
-  
-}
-function enviar(sal) {
-  if (!estaNaSala(sal.idSala)) {
-    salasUsuario.value.push(sal)
-  }
-}
+import { loginOut } from '../account/login/Loginout';
+import { userReal } from '../account/login/UserReal';
 </script>
 
 <template>
@@ -37,15 +24,12 @@ function enviar(sal) {
         :status="sala.status"
       >
       <div class="nav">
-        <RouterLink :to="`/salas/${sala.idSala}`" class="visualizar"> Visualizar </RouterLink>
-        <span v-if="loginOut === 'ativo'">
-        <button v-on:click="enviar(sala)" v-if="!estaNaSala(sala.idSala)" class="btn-entrar">Entrar</button>
-        <button v-on:click="sair(sala)" v-else class="btn-sair">Sair</button>
-      </span>
-      <span v-else>
-       <button class="btn-entrar">Faça Login para entrar!</button>
-      </span>
-        </div>
+      
+          <RouterLink :to="`/salas/${sala.idSala}`" class="visualizar"> Visualizar </RouterLink>
+        <ButtonEnter :sala="sala" v-if="sala.usuarioCriador != userReal" />
+       
+       
+      </div>
       </CartSala>
     </section>
   </div>
@@ -71,7 +55,7 @@ a.voltar{
 
 .salas {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2vw;
   margin: 0px auto;
   padding: 40px;
@@ -144,6 +128,28 @@ button:hover{
 
 .container {
   text-align: center;
+}
+
+@media (max-width: 768px) {
+
+  .salas{
+    padding: 20px 15px;
+  }
+
+  .nav{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  a.visualizar, .btn-entrar{
+    width: 200px;
+    padding: 10px 12px;
+  }
+
 }
 
 </style>

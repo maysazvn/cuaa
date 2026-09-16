@@ -1,6 +1,10 @@
-import { ref } from "vue"
+import { ref, watch } from "vue"
 
-export const salas = ref([
+const dadosSalvos = JSON.parse(
+  localStorage.getItem('salas')
+)
+
+export const salas = ref(dadosSalvos || [
 {
     idSala: 1,
     nome: '22info22',
@@ -92,6 +96,41 @@ export const salas = ref([
     usuarioCriador: 'Bay-harbor Butcher',
     status: 1,
     banner: 'https://i.pinimg.com/1200x/51/76/34/517634feafe0323c9687ff7ef2e0a220.jpg'
+},{
+    idSala: 12,
+    nome: 'Defesa Contra as Artes das Trevas ',
+    participantes: 3,
+    desc: 'EU finalmente ensinarei DCAT',
+    usuarioCriador: 'hvm',
+    status: 1,
+    banner: 'https://pt.quizur.com/_image?href=https%3A%2F%2Fstatic.quizur.com%2Fi%2Fb%2F5b08e2f7b7f237.45255471f.jpg&w=200&h=200&f=webp'
+},{
+    idSala: 13,
+    nome: 'Estudo sobre Poções',
+    participantes: 10,
+    desc: 'Reforço de Poções para os imprestaveis que não prestam atenção na aula',
+    usuarioCriador: 'hvm',
+    status: 1,
+    banner: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2P2te7v8KbtQDoiMnxgi25HI-iHtOEMMUvCgWpXGhdQ&s=10'
+},{
+    idSala: 14,
+    nome: 'Física',
+    participantes: 300,
+    desc: 'Perguntinhas do HollyShift',
+    usuarioCriador: 'o inimigo',
+    status: 1,
+    banner: 'https://i.pinimg.com/736x/a5/c7/38/a5c7381534ff4c5ff8ea9005def4df4a.jpg'
 },
 
 ])
+
+watch(
+  salas,
+  (novoValor) => {
+    localStorage.setItem(
+      'salas',
+      JSON.stringify(novoValor)
+    )
+  },
+  { deep: true }
+)

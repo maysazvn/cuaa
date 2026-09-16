@@ -1,3 +1,4 @@
+
 <script setup>
 import { ref, computed} from 'vue'
 const emit = defineEmits(['fechar', 'adicionar'])
@@ -12,49 +13,67 @@ const postagensConteudoNovo = ref('');
 const salaSelecionada = ref(null)
 const salaFinal = computed(() => salaSelecionada.value)
 const storage = 'postagens'
+const imagemPost = ref('')
+
 
 function usuarioEstaNaSala(salaIdDoPost) {
 
-   if (!Array.isArray(salasUsuario.value)) return false
 
-     console.log("Testando sala do sistema:", salaIdDoPost, "Lista do usuário:", JSON.parse(JSON.stringify(salasUsuario.value)))
+  if (!Array.isArray(salasUsuario.value)) return false
 
-  for (let sala of salasUsuario.value) {
-    const idUsuario = sala.idSala || sala.id
 
-    if (Number(idUsuario) === Number(salaIdDoPost)) {
-      return true
-    }
-  }
-  return false
+    console.log("Testando sala do sistema:", salaIdDoPost, "Lista do usuário:", JSON.parse(JSON.stringify(salasUsuario.value)))
+
+
+ for (let sala of salasUsuario.value) {
+   const idUsuario = sala.idSala || sala.id
+
+
+   if (Number(idUsuario) === Number(salaIdDoPost)) {
+     return true
+   }
+ }
+ return false
 }
+
+
 
 
 function adicionar() {
-  if (!postagensTituloNovo.value.trim() || !postagensConteudoNovo.value.trim()) {
-    alert(`Preencha os campos!`);
+ if (!postagensTituloNovo.value.trim() || !postagensConteudoNovo.value.trim() || !salaFinal.value) {
+   alert(`Preencha os campos!`);
 } else {
-    let maiorId =  Math.max(...postagens.value.map(item => item.id))
-    const novoPost = {
-        titulo: postagensTituloNovo.value,
-     conteudo: postagensConteudoNovo.value,
-        autorID: pegarIDUsuario(),
-        data:  new Date().toLocaleDateString('pt-BR'),
-        id: maiorId + 1,
-        salaId: Number(salaFinal.value),
-    }
+   let maiorId =  Math.max(...postagens.value.map(item => item.id))
+   const novoPost = {
+       titulo: postagensTituloNovo.value,
+    conteudo: postagensConteudoNovo.value,
+       autorID: pegarIDUsuario(),
+       data:  new Date().toLocaleDateString('pt-BR'),
+       id: maiorId + 1,
+       salaId: Number(salaFinal.value),
+       imagem: imagemPost.value || "",
+       curtidas: 0,
+       salvos: 0
+   }
 
-  console.log(`sala selecionada: ${salaFinal.value}`)
-    postagens.value.unshift(novoPost)
-     postagensTituloNovo.value =''
- postagensConteudoNovo.value = '';
+
+ console.log(`sala selecionada: ${salaFinal.value}`)
+   postagens.value.unshift(novoPost)
+    postagensTituloNovo.value =''
+postagensConteudoNovo.value = '';
+imagemPost.value = '';
 console.log("Post atualizado:", JSON.parse(JSON.stringify(postagens.value)));
 
 
-  localStorage.setItem(storage, JSON.stringify(postagens.value))
-  emit('fechar') }
+
+
+ localStorage.setItem(storage, JSON.stringify(postagens.value))
+ emit('fechar') }
+
 
 }
+
+
 
 
 </script>
@@ -130,107 +149,127 @@ console.log("Post atualizado:", JSON.parse(JSON.stringify(postagens.value)));
     </span>
 </template>
 
+
 <style scoped>
 .caixa {
-  padding: 25px;
-  border-radius: 20px !important;
-  background-color: #262626 !important;
-  color: #d9d9d9 !important;
+ padding: 25px;
+ border-radius: 20px !important;
+ background-color: #262626 !important;
+ color: #d9d9d9 !important;
 }
+
 
 .titulo-postar {
-  font-size: 1.8rem;
-  font-weight: bold;
-  margin-bottom: 20px;
+ font-size: 1.8rem;
+ font-weight: bold;
+ margin-bottom: 20px;
 }
+
 
 .conteudo-postar {
-  padding: 0 !important;
+ padding: 0 !important;
 }
+
 
 :deep(.formulario .v-field) {
-  border-radius: 15px !important;
-  padding-left: 15px !important;
-  padding-right: 15px !important;
+ border-radius: 15px !important;
+ padding-left: 15px !important;
+ padding-right: 15px !important;
 }
+
 
 :deep(.formulario .v-field__input) {
-  padding-top: 15px !important;
-  padding-bottom: 15px !important;
-  font-size: 1rem;
+ padding-top: 15px !important;
+ padding-bottom: 15px !important;
+ font-size: 1rem;
 }
 
+
 :deep(.formulario.v-input--focused .v-field__outline) {
-  --v-field-border-width: 2px;
+ --v-field-border-width: 2px;
 }
+
 
 :deep(.formulario input),
 :deep(.formulario textarea) {
-  color: #d9d9d9 !important;
+ color: #d9d9d9 !important;
 }
+
 
 :deep(.formulario .v-chip) {
-  border-radius: 8px !important;
+ border-radius: 8px !important;
 }
+
 
 .aviso-obrigatorio {
-  color: #888888;
-  font-size: 0.8rem;
-  display: block;
-  margin-top: 10px;
+ color: #888888;
+ font-size: 0.8rem;
+ display: block;
+ margin-top: 10px;
 }
+
 
 .divisor {
-  border-color: #747474 !important;
-  margin: 15px 0;
+ border-color: #747474 !important;
+ margin: 15px 0;
 }
+
 
 .acoes {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  padding: 0;
+ display: flex;
+ justify-content: flex-end;
+ gap: 10px;
+ padding: 0;
 }
+
 
 .btnPostar {
-  background-color: #f8d76b;
-  color: #1e1e1e;
-  font-weight: bold;
-  border-radius: 10px;
-  padding: 8px 20px;
-  border: none;
-  cursor: pointer;
-  transition: 0.2s;
+ background-color: #f8d76b;
+ color: #1e1e1e;
+ font-weight: bold;
+ border-radius: 10px;
+ padding: 8px 20px;
+ border: none;
+ cursor: pointer;
+ transition: 0.2s;
 }
+
 
 .btnPostar:hover {
-  opacity: 0.9;
-  transform: scale(0.96);
+ opacity: 0.9;
+ transform: scale(0.96);
 }
+
 
 .btnFechar {
-  background-color: #3e3e3e;
-  color: #d9d9d9;
-  font-weight: bold;
-  border-radius: 10px;
-  padding: 8px 20px;
-  border: none;
-  cursor: pointer;
-  transition: 0.2s;
+ background-color: #3e3e3e;
+ color: #d9d9d9;
+ font-weight: bold;
+ border-radius: 10px;
+ padding: 8px 20px;
+ border: none;
+ cursor: pointer;
+ transition: 0.2s;
 }
 
+
 .btnFechar:hover {
-  opacity: 0.9;
-  transform: scale(0.96);
+ opacity: 0.9;
+ transform: scale(0.96);
 }
 </style>
+
 
 <style>
 .menu-salas-custom .v-list-item-title {
-  margin-left: 14px !important;
+ margin-left: 14px !important;
 }
 
+
 .menu-salas-custom .v-list-item {
-  padding: 8px 12px !important;
+ padding: 8px 12px !important;
 }
 </style>
+
+
+
