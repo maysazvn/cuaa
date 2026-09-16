@@ -352,6 +352,7 @@ export const users = [
         seguidores: 1010,
         seguindo: 1111,
         salas: [9]
+    },
      {
         id: 33,
         nome: 'Not Mentioned',
@@ -365,7 +366,7 @@ export const users = [
     }
 
 
-
+    
 ];
 
 const usuariosSalvos = JSON.parse(localStorage.getItem('usuarios_cadastrados') || '[]');
