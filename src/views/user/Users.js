@@ -331,8 +331,29 @@ export const users = [
         seguindo: 1,
         salas: [1, 3]
     },
-     {
+    {
         id: 31,
+        nome: 'Kátia',
+        pfp: 'https://i1.rgstatic.net/ii/profile.image/1062860247531523-1630417038409_Q512/Katia-Siewert.jpg',
+        banner: 'https://tse4.mm.bing.net/th/id/OIP.aBDOOuiC3X-w3RTMNH09-AHaEK?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
+        desc: 'Doutorado em Educação pelo PPGE da UDESC. Mestrado em Computação Aplicada pela UNISINOS. Bacharel em Arquitetura e Urbanismo e Licenciatura em Matemática pela FURB. Integrante do grupo de pesquisa NEPesTEEM',
+        mostrarSala: 'sim',
+        seguidores: 32,
+        seguindo: 9,
+        salas: [4]
+    },
+    {
+        id: 32,
+        nome: 'John',
+        pfp: 'https://www.bayayadg.com/wp-content/uploads/2023/03/ava4.png',
+        banner: 'https://web.dev/static/images/social-wide.jpg',
+        desc: 'Hi! I am John',
+        mostrarSala: 'sim',
+        seguidores: 1010,
+        seguindo: 1111,
+        salas: [9]
+     {
+        id: 33,
         nome: 'Not Mentioned',
         pfp: 'https://i.pinimg.com/736x/3e/00/a3/3e00a37b520efc95b058adb6f8ab58ff.jpg',
         banner: 'https://i.pinimg.com/1200x/e6/bc/f3/e6bcf336a7fe0399b58e5207b6a9a4db.jpg',
