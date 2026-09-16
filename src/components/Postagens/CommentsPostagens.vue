@@ -54,6 +54,8 @@ function comentar() {
       data: Date(Date.now()).toLocaleString('pt-BR'),
       id: maiorId + 1,
       autorID: pegarIDUsuario(),
+      curtido: false,
+      curtidas: 0
     }
 
     comentarios.value.unshift(novoNoComentario)
@@ -64,6 +66,24 @@ function comentar() {
 }else{
   alert('Faça login para comentar!')
 }
+}
+function CurtidaCOemn(comentario) {
+  if (loginOut.value === 'ativo') {
+    if (comentario.curtido === true) {
+      comentario.curtido = false
+      comentario.curtidas--
+    } else {
+      comentario.curtido = true
+      comentario.curtidas++
+    }
+
+    localStorage.setItem(
+      chaveStorage,
+      JSON.stringify(comentarios.value)
+    )
+  } else {
+    alert('Faça login para curtir!')
+  }
 }
 
 function excluir(idItem) {
@@ -142,7 +162,7 @@ function denunciar() {
 
         <div class="interacao">
           <div class="curtidas">
-            <button class="mostrarComent"><font-awesome-icon icon="heart" /></button>
+            <button @click="CurtidaCOemn(comentario)" class="mostrarComent"><font-awesome-icon icon="heart" :style="{color: comentario.curtido ? 'red' : 'grey'}" /></button>
           </div>
 
           <div class="salvos">
