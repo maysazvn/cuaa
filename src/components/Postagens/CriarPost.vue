@@ -139,6 +139,7 @@ console.log("Post atualizado:", JSON.parse(JSON.stringify(postagens.value)));
               base-color="#3e3e3e"
               bg-color="#1e1e1e"
               :menu-props="{ contentClass: 'menu-salas-custom' }"
+              :no-data-text=" 'Sem salas' "
             ></v-autocomplete>
           </v-col>
         </v-row>

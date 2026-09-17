@@ -46,9 +46,6 @@ function criarPostRapido() {
     alert('Escreva algo antes de postar!')
   }
 
-  if (!salaSelecionada.value) {
-    alert('Escolha uma sala antes de postar!')
-  }
 
   let maiorId = Math.max(...postagens.value.map((item) => item.id))
 

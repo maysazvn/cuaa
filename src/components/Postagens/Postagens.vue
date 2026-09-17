@@ -46,7 +46,7 @@ function pegarBanner(salaId) {
  if (sala) {
    return sala.banner
  } else {
-   return ''
+   return 'https://i.pinimg.com/736x/ed/b6/06/edb606bf10aad2fdfd3a854758ee0042.jpg'
  }
 }
 

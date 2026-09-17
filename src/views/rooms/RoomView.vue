@@ -21,6 +21,11 @@ function criar() {
    alert(mensagem)
    return
  } else {
+
+    if(banner.value === "") {
+      banner.value = "https://i.pinimg.com/736x/ed/b6/06/edb606bf10aad2fdfd3a854758ee0042.jpg"
+    }
+
    const novaSala = {
      idSala: Date.now(),
      nome: nome.value,
