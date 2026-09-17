@@ -35,6 +35,8 @@ function confirmarEx() {
 }
 function excluirSala() {
   popupExcluir.value = true
+  localStorage.removeItem("salas");
+
 }
 function editarSala() {
   router.push(`/salas/${route.params.id}/editar`)
