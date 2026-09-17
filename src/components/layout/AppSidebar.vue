@@ -13,6 +13,12 @@ import { urlFoto } from '@/views/user/urlFoto'
 const menuSalasAberto = ref(false);
 const menuMaisAberto = ref(false)
 
+import { computed } from 'vue'
+
+ const salasVisiveis = computed(() =>
+  salasUsuario.value.filter(s => salas.value.some(x => x.idSala === s.idSala))
+)
+
 // functions /////////////////
 function validarLoginout() {
   if (loginOut.value == 'ativo') {
@@ -63,7 +69,7 @@ onMounted(() => {
         </div>
 
         <div class="salas">
-          <div v-for="sala in salasUsuario" :key="sala.nome" class="salas-link">
+          <div v-for="sala in salasVisiveis" :key="sala.nome" class="salas-link">
             <RouterLink :to="`/salas/${sala.idSala}`">
               <h2 class="sala-link">{{ sala.nome }}</h2>
             </RouterLink>

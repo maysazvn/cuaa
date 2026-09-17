@@ -120,7 +120,7 @@ function criar() {
   </div>
   </span>
    <span v-else-if="loginOut === 'inativo'" class="mensagemSemLogin">
-    <p>
+    <p class="login">
       Faça Login para criar salas!
     </p>
    </span>
@@ -279,6 +279,13 @@ function criar() {
 .btnCancelar {
   background: #848484;
 }
+
+  .login{
+    text-align: center;
+    color: #d9d9d9;
+    font-size: 2rem;
+    font-weight: bold;
+  }
 
 @media (max-width: 768px) {
   .container{

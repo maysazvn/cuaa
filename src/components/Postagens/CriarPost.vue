@@ -158,7 +158,7 @@ console.log("Post atualizado:", JSON.parse(JSON.stringify(postagens.value)));
     </v-card>
   </section>
   </span>
-  <span v-else-if="loginOut === 'inativo'" class="mensagemSemLogin">
+  <span v-else-if="loginOut === 'inativo'" class="login">
       <p>Faça Login para criar posts!</p>
     </span>
 </template>
@@ -270,6 +270,16 @@ console.log("Post atualizado:", JSON.parse(JSON.stringify(postagens.value)));
 .btnFechar:hover {
  opacity: 0.9;
  transform: scale(0.96);
+}
+
+.login {
+  text-align: center;
+  color: #d9d9d9;
+  font-size: 2rem;
+  font-weight: bold;
+  background-color: #1e1e1e;
+  border-radius: 20px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.163);
 }
 </style>
 

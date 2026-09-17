@@ -30,12 +30,13 @@ function confirmarEx() {
     salas.value.splice(index, 1)
   }
 
+  localStorage.removeItem("salas");
+
   popupExcluir.value = false
   router.push('/explore')
 }
 function excluirSala() {
   popupExcluir.value = true
-  localStorage.removeItem("salas");
 
 }
 function editarSala() {

@@ -6,6 +6,8 @@ import { salasUsuario } from '@/data/salasUsuario'
 import { loginOut } from './account/login/Loginout'
 import { pegarIDUsuario } from '@/views/account/login/UserReal'
 import { users } from './user/Users'
+import { salas } from '@/data/salas'
+
 
 function usuarioEstaNaSala(salaIdDoPost) {
   for (let sala of salasUsuario.value) {
@@ -66,6 +68,10 @@ function criarPostRapido() {
   conteudoRapido.value = ''
   salaSelecionada.value = null
 }
+
+const salasVisiveis = computed(() =>
+  salasUsuario.value.filter(s => salas.value.some(x => x.idSala === s.idSala))
+)
 </script>
 
 <template>
@@ -79,7 +85,7 @@ function criarPostRapido() {
       <div class="botao">
         <div class="botoesSala">
           <span
-            v-for="sala in salasUsuario"
+            v-for="sala in salasVisiveis"
             :key="sala.idSala || sala.id"
             class="salaItem"
             :class="{ ativa: salaSelecionada === (sala.idSala || sala.id) }"
