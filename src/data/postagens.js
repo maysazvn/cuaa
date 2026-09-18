@@ -148,6 +148,18 @@ export const postagens = ref([
    imagem: "",
    salvou: false,
    salvos: 30
+ },{
+ id: -1,
+   titulo: 'GENTE',
+   conteudo: 'alguém consegue calcular o angulo que tá esse enderdragon',
+   autorID: -1,
+   data: '11/09/00',
+   salaId: 4,
+    curtido: false,
+   curtidas: 5000,
+   imagem: "https://i.pinimg.com/736x/69/4c/83/694c83ca26d964df3bf3ff67494f0d16.jpg",
+   salvou: false,
+   salvos: 30
  },
 ])
 

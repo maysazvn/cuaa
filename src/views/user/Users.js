@@ -363,7 +363,29 @@ export const users = [
         seguidores: 30,
         seguindo: 1,
         salas: [1, 12]
-    }
+    },
+    {
+        id: -1,
+        nome: 'KELLERMANN',
+        pfp: 'https://i.pinimg.com/originals/4a/ea/83/4aea8300c3734b1ed53604289703be5b.gif',
+        banner: 'https://i.pinimg.com/originals/27/1e/8a/271e8a6b559dbd0c0653c7e7c9ca9251.gif',
+        desc: 'POKÉMON TEMOS QUE PEGAR AS ESFERAS DO DRAGÃO',
+        mostrarSala: 'sim',
+        seguidores: 67,
+        seguindo: 1,
+        salas: [13, 12]
+    },
+    {
+        id: -2,
+        nome: 'SAMUSAaS',
+        pfp: 'https://i.pinimg.com/1200x/09/95/bf/0995bf5bc7ff9a544bc87fe20ca4cf81.jpg',
+        banner: 'https://i.pinimg.com/originals/5f/b0/7d/5fb07d4199f1405a698c12ed491fa7f5.gif',
+        desc: '',
+        mostrarSala: 'sim',
+        seguidores: 9999999,
+        seguindo: 1,
+        salas: [2, 6]
+    },
 
 
     

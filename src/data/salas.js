@@ -120,6 +120,14 @@ export const salas = ref(dadosSalvos || [
     usuarioCriador: 'o inimigo',
     status: 1,
     banner: 'https://i.pinimg.com/736x/a5/c7/38/a5c7381534ff4c5ff8ea9005def4df4a.jpg'
+},{
+    idSala: -300,
+    nome: 'Centro Pokémon',
+    participantes: 1000000,
+    desc: 'Nós não curamos lopunny, nem magikarp',
+    usuarioCriador: 'SAMUSAaS',
+    status: 1,
+    banner: 'https://i.pinimg.com/originals/ec/d1/74/ecd1747af243cf2d254359acc5a2b058.gif'
 },
 
 ])
