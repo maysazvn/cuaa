@@ -105,7 +105,7 @@ export const users = [
         nome: 'sackboy',
         pfp: 'https://i.pinimg.com/736x/db/44/45/db4445533f830b92cf6f40c0296c79f1.jpg',
         banner: 'https://i.pinimg.com/736x/24/1a/ea/241aeadd7c5900aac8c740010c8a1c9b.jpg',
-        desc: 'Mds denovo nao',
+        desc: 'Pqp denovo nao',
         mostrarSala: 'sim',
         seguidores: 67,
         seguindo: 67,
@@ -114,7 +114,7 @@ export const users = [
     {
         id: 11,
         nome: 'o inimigo',
-        pfp: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkgvyqy43W83pfBKiblvyBc5NqL_Dm2NtaMtj-6zB6LFCVjt_AwcoIFaID&s=10',
+        pfp: 'https://content.imageresizer.com/images/memes/Buddy-satan-meme-5.jpg',
         banner: 'https://aventurasnahistoria.com.br/wp-content/uploads/demoniocapafilme2.jpg',
         desc: 'Fale palavrão minha criança',
         mostrarSala: 'sim',
@@ -149,7 +149,7 @@ export const users = [
         nome: 'Gabriel',
         pfp: 'https://media.istockphoto.com/id/614333298/pt/foto/funny-nerd-or-geek-have-an-idea.jpg?s=612x612&w=0&k=20&c=8vcAO_oYkfPT7ZxsjnFWsAuecaFZ_3c8VvoMSTj7fvQ=',
         banner: 'https://pt.quizur.com/_image?href=https://static.quizur.com/i/b/5a8c20a9600d97.302390645a8c20a942ffb6.76737408.jpg&w=1200&h=900&f=webp',
-        desc: 'Vocês preferem sorvete de morango ou de enxofre',
+        desc: 'Vocês preferem sorvete de morango ou de bosta',
         mostrarSala: 'sim',
         seguidores: 314,
         seguindo: 932,
@@ -160,7 +160,7 @@ export const users = [
         nome: 'Edwin',
         pfp: 'https://media.forgecdn.net/attachments/description/1366638/description_38d6f30d-f853-469f-89c9-591cf6d00a5d.jpg',
         banner: 'https://i.pinimg.com/736x/f5/50/34/f5503432e88456b6f143040aa7c5196e.jpg',
-        desc: 'Eu não quero enxofre',
+        desc: 'Eu não quero bosta',
         mostrarSala: 'sim',
         seguidores: 59,
         seguindo: 87,
@@ -363,7 +363,62 @@ export const users = [
         seguidores: 30,
         seguindo: 1,
         salas: [1, 12]
-    }
+    },
+     {
+        id: 34,
+        nome: 'Andr_x',
+        pfp: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN0Um6NGhwtTKudTFg768KuWeM-CzGOqp4v-CDLTXn_iwIk7dSPH-ImMY&s=10',
+        banner: 'https://deadbydaylight.com/static/38b0213d2c2b231d4685fd86a7ee2a16/691d2/DBD_UDON_KEYART_RESIZES_WEBSITE_Static_Keyart_1920x1080_No_Logo_0841990559.png',
+        desc: 'Obcecado pelo Drácula, Krasue e MK',
+        mostrarSala: 'sim',
+        seguidores: 23,
+        seguindo: 23,
+        salas: [13, 12]
+    },
+     {
+        id: 35,
+        nome: 'Gottlel',
+        pfp: 'https://i.pinimg.com/736x/77/94/73/779473d506600ca6576c100c51993091.jpg',
+        banner: 'https://static.wikia.nocookie.net/disneyprincesas/images/9/96/Tower.01.png/revision/latest?cb=20140104231454&path-prefix=pt-br',
+        desc: 'PLACEHOLDER',
+        mostrarSala: 'nao',
+        seguidores: 23,
+        seguindo: 23,
+        salas: [13, 12]
+    },
+     {
+        id: 36,
+        nome: 'Kika',
+        pfp: 'https://img.wattpad.com/3442a5f63e3755ac454d1ce68aaf3514095a6d40/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f776174747061642d6d656469612d736572766963652f53746f7279496d6167652f30494f5a7a6331556e774d7644513d3d2d3239393236303138312e313436623666383536346566333164323638373234393334333238312e6a7067',
+        banner: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRX7kUt8vWLehZICuwy6HJnFHDW6rYeb0hfts2-34glcpUDxME1v72fBovh&s=10',
+        desc: 'quem quer ser meu duo',
+        mostrarSala: 'sim',
+        seguidores: 1932,
+        seguindo: 4934,
+        salas: [15, 16]
+    },
+     {
+        id: 37,
+        nome: 'Kronk',
+        pfp: 'https://i.imgflip.com/2/43t4i2.jpg',
+        banner: 'https://leannetucker.wordpress.com/wp-content/uploads/2015/11/kronk-angel-devil.jpg',
+        desc: 'eu estou fazendo minha própria trilha sonora',
+        mostrarSala: 'nao',
+        seguidores: 328570981425091,
+        seguindo: 24381534639806098,
+        salas: [15, 16]
+    },
+    {
+        id: 38,
+        nome: 'criminosoRatito',
+        pfp: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScYWUuToh___1JPSRQLFVQfPffNd0s35MBKkAQk1tmRJisbjqSP4YNgT0&s=10',
+        banner: 'https://previews.123rf.com/images/parkpoomy/parkpoomy1909/parkpoomy190903255/130785765-thief-stealing-bag-from-walking-woman-on-street-with-knife-in-hand-theft-concept.jpg',
+        desc: 'Apenas um rato normal.',
+        mostrarSala: 'nao',
+        seguidores: 0,
+        seguindo: 0,
+        salas: [1, 3]
+    },
 
 
     

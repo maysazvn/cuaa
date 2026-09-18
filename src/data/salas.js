@@ -112,7 +112,8 @@ export const salas = ref(dadosSalvos || [
     usuarioCriador: 'hvm',
     status: 1,
     banner: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2P2te7v8KbtQDoiMnxgi25HI-iHtOEMMUvCgWpXGhdQ&s=10'
-},{
+},
+{
     idSala: 14,
     nome: 'Física',
     participantes: 300,
@@ -121,6 +122,24 @@ export const salas = ref(dadosSalvos || [
     status: 1,
     banner: 'https://i.pinimg.com/736x/a5/c7/38/a5c7381534ff4c5ff8ea9005def4df4a.jpg'
 },
+{
+    idSala: 15,
+    nome: 'Cartas românticas',
+    participantes: 142,
+    desc: 'Cartas para a pessoa que você ama',
+    usuarioCriador: 'o inimigo',
+    status: 1,
+    banner: 'https://i.pinimg.com/736x/f2/22/3e/f2223ec354f79b76f6c77c85d844a9b6.jpg'
+},
+{
+    idSala: 16,
+    nome: 'dança',
+    participantes: 23,
+    desc: 'amo quando meu tenis fica molhado e faz quek quek quek',
+    usuarioCriador: 'Kika',
+    status: 1,
+    banner: 'https://thumbs.dreamstime.com/b/dan%C3%A7a-do-homem-novo-36842023.jpg'
+}
 
 ])
 

@@ -159,6 +159,9 @@ function denunciar() {
           </div>
         </div>
         <p class="texto">{{ comentario.texto }}</p>
+        <div v-if="comentario.imagem" class="imagem-post">
+           <img :src="comentario.imagem" alt="ImagemDoPost" />
+         </div>
 
         <div class="interacao">
           <div class="curtidas">
@@ -173,6 +176,13 @@ function denunciar() {
 </template>
 
 <style scoped>
+
+.imagem-post {
+ display: flex;
+ justify-content: center;
+ margin-top: 15px;
+}
+
 .comentarios {
   border-top: 2px solid #3e3e3e;
 }
