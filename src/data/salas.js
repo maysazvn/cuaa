@@ -128,6 +128,14 @@ export const salas = ref(dadosSalvos || [
     usuarioCriador: 'SAMUSAaS',
     status: 1,
     banner: 'https://i.pinimg.com/originals/ec/d1/74/ecd1747af243cf2d254359acc5a2b058.gif'
+},{
+    idSala: -5,
+    nome: 'Plasmofodase',
+    participantes: 15,
+    desc: 'Descubra como funciona o penis de um porco',
+    usuarioCriador: 'sontoffolizorrone',
+    status: 1,
+    banner: 'https://i.pinimg.com/236x/07/58/27/075827011be34e38f0e5e1e39133e314.jpg'
 },
 
 ])

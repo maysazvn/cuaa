@@ -159,8 +159,21 @@ export const postagens = ref([
    curtidas: 5000,
    imagem: "https://i.pinimg.com/736x/69/4c/83/694c83ca26d964df3bf3ff67494f0d16.jpg",
    salvou: false,
-   salvos: 30
+   salvos: 67
+ }, {
+   id: -2,
+   titulo: 'GENTE',
+   conteudo: 'como descobriram que esse era o cabelo dele',
+   autorID: -2,
+   data: '00/00/00',
+   salaId: 6,
+    curtido: false,
+   curtidas: 0,
+   imagem: "https://i.pinimg.com/736x/e4/d7/b4/e4d7b47887b3013a423b587a2412a52b.jpg",
+   salvou: false,
+   salvos: 0
  },
+
 ])
 
 

@@ -170,7 +170,7 @@ export const users = [
         id: 16,
         nome: 'kaori',
         pfp: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5cgtM6CQjM7x5pfPruPWMT5xhX7J-f_dkVeEtQ75_JVnrwFT64DXn0As&s=10',
-        banner: 'https://miro.medium.com/v2/0*AODaFOtQp_4WvKct.jpg',
+        banner: 'https://i.pinimg.com/originals/f7/47/94/f74794d4013acddf30d040c9d7b81783.gif',
         desc: 'Luto Kaori, 14 anos. Primária Arima',
         mostrarSala: 'nao',
         seguidores: 149,
@@ -385,6 +385,28 @@ export const users = [
         seguidores: 9999999,
         seguindo: 1,
         salas: [2, 6]
+    },
+    {
+        id: -3,
+        nome: 'VIVO TURBO',
+        pfp: 'https://i.pinimg.com/736x/4c/e7/24/4ce72497da7d173f0c08f3a573a54b95.jpg',
+        banner: 'https://i.pinimg.com/736x/34/b3/cb/34b3cb708b242cabf8936d0020c8c4fa.jpg',
+        desc: 'O problema real do aquecimento global é',
+        mostrarSala: 'sim',
+        seguidores: 9999999,
+        seguindo: 1,
+        salas: [-300, 6]
+    },
+    {
+        id: -4,
+        nome: 'fodase',
+        pfp: ' https://i.pinimg.com/736x/ff/d1/1c/ffd11c7b2135dd84666bf7564236be71.jpg',
+        banner: 'https://i.pinimg.com/originals/6c/2d/23/6c2d236b4ea89f66ab84e4f6404579e0.gif',
+        desc: 'Vai lá e trás uma cerveja pra mim',
+        mostrarSala: 'sim',
+        seguidores: 9999999,
+        seguindo: 1,
+        salas: [-300, 6, -5]
     },
 
 
