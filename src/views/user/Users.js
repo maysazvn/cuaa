@@ -380,10 +380,10 @@ export const users = [
         nome: 'Gottlel',
         pfp: 'https://i.pinimg.com/736x/77/94/73/779473d506600ca6576c100c51993091.jpg',
         banner: 'https://static.wikia.nocookie.net/disneyprincesas/images/9/96/Tower.01.png/revision/latest?cb=20140104231454&path-prefix=pt-br',
-        desc: 'PLACEHOLDER',
+        desc: 'Você não vai sair dessa torre',
         mostrarSala: 'nao',
-        seguidores: 23,
-        seguindo: 23,
+        seguidores: 16,
+        seguindo: 11,
         salas: [13, 12]
     },
      {
@@ -418,6 +418,28 @@ export const users = [
         seguidores: 0,
         seguindo: 0,
         salas: [1, 3]
+    },
+    {
+        id: 39,
+        nome: 'o amigo',
+        pfp: 'https://www.senhormercado.com.br/wp-content/uploads/jesus-joinha.jpg',
+        banner: 'https://i.pinimg.com/236x/fb/fd/39/fbfd399a628aa8dd0250b9e921701d60.jpg',
+        desc: 'Fale palavras gentis minha criança',
+        mostrarSala: 'nao',
+        seguidores: 2400000000,
+        seguindo: 2,
+        salas: [13]
+    },
+    {
+        id: 40,
+        nome: 'August',
+        pfp: 'https://static.wikia.nocookie.net/youngroyals/images/6/64/August_S2_Portrait.jpg/revision/latest/smart/width/400/height/225?cb=20220706211031',
+        banner: 'https://images.tcdn.com.br/img/img_prod/1195269/janela_veneziana_6_folhas_alumnio_preto_linha_ec_2_20260707161710_5d804fdba3b4.png',
+        desc: 'Homofobia no olhar',
+        mostrarSala: 'nao',
+        seguidores: 2,
+        seguindo: 666,
+        salas: [13]
     },
 
 

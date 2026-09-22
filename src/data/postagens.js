@@ -258,4 +258,32 @@ export const postagens = ref([
     salvou: false,
     salvos: 22,
   },
+  {
+    id: 20,
+    titulo: '',
+    conteudo:
+      '',
+    autorID: 20,
+    data: '18/09/2026',
+    salaId: 16,
+    curtido: false,
+    curtidas: 603,
+    imagem: 'https://media1.tenor.com/m/UngBboARCLcAAAAd/rochelle-dance.gif',
+    salvou: false,
+    salvos: 3,
+  },
+  {
+    id: 21,
+    titulo: 'Gente o príncipe é viado',
+    conteudo:
+      'kakakakakaka',
+    autorID: 40,
+    data: '01/07/202',
+    salaId: 10 ,
+    curtido: false,
+    curtidas: 603,
+    imagem: 'https://cdn.awsli.com.br/600x450/2014/2014061/produto/276100004/captura-de-tela_20-6-2024_75126_-y7oj8svcwf.jpeg',
+    salvou: false,
+    salvos: 3,
+  },
 ])
