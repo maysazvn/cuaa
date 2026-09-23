@@ -172,6 +172,18 @@ export const postagens = ref([
    imagem: "https://i.pinimg.com/736x/e4/d7/b4/e4d7b47887b3013a423b587a2412a52b.jpg",
    salvou: false,
    salvos: 0
+ },{
+   id: -3,
+   titulo: '',
+   conteudo: 'Gente achei essr bicho aqui no Cabo Canaveral. Alguém sabe se é venenoso?',
+   autorID: -4,
+   data: '09/09/9',
+   salaId: -5,
+    curtido: false,
+   curtidas: 0,
+   imagem: "https://i.pinimg.com/736x/fe/4f/53/fe4f5387bcd784ad4d04680cb8c209ea.jpg",
+   salvou: false,
+   salvos: 0
  },
 
 ])
