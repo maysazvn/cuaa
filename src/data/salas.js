@@ -139,6 +139,15 @@ export const salas = ref(dadosSalvos || [
     usuarioCriador: 'Kika',
     status: 1,
     banner: 'https://thumbs.dreamstime.com/b/dan%C3%A7a-do-homem-novo-36842023.jpg'
+},
+{
+    idSala: 17,
+    nome: 'Mestres da Maldade',
+    participantes: 666,
+    desc: 'Iremos dominar o mundo',
+    usuarioCriador: 'o inimigo',
+    status: 1,
+    banner: 'https://media.tenor.com/MM2KHCN2I_MAAAAe/young-sheldon-garage-tiktok-memes.png'
 }
 
 ])

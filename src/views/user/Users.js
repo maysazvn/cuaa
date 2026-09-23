@@ -118,7 +118,7 @@ export const users = [
         banner: 'https://aventurasnahistoria.com.br/wp-content/uploads/demoniocapafilme2.jpg',
         desc: 'Fale palavrão minha criança',
         mostrarSala: 'sim',
-        seguidores: 666,
+        seguidores: 5500000000,
         seguindo: 666,
         salas: [1, 9, 3]
     },
@@ -441,6 +441,51 @@ export const users = [
         seguindo: 666,
         salas: [13]
     },
+    {
+        id: 41,
+        nome: 'Rolas',
+        pfp: 'https://static.wikia.nocookie.net/disney/images/9/96/Roze.png/revision/latest/scale-to-width-down/258?cb=20240523032304&path-prefix=pt-br',
+        banner: 'https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExenN2dXl3MGg3MnNrNGU4ejd1eTZvcWx5ZDB5b3N0Z2Q3a3pydXhxaCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/H0Yi2igIiIwy4/giphy.gif',
+        desc: 'Profissional em por If Else no código',
+        mostrarSala: 'sim',
+        seguidores: 999,
+        seguindo: 0,
+        salas: [8, 7]
+    },
+    {
+        id: 42,
+        nome: 'Wolmir White',
+        pfp: 'https://i.pinimg.com/736x/8e/4f/84/8e4f848c3c084f585ef552d10018d10d.jpg',
+        banner: 'https://cineset.com.br/wp-content/uploads/2018/07/breaking_bad___walter_white__wallpaper__by_blockstabfatality-d9alw1k-1024x576.jpg',
+        desc: 'Você é um baiacu Jesse',
+        mostrarSala: 'sim',
+        seguidores: 234,
+        seguindo: 2195,
+        salas: [3, 2]
+    },
+    {
+        id: 43,
+        nome: 'Verity',
+        pfp: 'https://static8.depositphotos.com/1035219/799/v/450/depositphotos_7992071-stock-illustration-vector-smiley-yellow-emoticon-perfect.jpg',
+        banner: 'https://i.ytimg.com/vi/eL5HBc5JjeY/maxresdefault.jpg',
+        desc: "Hey, it's me",
+        mostrarSala: 'sim',
+        seguidores: 0,
+        seguindo: 3,
+        salas: [14, 10, 5, 3, 2]
+    },
+    {
+        id: 44,
+        nome: 'Megamente',
+        pfp: 'https://cdna.artstation.com/p/assets/images/images/002/929/624/large/daniel-serra-megamente-final.jpg?1467385827',
+        banner: 'https://m.media-amazon.com/images/S/pv-target-images/dc76b052ae6483127f65aa7dd61f3ec5a3dd9e2521ea9eba77c3b0273f893629._SX1080_FMjpg_.jpg',
+        desc: 'no bitches?',
+        mostrarSala: 'nao',
+        seguidores: 0,
+        seguindo: -111111111,
+        salas: [2]
+    },
+
 
 
     
