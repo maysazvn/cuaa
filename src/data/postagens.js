@@ -1,7 +1,44 @@
 import { ref } from 'vue'
 
 export const postagens = ref([
-  {
+ {
+ id: -1,
+   titulo: 'GENTE',
+   conteudo: 'alguém consegue calcular o angulo que tá esse enderdragon',
+   autorID: -1,
+   data: '11/09/00',
+   salaId: 4,
+    curtido: false,
+   curtidas: 5000,
+   imagem: "https://i.pinimg.com/736x/69/4c/83/694c83ca26d964df3bf3ff67494f0d16.jpg",
+   salvou: false,
+   salvos: 67
+ }, {
+   id: -2,
+   titulo: 'GENTE',
+   conteudo: 'como descobriram que esse era o cabelo dele',
+   autorID: -2,
+   data: '00/00/00',
+   salaId: 6,
+    curtido: false,
+   curtidas: 0,
+   imagem: "https://i.pinimg.com/736x/e4/d7/b4/e4d7b47887b3013a423b587a2412a52b.jpg",
+   salvou: false,
+   salvos: 0
+ },{
+   id: -3,
+   titulo: '',
+   conteudo: 'Gente achei essr bicho aqui no Cabo Canaveral. Alguém sabe se é venenoso?',
+   autorID: -4,
+   data: '09/09/9',
+   salaId: -5,
+    curtido: false,
+   curtidas: 0,
+   imagem: "https://i.pinimg.com/736x/fe/4f/53/fe4f5387bcd784ad4d04680cb8c209ea.jpg",
+   salvou: false,
+   salvos: 0
+ },
+ {
     id: 1,
     titulo: 'Esse é o bobby',
     conteudo: 'conteudo super importante',

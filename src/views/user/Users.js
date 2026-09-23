@@ -170,7 +170,7 @@ export const users = [
         id: 16,
         nome: 'kaori',
         pfp: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5cgtM6CQjM7x5pfPruPWMT5xhX7J-f_dkVeEtQ75_JVnrwFT64DXn0As&s=10',
-        banner: 'https://miro.medium.com/v2/0*AODaFOtQp_4WvKct.jpg',
+        banner: 'https://i.pinimg.com/originals/f7/47/94/f74794d4013acddf30d040c9d7b81783.gif',
         desc: 'Luto Kaori, 14 anos. Primária Arima',
         mostrarSala: 'nao',
         seguidores: 149,
@@ -363,6 +363,50 @@ export const users = [
         seguidores: 30,
         seguindo: 1,
         salas: [1, 12]
+    },
+    {
+        id: -1,
+        nome: 'KELLERMANN',
+        pfp: 'https://i.pinimg.com/originals/4a/ea/83/4aea8300c3734b1ed53604289703be5b.gif',
+        banner: 'https://i.pinimg.com/originals/27/1e/8a/271e8a6b559dbd0c0653c7e7c9ca9251.gif',
+        desc: 'POKÉMON TEMOS QUE PEGAR AS ESFERAS DO DRAGÃO',
+        mostrarSala: 'sim',
+        seguidores: 67,
+        seguindo: 1,
+        salas: [13, 12]
+    },
+    {
+        id: -2,
+        nome: 'SAMUSAaS',
+        pfp: 'https://i.pinimg.com/1200x/09/95/bf/0995bf5bc7ff9a544bc87fe20ca4cf81.jpg',
+        banner: 'https://i.pinimg.com/originals/5f/b0/7d/5fb07d4199f1405a698c12ed491fa7f5.gif',
+        desc: '',
+        mostrarSala: 'sim',
+        seguidores: 9999999,
+        seguindo: 1,
+        salas: [2, 6]
+    },
+    {
+        id: -3,
+        nome: 'VIVO TURBO',
+        pfp: 'https://i.pinimg.com/736x/4c/e7/24/4ce72497da7d173f0c08f3a573a54b95.jpg',
+        banner: 'https://i.pinimg.com/736x/34/b3/cb/34b3cb708b242cabf8936d0020c8c4fa.jpg',
+        desc: 'O problema real do aquecimento global é',
+        mostrarSala: 'sim',
+        seguidores: 9999999,
+        seguindo: 1,
+        salas: [-300, 6]
+    },
+    {
+        id: -4,
+        nome: 'fodase',
+        pfp: ' https://i.pinimg.com/736x/ff/d1/1c/ffd11c7b2135dd84666bf7564236be71.jpg',
+        banner: 'https://i.pinimg.com/originals/6c/2d/23/6c2d236b4ea89f66ab84e4f6404579e0.gif',
+        desc: 'Vai lá e trás uma cerveja pra mim',
+        mostrarSala: 'sim',
+        seguidores: 9999999,
+        seguindo: 1,
+        salas: [-300, 6, -5]
     },
      {
         id: 34,
