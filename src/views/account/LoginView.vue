@@ -120,8 +120,8 @@ function logar(email, senha) {
       <!-- essa ^ tem o texto de bem vindo e a imagem do kuaa -->
       <img src="../../../public/kuaa.png" alt="Kuaa Logo" />
       <p v-if="cadastro == true">
-        <span>Bem-vindo ao KUAA</span>
-        O KUAA veio para ajudar você, estudante, a ter um desempenho melhor em seus estudos, provas
+        <span>Bem-vindo ao CUAA</span>
+        O CUAA veio para ajudar você, estudante, a ter um desempenho melhor em seus estudos, provas
         e até mesmo fazer amigos novos!
       </p>
       <p v-if="login == true">
