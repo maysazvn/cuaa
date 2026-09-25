@@ -529,6 +529,17 @@ export const users = [
         seguindo: -111111111,
         salas: [2]
     },
+    {
+        id: 45,
+        nome: 'Cebolinha',
+        pfp: 'https://i.pinimg.com/originals/f1/99/ff/f199ff848bfc4a51e3dd75d8dc9057d1.jpg?nii=t',
+        banner: 'https://i.pinimg.com/1200x/12/e9/4d/12e94d412a2c8c231296385bf8533338.jpg',
+        desc: 'Mônica arrombada',
+        mostrarSala: 'nao',
+        seguidores: 12,
+        seguindo: 1,
+        salas: [2]
+    },
 
 
 

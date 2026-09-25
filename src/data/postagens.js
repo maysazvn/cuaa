@@ -505,4 +505,32 @@ export const postagens = ref([
     salvou: false,
     salvos: 12,
   },
+  {
+    id: 35,
+    titulo: '',
+    conteudo:
+      'Eu ri',
+    autorID: 45,
+    data: '01/07/1970',
+    salaId: 0,
+    curtido: false,
+    curtidas: 2,
+    imagem: '',
+    salvou: false,
+    salvos: 65,
+  },
+  {
+    id: 36,
+    titulo: '',
+    conteudo:
+      'Hj cai e o cascão começou a rir, fui lá tira satisfação cm ele sobre isso e falei "o seu otalio, você ta lindo" ele me chamou de viado',
+    autorID: 45,
+    data: '10/06/2015',
+    salaId: 0,
+    curtido: false,
+    curtidas: 6,
+    imagem: '',
+    salvou: false,
+    salvos: 1,
+  },
 ])
