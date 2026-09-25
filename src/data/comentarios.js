@@ -59,4 +59,18 @@ export const comentariosReais = ref({
       imagem: 'https://media1.tenor.com/m/nQdfoWmEoRYAAAAC/angry-cat-cat-angry.gif'
     }
   ],
+  35: [
+    {
+      id: 1,
+      texto: '"Li", Cebolinha, Você tem que falar "li".',
+      autorID: 43,
+      imagem: ''
+    },
+    {
+      id: 2,
+      texto: 'Eu tenho dificuldade na língua, não no dedo caralho',
+      autorID: 45,
+      imagem: ''
+    }
+  ],
 })
